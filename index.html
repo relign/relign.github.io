@@ -103,8 +103,7 @@
 </header>
     <div class="article-content">
         
-        <h6 id="找到代码代入口点"><a href="#找到代码代入口点" class="headerlink" title="找到代码代入口点"></a>找到代码代入口点</h6>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.angular.bootstrap) &#123;</div><div class="line">  <span class="comment">//AngularJS is already loaded, so we can return here...</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'WARNING: Tried to load angular more than once.'</span>);</div><div class="line">  <span class="keyword">return</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//try to bind to jquery now so that one can write angular.element().read()</span></div><div class="line"><span class="comment">//but we will rebind on bootstrap again.</span></div><div class="line">bindJQuery();</div><div class="line"></div><div class="line">publishExternalAPI(angular);</div><div class="line"></div><div class="line">jqLite(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  angularInit(<span class="built_in">document</span>, bootstrap);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>  首先判断angular是否是多次加载,如果多次加载,输出警告信息;</p>
+        <h4 id="找到代码代入口点"><a href="#找到代码代入口点" class="headerlink" title="找到代码代入口点"></a>找到代码代入口点</h4>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.angular.bootstrap) &#123;</div><div class="line">  <span class="comment">//AngularJS is already loaded, so we can return here...</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'WARNING: Tried to load angular more than once.'</span>);</div><div class="line">  <span class="keyword">return</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">//首先判断angular是否是多次加载,如果多次加载,输出警告信息;</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//try to bind to jquery now so that one can write angular.element().read()</span></div><div class="line"><span class="comment">//but we will rebind on bootstrap again.</span></div><div class="line">bindJQuery();<span class="comment">//该方法会去绑定jquery,内部会判断jQuery有没有加载,有就是用jQuery,没有则调用自带的jqLite</span></div><div class="line"></div><div class="line">publishExternalAPI(angular);<span class="comment">//暴露angular对象,加载angular的一系列api方法</span></div><div class="line"></div><div class="line">jqLite(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  angularInit(<span class="built_in">document</span>, bootstrap);<span class="comment">//等待dom加载完后启动angular.</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
         
         
         <p class="article-more-link">
@@ -436,11 +435,11 @@
 			
 		
 			
-				<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+				<li><a href="/tags/gulp/" title="gulp">gulp<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/gulp/" title="gulp">gulp<sup>1</sup></a></li>
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
 			
 		
 		</ul>
