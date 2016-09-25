@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>利用Hexo框架在Github上搭建个人博客 | Relign Blog</title>
+    <title>Eslint 配置及规则说明 | Relign Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     <meta name="baidu-site-verification" content="0BadmBsKMG" />
     <meta name="google-site-verification" content="21baLedz8cgdZBfRkoqRZizzKmIGN98IBSTj47K0R6g" />
@@ -13,38 +13,28 @@
     
 
     
-    <meta name="description" content="导语:hexo 是一款基于Node.js的静态博客框架，是一款快速、简洁且高效的博客框架。
-
-它具有以下几个特点：
-
-超快速度Node.js 所带来的超快生成速度，让上百个页面在几秒内瞬间完成渲染。
-支持MarkdownHexo 支持 GitHub Flavored Markdown 的所有功能，甚至可以整合 Octopress 的大多数插件。
-一键部署只需一条指令即可部署到 GitHub Pag">
+    <meta name="description" content="项目中包含Rules：该文件夹中包含了ESLint Rules的中文翻译（暂不包含v2.0.0新增Rules）。
+Configration： 该文件夹内包含一个ESLint配置说明文件。
+.eslintrc: 该文件是可以是你项目中有且仅有ESLint的配置文件，不包含规则简要解释。
+eslintrc.json： 该文件可以是你项目中有且仅有ESLint的配置文件，包含简要的规则解释。
+Migr">
 <meta property="og:type" content="article">
-<meta property="og:title" content="利用Hexo框架在Github上搭建个人博客">
-<meta property="og:url" content="https://relign.github.io/2016/07/10/hexo/index.html">
+<meta property="og:title" content="Eslint 配置及规则说明">
+<meta property="og:url" content="https://relign.github.io/2016/09/25/eslint/index.html">
 <meta property="og:site_name" content="Relign Blog">
-<meta property="og:description" content="导语:hexo 是一款基于Node.js的静态博客框架，是一款快速、简洁且高效的博客框架。
-
-它具有以下几个特点：
-
-超快速度Node.js 所带来的超快生成速度，让上百个页面在几秒内瞬间完成渲染。
-支持MarkdownHexo 支持 GitHub Flavored Markdown 的所有功能，甚至可以整合 Octopress 的大多数插件。
-一键部署只需一条指令即可部署到 GitHub Pag">
-<meta property="og:image" content="https://relign.github.io/images/hexo/2016-07-10_233220.png">
-<meta property="og:image" content="https://relign.github.io/images/hexo/2016-07-10_233422.png">
-<meta property="og:image" content="https://relign.github.io/images/hexo/2016-07-11_001900.png">
-<meta property="og:updated_time" content="2016-09-21T14:26:38.000Z">
+<meta property="og:description" content="项目中包含Rules：该文件夹中包含了ESLint Rules的中文翻译（暂不包含v2.0.0新增Rules）。
+Configration： 该文件夹内包含一个ESLint配置说明文件。
+.eslintrc: 该文件是可以是你项目中有且仅有ESLint的配置文件，不包含规则简要解释。
+eslintrc.json： 该文件可以是你项目中有且仅有ESLint的配置文件，包含简要的规则解释。
+Migr">
+<meta property="og:updated_time" content="2016-09-25T12:34:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="利用Hexo框架在Github上搭建个人博客">
-<meta name="twitter:description" content="导语:hexo 是一款基于Node.js的静态博客框架，是一款快速、简洁且高效的博客框架。
-
-它具有以下几个特点：
-
-超快速度Node.js 所带来的超快生成速度，让上百个页面在几秒内瞬间完成渲染。
-支持MarkdownHexo 支持 GitHub Flavored Markdown 的所有功能，甚至可以整合 Octopress 的大多数插件。
-一键部署只需一条指令即可部署到 GitHub Pag">
-<meta name="twitter:image" content="https://relign.github.io/images/hexo/2016-07-10_233220.png">
+<meta name="twitter:title" content="Eslint 配置及规则说明">
+<meta name="twitter:description" content="项目中包含Rules：该文件夹中包含了ESLint Rules的中文翻译（暂不包含v2.0.0新增Rules）。
+Configration： 该文件夹内包含一个ESLint配置说明文件。
+.eslintrc: 该文件是可以是你项目中有且仅有ESLint的配置文件，不包含规则简要解释。
+eslintrc.json： 该文件可以是你项目中有且仅有ESLint的配置文件，包含简要的规则解释。
+Migr">
 
     
     <link rel="alternative" href="/atom.xml" title="Relign Blog" type="application/atom+xml">
@@ -114,14 +104,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/07/10/hexo/" title="利用Hexo框架在Github上搭建个人博客" itemprop="url">利用Hexo框架在Github上搭建个人博客</a>
+      <a href="/2016/09/25/eslint/" title="Eslint 配置及规则说明" itemprop="url">Eslint 配置及规则说明</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="relign" target="_blank" itemprop="author">relign</a>
 		
   <p class="article-time">
-    <time datetime="2016-07-10T13:55:22.000Z" itemprop="datePublished"> 发表于 2016-07-10</time>
+    <time datetime="2016-09-25T11:42:45.000Z" itemprop="datePublished"> 发表于 2016-09-25</time>
     
   </p>
 </header>
@@ -130,43 +120,36 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#导语"><span class="toc-number">1.</span> <span class="toc-text">导语:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#环境安装"><span class="toc-number">2.</span> <span class="toc-text">环境安装:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装hexo"><span class="toc-number">3.</span> <span class="toc-text">安装hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在Github上创建个人博客仓库"><span class="toc-number">4.</span> <span class="toc-text">在Github上创建个人博客仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生成静态资源，部署到Github"><span class="toc-number">5.</span> <span class="toc-text">生成静态资源，部署到Github</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#项目中包含"><span class="toc-number">1.</span> <span class="toc-text">项目中包含</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置文件使用说明"><span class="toc-number">2.</span> <span class="toc-text">配置文件使用说明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装依赖"><span class="toc-number">2.1.</span> <span class="toc-text">安装依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#将文件夹中的eslintrc-json文件放置在项目根目录"><span class="toc-number">2.2.</span> <span class="toc-text">将文件夹中的eslintrc.json文件放置在项目根目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改配置文件"><span class="toc-number">2.3.</span> <span class="toc-text">修改配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#让ESLint运行起来"><span class="toc-number">2.4.</span> <span class="toc-text">让ESLint运行起来</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<h3 id="导语"><a href="#导语" class="headerlink" title="导语:"></a>导语:</h3><p><a href="https://hexo.io" target="_blank" rel="external">hexo</a> 是一款基于Node.js的静态博客框架，是一款快速、简洁且高效的博客框架。</p>
+		<!-- 从 Jocs 罗冉大神的[github](https://github.com/Jocs)中翻阅Eslint的这几篇翻译文档,觉得相当不错,遂收录
+tags: [Eslint,转载]
+category: 转载
+-->
+<h3 id="项目中包含"><a href="#项目中包含" class="headerlink" title="项目中包含"></a>项目中包含</h3><p><strong>Rules：</strong>该文件夹中包含了ESLint Rules的中文翻译（暂不包含v2.0.0新增Rules）。</p>
+<p><strong>Configration：</strong> 该文件夹内包含一个ESLint配置说明文件。</p>
+<p><strong>.eslintrc</strong>: 该文件是可以是你项目中有且仅有ESLint的配置文件，不包含规则简要解释。</p>
+<p><strong>eslintrc.json</strong>： 该文件可以是你项目中有且仅有ESLint的配置文件，包含简要的规则解释。</p>
+<p><strong>Migrating-to-v2.0.0</strong>: ESLint迁移至v2.0.0手册，和Rules和Configration相关部分进行了翻译。</p>
+<h3 id="配置文件使用说明"><a href="#配置文件使用说明" class="headerlink" title="配置文件使用说明"></a>配置文件使用说明</h3><h4 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h4><p>在<code>package.json</code>文件中添加如下依赖（如果没有<code>package.son</code>文件需首先通过<code>npm init</code> 创建<code>package.son</code> 文件）：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">"devDependencies": &#123;</div><div class="line">    "babel-core": "^6.5.2",</div><div class="line">    "babel-eslint": "^4.1.8",</div><div class="line">    "eslint": "^2.1.0",</div><div class="line">    "eslint-plugin-promise": "^1.0.8",</div><div class="line">    "eslint-plugin-standard": "^1.3.2"</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+  <a id="more"></a>
+<p>运行如下命令：</p>
 <blockquote>
-<p>它具有以下几个特点：</p>
-<ul>
-<li>超快速度<br>Node.js 所带来的超快生成速度，让上百个页面在几秒内瞬间完成渲染。</li>
-<li>支持Markdown<br>Hexo 支持 GitHub Flavored Markdown 的所有功能，甚至可以整合 Octopress 的大多数插件。</li>
-<li>一键部署<br>只需一条指令即可部署到 GitHub Pages, Heroku 或其他网站。</li>
-<li>丰富的插件<br>Hexo 拥有强大的插件系统，安装插件可以让 Hexo 支持 Jade, CoffeeScript。  </li>
-</ul>
+<p>npm install</p>
 </blockquote>
-<a id="more"></a>
-<h3 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装:"></a>环境安装:</h3><ol>
-<li><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137396287703354d8c6c01c904c7d9ff056ae23da865a000" target="_blank" rel="external">安装git</a></li>
-<li><a href="http://jingyan.baidu.com/article/fd8044faf2e8af5030137a64.html" target="_blank" rel="external">安装node.js</a><h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3>在你的指定文件夹中打开git或者cmd执行以下命令进行安装：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-cli -g  //安装hexo框架</div><div class="line">$ hexo init blog  //初始化你的博客项目到/blog(你也可以指定自己的目录)目录下</div><div class="line">$ cd blog  //进入博客目录</div><div class="line">$ npm install //安装blog项目所依赖的各种插件(最新版的hexo会在初始化项目时自动安装)</div><div class="line">$ hexo server //启动一个本地服务器,预览初始化后的博客 (默认为本机地址:http://localhost:4000/)</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>在浏览器中打开 <a href="http://localhost:4000/，这时可以看到Hexo已为你生成了一篇blog。" target="_blank" rel="external">http://localhost:4000/，这时可以看到Hexo已为你生成了一篇blog。</a></p>
-<h3 id="在Github上创建个人博客仓库"><a href="#在Github上创建个人博客仓库" class="headerlink" title="在Github上创建个人博客仓库"></a>在Github上创建个人博客仓库</h3><p>登陆你自己的<a href="https://github.com/" target="_blank" rel="external">github</a>,在<a href="https://github.com/new" target="_blank" rel="external">创建仓库</a>页面创建自己的个人博客项目管理仓库,注意仓库名臣格式必须是username.github.io(uesername为你自己定义的项目名)</p>
+<h4 id="将文件夹中的eslintrc-json文件放置在项目根目录"><a href="#将文件夹中的eslintrc-json文件放置在项目根目录" class="headerlink" title="将文件夹中的eslintrc.json文件放置在项目根目录"></a>将文件夹中的eslintrc.json文件放置在项目根目录</h4><p>并将<code>eslintrc.json</code>重命名为<code>.eslintrc</code>(或者直接使用文件夹中的<code>.eslintrc</code>文件)</p>
+<h4 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h4><p>根据自己项目需要，在配置文件中<code>globals</code>配置项中添加项目所需全局变量：举个栗子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="string">"globals"</span>: &#123;</div><div class="line">    <span class="string">"document"</span>: <span class="literal">true</span>,</div><div class="line">    <span class="string">"navigator"</span>: <span class="literal">true</span>,</div><div class="line">    <span class="string">"window"</span>: <span class="literal">true</span>,</div><div class="line">    <span class="string">"angular"</span>:<span class="literal">true</span> <span class="comment">//添加项目所需没有申明的全局变量</span></div><div class="line">  &#125;,</div></pre></td></tr></table></figure>
+<h4 id="让ESLint运行起来"><a href="#让ESLint运行起来" class="headerlink" title="让ESLint运行起来"></a>让ESLint运行起来</h4><p>修改<code>package.json</code>文件。在<code>script</code> 配置项中添加如下代码：举个栗子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="string">"scripts"</span>: &#123;</div><div class="line">  <span class="string">"lint"</span>: <span class="string">"eslint app.jsx test"</span> <span class="comment">//其中app.jsx test需要替换成你项目需要检测的文件或文件夹</span></div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<p>命令行运行如下代码：</p>
 <blockquote>
-<p>github会为username.github.io命名规则的仓库开启site(站点)功能即 GitHub Pages 功能，site默认地址为：<a href="https://usename.github.io/" target="_blank" rel="external">https://usename.github.io/</a></p>
+<p>npm run lint</p>
 </blockquote>
-<p><img src="/images/hexo/2016-07-10_233220.png" alt="alt text"><br><img src="/images/hexo/2016-07-10_233422.png" alt="alt text"></p>
-<h3 id="生成静态资源，部署到Github"><a href="#生成静态资源，部署到Github" class="headerlink" title="生成静态资源，部署到Github"></a>生成静态资源，部署到Github</h3><ol>
-<li>配置本地_config.yml<br>在你的博客项目根目录下找到<code>_config.yml</code>文件,在最后找到<code>deploy</code>选项,修改如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git //部署类型，我采用的是git上传</div><div class="line">  repo: git@github.com:relign/relign.github.io.git //部署的github仓库地址，此处必须是刚刚部署的仓库的SSH地址</div><div class="line">  branch: master //部署仓库的分支(默认为master分支)</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><img src="/images/hexo/2016-07-11_001900.png" alt="alt text"></p>
-<p>更多上传方式参见官网deploy参数设置:<a href="https://hexo.io/zh-cn/docs/deployment.html" target="_blank" rel="external">https://hexo.io/zh-cn/docs/deployment.html</a><br>git上传有问题的，建议通读廖雪峰的 <a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">Git教程</a></p>
-<ol>
-<li>生成静态资源<br>在博客项目根目录地址下打开git,运行命令<code>$ git generate</code> (可简写为<code>$ git g</code>) 即可生成网站的静态资源，存储在项目根目录下的 public 文件夹下。</li>
-<li>部署到Github<br>执行命令<code>$ git deploy</code> (可简写为<code>$ git d</code>) 即可将本地的静态资源上传到Github仓库中。</li>
-</ol>
-<p>最后打开浏览器输入网址：<a href="https://username.github.io/" target="_blank" rel="external">https://username.github.io/</a> (username为你之前设置的仓库名称) 即可查阅你的博客站点。</p>
+<p>好了，现在就可以在终端看检测结果了。</p>
 
 	</div>
   
@@ -266,15 +249,10 @@
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/hexo/">hexo</a>
-</div>
-
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/hexo/">hexo</a>
+  <span></span> <a href="/tags/Eslint/">Eslint</a>
   </div>
 
 </div>
@@ -283,7 +261,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://relign.github.io/2016/07/10/hexo/" data-title="利用Hexo框架在Github上搭建个人博客 | Relign Blog" data-tsina="2170275291" class="share clearfix">
+	  <div data-url="https://relign.github.io/2016/09/25/eslint/" data-title="Eslint 配置及规则说明 | Relign Blog" data-tsina="2170275291" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -309,19 +287,27 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/07/11/gulp/" title="gulp之学习教程">
+ <a href="/2016/09/25/eslint-01/" title="Eslint的配置说明">
   <strong>上一篇：</strong><br/>
   <span>
-  gulp之学习教程</span>
+  Eslint的配置说明</span>
 </a>
 </div>
 
+
+<div class="next">
+<a href="/2016/09/25/editor-config/"  title="【转】利用EditorConfig定义代码格式,统一代码风格">
+ <strong>下一篇：</strong><br/> 
+ <span>【转】利用EditorConfig定义代码格式,统一代码风格
+</span>
+</a>
+</div>
 
 </nav>
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/07/10/hexo/" data-title="利用Hexo框架在Github上搭建个人博客" data-url="https://relign.github.io/2016/07/10/hexo/"></div>
+	<div class="ds-thread" data-thread-key="2016/09/25/eslint/" data-title="Eslint 配置及规则说明" data-url="https://relign.github.io/2016/09/25/eslint/"></div>
 </section>
 
 

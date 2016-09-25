@@ -90,6 +90,167 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/09/25/eslint-01/" title="Eslint的配置说明" itemprop="url">Eslint的配置说明</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="relign" target="_blank" itemprop="author">relign</a>
+		
+  <p class="article-time">
+    <time datetime="2016-09-25T11:52:54.000Z" itemprop="datePublished"> 发表于 2016-09-25</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <!-- tags: [Eslint, 转载]
+category: 转载 -->
+<h2 id="什么是ESLint？"><a href="#什么是ESLint？" class="headerlink" title="什么是ESLint？"></a>什么是ESLint？</h2><p>当<code>C语言</code>刚成为计算机语言的时候，有一些常见的错误不能够被原始的编译器捕捉，所以一个名为Lint的辅助程序被开发出来，用来扫面源文件中的错误。</p>
+<p>在Douglas Rockford 的<strong><JavaScript： The Good Parts></strong> 也提到，JavaScript是一门「年轻的语言」，因此也就存在很多糟粕的地方，这些糟粕使得程序员在编写JavaScript代码的时候，容易出错，而不易被编辑器或程序员本身发现。于是Douglas Crockford亲自操刀，编写了JSLint代码规范检测工具，其认为JSLint是JavaScript的一个更加严格的子集，也就是他说的Good Parts，使用JSLint就能够检测我们在编程过程中无意得使用了一些「糟粕」的地方，避免了程序出错。</p>
+<p>而ESLint是Nicholas C.Zakas编写的另外一份JavaScript代码规范检测工具，这当然不是重复得造轮子（大神不屑造轮子，大神一般都是重新发现轮子），在使用JSLint的时候，JSLint不是以插件的形式实现的，而是重新包装一个工具，可能Nicholas C.Zakas不喜欢这种方式，其认为代码规范检测工具（ESLint）应该是可插拔（使用插件），可配置的，于是自己便高高兴兴去写ESLint了。</p>
+<p>正如ESLint官网这样定义ESLint：</p>
+<blockquote>
+<p>ESLint is designed to be completely configurable, meaning you can turn off every rule and run only with basic syntax validation, or mix and match the bundled rules and your custom rules to make ESLint perfect for your project. </p>
+</blockquote>
+<p><strong>ESLint 的设计思想就是高度可配置，在ESLint中你可以开关每一条规则，你可以使用最基本的语法检测，或者结合自定义的规则来使得ESLint完美运行在你的项目中。</strong></p>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2016/09/25/eslint-01/#more">显示更多</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Eslint/">Eslint</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/09/25/eslint-01/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/09/25/eslint-01/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https'){
+   		bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}else{
+  		bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	  }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/09/25/eslint/" title="Eslint 配置及规则说明" itemprop="url">Eslint 配置及规则说明</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="relign" target="_blank" itemprop="author">relign</a>
+		
+  <p class="article-time">
+    <time datetime="2016-09-25T11:42:45.000Z" itemprop="datePublished"> 发表于 2016-09-25</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <!-- 从 Jocs 罗冉大神的[github](https://github.com/Jocs)中翻阅Eslint的这几篇翻译文档,觉得相当不错,遂收录
+tags: [Eslint,转载]
+category: 转载
+-->
+<h3 id="项目中包含"><a href="#项目中包含" class="headerlink" title="项目中包含"></a>项目中包含</h3><p><strong>Rules：</strong>该文件夹中包含了ESLint Rules的中文翻译（暂不包含v2.0.0新增Rules）。</p>
+<p><strong>Configration：</strong> 该文件夹内包含一个ESLint配置说明文件。</p>
+<p><strong>.eslintrc</strong>: 该文件是可以是你项目中有且仅有ESLint的配置文件，不包含规则简要解释。</p>
+<p><strong>eslintrc.json</strong>： 该文件可以是你项目中有且仅有ESLint的配置文件，包含简要的规则解释。</p>
+<p><strong>Migrating-to-v2.0.0</strong>: ESLint迁移至v2.0.0手册，和Rules和Configration相关部分进行了翻译。</p>
+<h3 id="配置文件使用说明"><a href="#配置文件使用说明" class="headerlink" title="配置文件使用说明"></a>配置文件使用说明</h3><h4 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h4><p>在<code>package.json</code>文件中添加如下依赖（如果没有<code>package.son</code>文件需首先通过<code>npm init</code> 创建<code>package.son</code> 文件）：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">"devDependencies": &#123;</div><div class="line">    "babel-core": "^6.5.2",</div><div class="line">    "babel-eslint": "^4.1.8",</div><div class="line">    "eslint": "^2.1.0",</div><div class="line">    "eslint-plugin-promise": "^1.0.8",</div><div class="line">    "eslint-plugin-standard": "^1.3.2"</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2016/09/25/eslint/#more">显示更多</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Eslint/">Eslint</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/09/25/eslint/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/09/25/eslint/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https'){
+   		bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}else{
+  		bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	  }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/09/25/editor-config/" title="【转】利用EditorConfig定义代码格式,统一代码风格" itemprop="url">【转】利用EditorConfig定义代码格式,统一代码风格</a>
   </h1>
   <p class="article-author">By
@@ -120,10 +281,15 @@
     <footer class="article-footer clearfix">
 <div class="article-catetags">
 
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/转载/">转载</a>
+</div>
+
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/EditorConfig-转载/">EditorConfig 转载</a>
+  <span></span> <a href="/tags/EditorConfig/">EditorConfig</a><a href="/tags/转载/">转载</a>
   </div>
 
 </div>
@@ -497,6 +663,10 @@
 			<li><a href="/categories/hexo/" title="hexo">hexo<sup>1</sup></a></li>
 		  
 		
+		  
+			<li><a href="/categories/转载/" title="转载">转载<sup>1</sup></a></li>
+		  
+		
 		</ul>
 </div>
 
@@ -511,7 +681,15 @@
 			
 		
 			
-				<li><a href="/tags/EditorConfig-转载/" title="EditorConfig 转载">EditorConfig 转载<sup>1</sup></a></li>
+				<li><a href="/tags/Eslint/" title="Eslint">Eslint<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/EditorConfig/" title="EditorConfig">EditorConfig<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/转载/" title="转载">转载<sup>1</sup></a></li>
 			
 		
 			

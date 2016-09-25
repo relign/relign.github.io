@@ -1,0 +1,834 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Eslint的配置说明 | Relign Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <meta name="baidu-site-verification" content="0BadmBsKMG" />
+    <meta name="google-site-verification" content="21baLedz8cgdZBfRkoqRZizzKmIGN98IBSTj47K0R6g" />
+    
+    <meta name="author" content="relign">
+    
+
+    
+    <meta name="description" content="什么是ESLint？当C语言刚成为计算机语言的时候，有一些常见的错误不能够被原始的编译器捕捉，所以一个名为Lint的辅助程序被开发出来，用来扫面源文件中的错误。
+在Douglas Rockford 的 也提到，JavaScript是一门「年轻的语言」，因此也就存在很多糟粕的地方，这些糟粕使得程序员在编写JavaScript代码的时候，容易出错，而不易被编辑器或程序员本身发现。于是Douglas">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Eslint的配置说明">
+<meta property="og:url" content="https://relign.github.io/2016/09/25/eslint-01/index.html">
+<meta property="og:site_name" content="Relign Blog">
+<meta property="og:description" content="什么是ESLint？当C语言刚成为计算机语言的时候，有一些常见的错误不能够被原始的编译器捕捉，所以一个名为Lint的辅助程序被开发出来，用来扫面源文件中的错误。
+在Douglas Rockford 的 也提到，JavaScript是一门「年轻的语言」，因此也就存在很多糟粕的地方，这些糟粕使得程序员在编写JavaScript代码的时候，容易出错，而不易被编辑器或程序员本身发现。于是Douglas">
+<meta property="og:updated_time" content="2016-09-25T12:30:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Eslint的配置说明">
+<meta name="twitter:description" content="什么是ESLint？当C语言刚成为计算机语言的时候，有一些常见的错误不能够被原始的编译器捕捉，所以一个名为Lint的辅助程序被开发出来，用来扫面源文件中的错误。
+在Douglas Rockford 的 也提到，JavaScript是一门「年轻的语言」，因此也就存在很多糟粕的地方，这些糟粕使得程序员在编写JavaScript代码的时候，容易出错，而不易被编辑器或程序员本身发现。于是Douglas">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Relign Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/reacticon.png">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Relign Blog" title="Relign Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Relign Blog">Relign Blog</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+						<form class="search" id='search-box' action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<div class="search-input">
+							<div id="search-icon" class="search-icon"></div>
+							<input type="text" id="search" class="st-default-search-input" maxlength="20" placeholder="" />
+						</div>
+						</form>
+						<script>
+								var search = document.getElementById('search-icon');
+								var input = document.getElementById('search');
+								search.onclick = function () {
+										location.href = 'https://relign.github.io/search/index.html#stq='+input.value+'&stp=1';
+								}
+						</script>
+					
+					</li>
+				</ul>
+			</nav>
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody">
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/09/25/eslint-01/" title="Eslint的配置说明" itemprop="url">Eslint的配置说明</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="relign" target="_blank" itemprop="author">relign</a>
+		
+  <p class="article-time">
+    <time datetime="2016-09-25T11:52:54.000Z" itemprop="datePublished"> 发表于 2016-09-25</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是ESLint？"><span class="toc-number">1.</span> <span class="toc-text">什么是ESLint？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#怎么使用ESLint？"><span class="toc-number">2.</span> <span class="toc-text">怎么使用ESLint？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ESLint的配置"><span class="toc-number">2.1.</span> <span class="toc-text">ESLint的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ESLint配置的方法"><span class="toc-number">2.1.1.</span> <span class="toc-text">ESLint配置的方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ESLint配置的主要内容"><span class="toc-number">2.1.2.</span> <span class="toc-text">ESLint配置的主要内容</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ESLint的使用方法"><span class="toc-number">2.2.</span> <span class="toc-text">ESLint的使用方法</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<!-- tags: [Eslint, 转载]
+category: 转载 -->
+<h2 id="什么是ESLint？"><a href="#什么是ESLint？" class="headerlink" title="什么是ESLint？"></a>什么是ESLint？</h2><p>当<code>C语言</code>刚成为计算机语言的时候，有一些常见的错误不能够被原始的编译器捕捉，所以一个名为Lint的辅助程序被开发出来，用来扫面源文件中的错误。</p>
+<p>在Douglas Rockford 的<strong><javascript： the="" good="" parts=""></javascript：></strong> 也提到，JavaScript是一门「年轻的语言」，因此也就存在很多糟粕的地方，这些糟粕使得程序员在编写JavaScript代码的时候，容易出错，而不易被编辑器或程序员本身发现。于是Douglas Crockford亲自操刀，编写了JSLint代码规范检测工具，其认为JSLint是JavaScript的一个更加严格的子集，也就是他说的Good Parts，使用JSLint就能够检测我们在编程过程中无意得使用了一些「糟粕」的地方，避免了程序出错。</p>
+<p>而ESLint是Nicholas C.Zakas编写的另外一份JavaScript代码规范检测工具，这当然不是重复得造轮子（大神不屑造轮子，大神一般都是重新发现轮子），在使用JSLint的时候，JSLint不是以插件的形式实现的，而是重新包装一个工具，可能Nicholas C.Zakas不喜欢这种方式，其认为代码规范检测工具（ESLint）应该是可插拔（使用插件），可配置的，于是自己便高高兴兴去写ESLint了。</p>
+<p>正如ESLint官网这样定义ESLint：</p>
+<blockquote>
+<p>ESLint is designed to be completely configurable, meaning you can turn off every rule and run only with basic syntax validation, or mix and match the bundled rules and your custom rules to make ESLint perfect for your project. </p>
+</blockquote>
+<p><strong>ESLint 的设计思想就是高度可配置，在ESLint中你可以开关每一条规则，你可以使用最基本的语法检测，或者结合自定义的规则来使得ESLint完美运行在你的项目中。</strong></p>
+<a id="more"></a>
+<!-- tags: [Eslint, 转载]
+category: 转载 -->
+<h2 id="怎么使用ESLint？"><a href="#怎么使用ESLint？" class="headerlink" title="怎么使用ESLint？"></a>怎么使用ESLint？</h2><h3 id="ESLint的配置"><a href="#ESLint的配置" class="headerlink" title="ESLint的配置"></a>ESLint的配置</h3><h4 id="ESLint配置的方法"><a href="#ESLint配置的方法" class="headerlink" title="ESLint配置的方法"></a>ESLint配置的方法</h4><p>ESLint主要有两种配置方法:</p>
+<p>   1）Configuration Comment： 通过在所有的JS文件的JavaScript 注释中写ESLint配置信息。</p>
+<p>   2）Configuration Files: 通过一份配置文件，来对ESLint进行基本配置，配置文件可以是JavaScript、JSON、YAML中任意一种格式。如果是用过<code>.eslintrc</code> 或者在<code>package.son</code> 文件中的eslintConfig属性内进行配置，那么ESLint就能够自动的检测到这两个文件中的配置信息，如果是其他文件或文件名，就需要在命令行中指定特定的配置文件。</p>
+<h4 id="ESLint配置的主要内容"><a href="#ESLint配置的主要内容" class="headerlink" title="ESLint配置的主要内容"></a>ESLint配置的主要内容</h4><p>   1）<strong>Environments：</strong> 定义我们脚本的运行环境，配置这项的一个主要原因就是不同的运行环境都会有预先定义的不同的global variables。</p>
+<p>   2）<strong>Globals</strong>：配置脚本运行过程中附件的全局变量（global variables）；</p>
+<p>   3）<strong>Rules</strong>： 在我们的项目中，需要配置的代码规则，并且指定每一条规则的警告级别（error level）。比如说<code>no-var: 2</code> 这条规则，ESLint在进行代码检测时，如果我们JavaScript代码中使用了<code>var</code>申明变量，那么就会报错，其中<code>2</code> 是一个警告等级，在后面会介绍到。</p>
+<p>   <strong> 下面是<code>.eslintrc</code> 配置文件中一些具体配置项的详细解释 </strong></p>
+<p>   <strong>本文档实例，默认使用的是第二种配置方法，也就是通过配置文件来进行配置，并且使用的是<code>.eslintrc</code>文件。</strong></p>
+<p>   1）Specifying Language Options</p>
+<p>   ESLint 允许使用者指定ESLint支持的的JavaScript 语法。在默认情况下，ESLint仅支持ECMAScript 5 的语法，同时在配置文件中，可以对特定的rule进行重写（或覆盖），来使ESLint支持ECMAScript 2016 或者是 JSX语法格式。</p>
+<p>   这部分的配置是在<code>.eslintrc</code>文件中的ecmaFeatures 属性中进行配置。可配置项如下：</p>
+<p>   <code>arrowFunctions</code> - enable <a href="https://leanpub.com/understandinges6/read#leanpub-auto-arrow-functions" target="_blank" rel="external">arrow functions</a></p>
+<p>   <code>binaryLiterals</code> - enable <a href="https://leanpub.com/understandinges6/read#leanpub-auto-octal-and-binary-literals" target="_blank" rel="external">binary literals</a></p>
+<p>   <code>blockBindings</code> - enable <code>let</code> and <code>const</code> (aka <a href="https://leanpub.com/understandinges6/read#leanpub-auto-block-bindings" target="_blank" rel="external">block bindings</a>)</p>
+<p>   <code>classes</code> - enable classes</p>
+<p>   <code>defaultParams</code> - enable <a href="https://leanpub.com/understandinges6/read/#leanpub-auto-default-parameters" target="_blank" rel="external">default function parameters</a></p>
+<p>   <code>destructuring</code> - enable <a href="https://leanpub.com/understandinges6/read#leanpub-auto-destructuring-assignment" target="_blank" rel="external">destructuring</a></p>
+<p>   <code>forOf</code> - enable <a href="https://leanpub.com/understandinges6/read#leanpub-auto-iterables-and-for-of" target="_blank" rel="external"><code>for-of</code> loops</a></p>
+<p>   <code>generators</code> - enable <a href="https://leanpub.com/understandinges6/read#leanpub-auto-generators" target="_blank" rel="external">generators</a></p>
+<p>   <code>modules</code> - enable modules and global strict mode</p>
+<p>   <code>objectLiteralComputedProperties</code> - enable <a href="https://leanpub.com/understandinges6/read#leanpub-auto-computed-property-names" target="_blank" rel="external">computed object literal property names</a></p>
+<p>   <code>objectLiteralDuplicateProperties</code> - enable <a href="https://leanpub.com/understandinges6/read#leanpub-auto-duplicate-object-literal-properties" target="_blank" rel="external">duplicate object literal properties</a> in strict mode</p>
+<p>   <code>objectLiteralShorthandMethods</code> - enable <a href="https://leanpub.com/understandinges6/read#leanpub-auto-method-initializer-shorthand" target="_blank" rel="external">object literal shorthand methods</a></p>
+<p>   <code>objectLiteralShorthandProperties</code> - enable <a href="https://leanpub.com/understandinges6/read#leanpub-auto-property-initializer-shorthand" target="_blank" rel="external">object literal shorthand properties</a></p>
+<p>   <code>octalLiterals</code> - enable <a href="https://leanpub.com/understandinges6/read#leanpub-auto-octal-and-binary-literals" target="_blank" rel="external">octal literals</a></p>
+<p>   <code>regexUFlag</code> - enable the <a href="https://leanpub.com/understandinges6/read#leanpub-auto-the-regular-expression-u-flag" target="_blank" rel="external">regular expression <code>u</code> flag</a></p>
+<p>   <code>regexYFlag</code> - enable the <a href="https://leanpub.com/understandinges6/read#leanpub-auto-the-regular-expression-y-flag" target="_blank" rel="external">regular expression <code>y</code> flag</a></p>
+<p>   <code>restParams</code> - enable the <a href="https://leanpub.com/understandinges6/read#leanpub-auto-rest-parameters" target="_blank" rel="external">rest parameters</a></p>
+<p>   <code>spread</code> - enable the <a href="https://leanpub.com/understandinges6/read#leanpub-auto-the-spread-operator" target="_blank" rel="external">spread operator</a> for arrays</p>
+<p>   <code>superInFunctions</code> - enable <code>super</code> references inside of functions</p>
+<p>   <code>templateStrings</code> - enable <a href="https://leanpub.com/understandinges6/read/#leanpub-auto-template-strings" target="_blank" rel="external">template strings</a></p>
+<p>   <code>unicodeCodePointEscapes</code> - enable <a href="https://leanpub.com/understandinges6/read/#leanpub-auto-escaping-non-bmp-characters" target="_blank" rel="external">code point escapes</a></p>
+<p>   <code>globalReturn</code> - allow <code>return</code> statements in the global scope</p>
+<p>   <code>jsx</code> - enable <a href="http://facebook.github.io/jsx/" target="_blank" rel="external">JSX</a></p>
+<p>   <code>experimentalObjectRestSpread</code> - enable support for the experimental <a href="https://github.com/sebmarkbage/ecmascript-rest-spread" target="_blank" rel="external">object rest/spread properties</a> </p>
+<p>   下面是一个在<code>.eslintrc</code>配置文件中的栗子：</p>
+   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="string">"ecmaFeatures"</span>: &#123;</div><div class="line">        <span class="string">"blockBindings"</span>: <span class="literal">true</span>,</div><div class="line">        <span class="string">"forOf"</span>: <span class="literal">true</span>,</div><div class="line">        <span class="string">"jsx"</span>: <span class="literal">true</span></div><div class="line">    &#125;,</div><div class="line">    <span class="string">"rules"</span>: &#123;</div><div class="line">        <span class="string">"semi"</span>: <span class="number">2</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>   or (YAML格式)</p>
+   <figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="attr">ecmaFeatures:</span></div><div class="line"><span class="attr">  blockBindings:</span> <span class="literal">true</span></div><div class="line"><span class="attr">  forOf:</span> <span class="literal">true</span></div><div class="line"><span class="attr">  jsx:</span> <span class="literal">true</span></div><div class="line"><span class="attr">rules:</span></div><div class="line"><span class="attr">  semi:</span> <span class="number">2</span></div></pre></td></tr></table></figure>
+<p>   <strong>上面的Language配置，基本都是ECMAScript2015的新语法，或者React的JSX</strong>。其实在配置Environment的时候，配置<code>es6: true</code> 其实就可以使用ECMAScript 2015的大部分新特性了，除了modules，也就是说，在ecmaFeatures的配置中，我们如果需要使用ECMAScript2015新特性，我们只需要如下配置：</p>
+   <figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attr">ecmaFeatures:</span></div><div class="line"><span class="attr">  modules:</span> <span class="literal">true</span></div><div class="line"><span class="attr">  experimentalObjectRestSpread:</span> <span class="literal">true</span></div></pre></td></tr></table></figure>
+<p>   2）解析器的配置（Specifying Parser）</p>
+<p>   ESLint默认是采用的Espree解析器，你也可以自己指定其他的解析器被配置文件所用，但是自己指定的解析器需要满足如下要求：</p>
+<p>   （1）Parser 必须通过npm 安装到本地，不需要全局安装。</p>
+<p>   （2）Parser必须带有Esprima兼容的接口，也就是说该Parser需要暴露一个<code>parse()</code> 方法。</p>
+<p>   （3）It must produce Esprima-compatible AST and token objects.</p>
+<p>   指定Parser就是在<code>.eslintrc</code>文件中<code>parser</code>项进行配置，举个栗子：</p>
+   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="string">"parser"</span>: <span class="string">"esprima"</span>,</div><div class="line">    <span class="string">"rules"</span>: &#123;</div><div class="line">        <span class="string">"semi"</span>: <span class="number">2</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>   下面列举一些ESLint兼容的Parsers。</p>
+<p>   <a href="https://npmjs.com/package/esprima" target="_blank" rel="external">Esprima</a></p>
+<p>   <a href="https://npmjs.com/package/esprima-fb" target="_blank" rel="external">Esprima-FB</a> - Facebook’s fork of Esprima that includes their proprietary syntax additions.</p>
+<p>   <a href="https://npmjs.com/package/babel-eslint" target="_blank" rel="external">Babel-ESLint</a> - A wrapper around the <a href="http://babeljs.io/" target="_blank" rel="external">Babel</a> parser that makes it compatible with ESLint.</p>
+<p>   <strong>如果在项目中使用了Babel来对ES6代码进行编译，个人建议使用Babel-ESLint Parser。</strong></p>
+<p>   <strong>当我们使用一个特定的Parser的时候，ecmaFeatures仍然是需要在配置文件中指定的，但是我们指定的Parser不一定需要使用到ecmaFeatures中定义使用的特性。</strong></p>
+<p>   3）ESLint运行环境的配置（Specifying Environments）</p>
+<p>   <code>browser</code> - browser global variables.</p>
+<p>   <code>node</code> - Node.js global variables and Node.js scoping.</p>
+<p>   <code>commonjs</code> - CommonJS global variables and CommonJS scoping (use this for browser-only code that uses Browserify/WebPack).</p>
+<p>   <code>worker</code> - web workers global variables.</p>
+<p>   <code>amd</code> - defines <code>require()</code> and <code>define()</code> as global variables as per the <a href="https://github.com/amdjs/amdjs-api/wiki/AMD" target="_blank" rel="external">amd</a> spec.</p>
+<p>   <code>mocha</code> - adds all of the Mocha testing global variables.</p>
+<p>   <code>jasmine</code> - adds all of the Jasmine testing global variables for version 1.3 and 2.0.</p>
+<p>   <code>jest</code> - Jest global variables.</p>
+<p>   <code>phantomjs</code> - PhantomJS global variables.</p>
+<p>   <code>protractor</code> - Protractor global variables.</p>
+<p>   <code>qunit</code> - QUnit global variables.</p>
+<p>   <code>jquery</code> - jQuery global variables.</p>
+<p>   <code>prototypejs</code> - Prototype.js global variables.</p>
+<p>   <code>shelljs</code> - ShellJS global variables.</p>
+<p>   <code>meteor</code> - Meteor global variables.</p>
+<p>   <code>mongo</code> - MongoDB global variables.</p>
+<p>   <code>applescript</code> - AppleScript global variables.</p>
+<p>   <code>nashorn</code> - Java 8 Nashorn global variables.</p>
+<p>   <code>serviceworker</code> - Service Worker global variables.</p>
+<p>   <code>embertest</code> - Ember test helper globals.</p>
+<p>   <code>webextensions</code> - WebExtensions globals.</p>
+<p>   <code>es6</code> - enable all ECMAScript 6 features except for modules.</p>
+<p>   上面枚举了JavaScript可能运行到的一些环境，当然我们的项目不可能运行在每个环境中，因此不需要全部都写上，同时，JavaScript也不可能同时在多个环境中运行，因此，配置环境的时候可以配置多个使用环境，ESLint会更具具体代码运行环境来决定使用的哪种环境。</p>
+<p>   下面举个栗子:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">"env": &#123;</div><div class="line">	browser: true</div><div class="line">  	node: true</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>   上面的例子说明，我们的代码可能会运行在浏览器环境、node环境或es6环境。</p>
+<p>   4）指定额外全局变量（Specifying Globals）</p>
+<p>   <code>no-undef</code>规则在我们使用没有在同一文件中定义的变量的时候会报错，当我们使用了全局变量的时候，我们就有必要对额外的全局变量进行配置，避免<code>no-undef</code>误会。我们可以通过代码注释或者配置文件来进行此项配置。举个栗子：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">"globals":&#123;</div><div class="line">	var1: true</div><div class="line">  	var2: false</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>   5) 引入插件（Specifying Plugins）</p>
+<p>   ESLint一个优越的地方就是可以使用第三方插件，在使用插件之前，首先需要通过npm安装需要使用的插件。通过<code>plugins</code> 键名来指定插件，插件名前面的前缀<code>eslint-plugin-</code> 可以省略：举个栗子：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attr">plugins:</span></div><div class="line"><span class="bullet">  -</span> plugin1</div><div class="line"><span class="bullet">  -</span> eslint-plugin-plugin2</div></pre></td></tr></table></figure>
+<p>   <strong>注意：全局安装的ESLint，插件也需要全局安装，本地安装的ESLint，插件既可以本地安装也可以全局安装。</strong></p>
+<p>   5）配置Rules （Configuring Rules）</p>
+<p>   <strong>重要的东西往往放在最后，配置Rules也就是整个配置文件的核心部分。</strong></p>
+<p>   在ESLint中拥有大量的rules（后面将不再对rules进行翻译），你可以通过在javascript文件中注释或者特定的配置文件来指定和修改项目中需要rules。在进行一条rule配置时，我们需要设置rule ID为如下值：</p>
+<p>   0 - turn the rule off //关掉此条规则</p>
+<p>   1 - turn the rule on as a warning (doesn’t affect exit code) // 把这条规则指定为warning</p>
+<p>   2 - turn the rule on as an error (exit code is 1 when triggered) //把这条rule指定为error</p>
+<p>   同时对于某些rule，在制定上面警告级别的时候，还可以指定其他的选项。举个栗子：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="attr">rules:</span></div><div class="line"><span class="attr">  eqeqeq:</span> <span class="number">0</span></div><div class="line"><span class="attr">  curly:</span> <span class="number">2</span></div><div class="line"><span class="attr">  quotes:</span></div><div class="line"><span class="bullet">    -</span> <span class="number">2</span></div><div class="line"><span class="bullet">    -</span> <span class="string">"double"</span></div></pre></td></tr></table></figure>
+<p>   如果一条rule是通过plugin引入的，那么在配置此条rule的时候需要在rule ID前面加plugin 名和 <code>/</code> 举个栗子：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="attr">plugins:</span></div><div class="line"><span class="bullet">  -</span> plugin1</div><div class="line"><span class="attr">rules:</span></div><div class="line"><span class="attr">  eqeqeq:</span> <span class="number">0</span></div><div class="line"><span class="attr">  curly:</span> <span class="number">2</span></div><div class="line"><span class="attr">  quotes:</span></div><div class="line"><span class="bullet">    -</span> <span class="number">2</span></div><div class="line"><span class="bullet">    -</span> <span class="string">"double"</span></div><div class="line">  plugin1/rule1: <span class="number">2</span></div></pre></td></tr></table></figure>
+<p>   <strong>注意：在制定plugin中的rule时，我们需要把plugin的前缀<code>aslant-plugin-</code> 去掉。</strong></p>
+<p>   <strong>所有的rules，其默认值设置为2.可以通过设置rule为1或者0来对其进行警告降级。</strong></p>
+<p>   <strong>关于具体的每一条rule的解释和使用，我会另外整理一份详尽文档，这儿就不在赘述</strong></p>
+<p>   6）配置文件的格式问题</p>
+<p>   ESLint 支持多种配置文件格式</p>
+<p>   <strong>JavaScript</strong> - use <code>.eslintrc.js</code> and export an object containing your configuration.</p>
+<p>   <strong>YAML</strong> - use <code>.eslintrc.yaml</code> or <code>.eslintrc.yml</code> to define the configuration structure.</p>
+<p>   <strong>JSON</strong> - use <code>.eslintrc.json</code> to define the configuration structure. ESLint’s JSON files also allow JavaScript-style comments.</p>
+<p>   <strong>package.json</strong> - create an <code>eslintConfig</code> property in your <code>package.json</code> file and define your configuration there.</p>
+<p>   <strong>Deprecated</strong> - use <code>.eslintrc</code>, which can be either JSON or YAML.</p>
+<p>   **如果我们的项目中有多个配置文件，同时又有<code>.eslintrc</code> 文件，ESLint会只使用<code>.eslintrc</code>文件。配置文件的优先级如下（下面的优先级最高，个人建议就在<code>.eslintrc</code>中配置就可以了）：</p>
+<p>   <code>.eslintrc.js</code></p>
+<p>   <code>.eslintrc.yaml</code></p>
+<p>   <code>.eslintrc.yml</code></p>
+<p>   <code>.eslintrc.json</code></p>
+<p>   <code>.eslintrc</code></p>
+<p>   7）配置文件的扩展（Extending Configuration Files）</p>
+<p>   如果需要扩展一个特定的配置文件，只需要在配置文件中增加extends项就可以了，引用的路径既可以是相对路径也可以是绝对路径。举个栗子：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    "extends": "./node_modules/coding-standard/.eslintrc",</div><div class="line"></div><div class="line">    "rules": &#123;</div><div class="line">        // Override any settings from the "parent" configuration</div><div class="line">        "eqeqeq": 1</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>   <code>extends</code> 也可以接受一个数组，数组后面的文件会重写数组前面文件中的rule，举个栗子：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    "extends": [</div><div class="line">        "./node_modules/coding-standard/eslintDefaults.js",</div><div class="line">        // Override eslintDefaults.js</div><div class="line">        "./node_modules/coding-standard/.eslintrc-es6",</div><div class="line">        // Override .eslintrc-es6</div><div class="line">        "./node_modules/coding-standard/.eslintrc-jsx",</div><div class="line">    ],</div><div class="line"></div><div class="line">    "rules": &#123;</div><div class="line">        // Override any settings from the "parent" configuration</div><div class="line">        "eqeqeq": 1</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>   <code>extends</code> 亦可以用来引用一些在github上面共享的配置包，首先需要通过npm安装配置包文件，其次就可以像如下栗子引用了：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="string">"extends"</span>: <span class="string">"eslint-config-myrules"</span>,</div><div class="line"></div><div class="line">    <span class="string">"rules"</span>: &#123;</div><div class="line">        <span class="comment">// Override any settings from the "parent" configuration</span></div><div class="line">        <span class="string">"eqeqeq"</span>: <span class="number">1</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>   <strong>在扩展shareable的配置时，<code>aslant-config-</code> 也可以去掉，</strong>ESLint会自己帮我们加上的，如果想了解插件和Shareable Configs具体工作原理，请点击 <a href="http://eslint.org/docs/developer-guide/shareable-configs" target="_blank" rel="external">Shareable Configs</a> 。</p>
+<p>   8）怎么在配置文件中写注释</p>
+<p>   可以使用JavaScript或者YAML的代码注释风格，举个栗子：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    "env": &#123;</div><div class="line">        "browser": true</div><div class="line">    &#125;,</div><div class="line">    "rules": &#123;</div><div class="line">        // Override our default settings just for this directory</div><div class="line">        "eqeqeq": 1,</div><div class="line">        "strict": 0</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>   9) 怎么制定ESLint忽略检测的文件或路径</p>
+<p>   我们可以通过生成一个<code>.eslintignore</code>文件来告诉ESLint我们需要忽略检测哪些文件或者文件夹中的所有文件。在<code>.eslintignore</code>文件中，每一行就是表示需要ESLint忽略文件的路径，举个栗子：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">**/*.js</div></pre></td></tr></table></figure>
+<p>   当ESLint运行的时候，它会执行代码规范检测之前查找当前工作文件夹中的<code>.eslintignore</code>文件，当该文件找到后，ESLint运行时就会忽略该文件中的制定文件或文件夹，一个文件夹下只能够有一个<code>.eslintignore</code>文件。</p>
+<p>   在<code>.eslintignore</code>文件中是使用<code>minimatch</code>来进行匹配的，因此一些如下特性可以使用：</p>
+<p>   （1）以<code>#</code> 开始的一行会被视为注释，不会对忽略匹配产生影响。</p>
+<p>   （2）以 <code>!</code> 开始的一行是negated patterns。也就是说在我们首先忽略了某个文件夹中的所有文件后，我们又想ESLint检测该文件夹中的某些文件时就可以使用该特性。举个栗子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># Ignore built files except build/index.js</div><div class="line">build/</div><div class="line">!build/index.js</div></pre></td></tr></table></figure>
+<p>   在上面的栗子中，我们依然会对build/index.js文件进行ESLint检测。</p>
+<p>   （3）大括号语法可以在一个匹配中制定多个文件。举个栗子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># Ignore files compiled from TypeScript and CoffeeScript</div><div class="line">**/*.&#123;ts,coffee&#125;.js</div></pre></td></tr></table></figure>
+<p>   ​</p>
+<h3 id="ESLint的使用方法"><a href="#ESLint的使用方法" class="headerlink" title="ESLint的使用方法"></a>ESLint的使用方法</h3><p>我们配置好了文件，怎么去使用配置文件呢。也就是说how to use the Configuration Files？</p>
+<p>有两种方法使用到配置文件，第一种是通过命令行来使用ESLint来检测我们的代码是否规范，第二种是在编辑器内实时检测代码规范。</p>
+<p>1）命令行检测</p>
+<p>如果我们不是使用的<code>.eslintrc</code>或<code>package.son</code>文件来配置ESLint，那么我们就需要在命令行中指定我们的配置文件，运行配置文件使用 <code>-c</code> 。举个栗子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">eslint -c myconfig.json myfiletotest.js</div></pre></td></tr></table></figure>
+<p>当然了，如果我们使用的是<code>.eslintrc</code>或<code>package.son</code>文件，那么在运行命令行的时候也就不用指定配置文件了，因为ESLint会自动查找项目中是否包含这两个文件，然后运行lint。这个有个和查找npm包一样的规则，首先会在当前文件夹中查找是否有<code>.eslintrc</code> 文件，如果没有找到，再向上一级文件夹中查找，知道root directory。这种查找<code>.eslintrc</code> 的方式也就给予了我们在一个项目中使用多份<code>.eslintrc</code>文件的可能，也就是在一个项目中我们可以使用多个代码规范。</p>
+<p>当然我们还可以再简化下我们的工作，就是在<code>package.json</code>文件中，添加如下代码：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"scripts"</span>:&#123;</div><div class="line">   	<span class="attr">"lint"</span>: <span class="string">"eslint **/*.js"</span> //其中**/*.js是我们需要检测的文件</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样这样我们就可以直接在命令行中执行：</p>
+<blockquote>
+<p>npm run lint</p>
+</blockquote>
+<p>来对我们的代码进行代码规范检测了。</p>
+<p>2）编辑器内实时检测代码规范</p>
+<p>我现在只是在Sublime Text 3中进行了配置，由于大家使用的编辑器各不相同，这儿也就只简单说下在SubLime Text3中ESLint怎么配置。</p>
+<p>（1）全局安装<code>aslant</code>和 <code>babel-eslint</code> ，后者是Parser</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install eslint babel-eslint -g</div></pre></td></tr></table></figure>
+<p> (2) 在sublime Text3,通过package control安装aslant所需包。包括SublimeLinter和SublimeLinter-contrib-eslint 。</p>
+<p><code>command</code> + <code>shift</code> + <code>p</code> 打开包管理搜索框，输入Package Control：Install Package。等Install Package启动完毕，就可以搜索所需的包了，然后点击所需包进行安装。</p>
+<p>（3）在项目中生成<code>.eslintrc</code>配置文件，配置env、rules等。里面的parser指令我们安装的<code>babel-eslint</code>.举个栗子：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="attr">env:</span></div><div class="line"><span class="attr">  browser:</span> <span class="literal">true</span></div><div class="line"><span class="attr">  es6:</span> <span class="literal">true</span></div><div class="line"></div><div class="line"><span class="attr">ecmaFeatures:</span></div><div class="line"><span class="attr">  modules:</span> <span class="literal">true</span></div><div class="line"></div><div class="line"><span class="attr">parser:</span> <span class="string">"babel-eslint"</span></div><div class="line"><span class="comment">#never mind ，just example！！！</span></div><div class="line"><span class="attr">rules:</span></div><div class="line"><span class="attr">  no-empty:</span> <span class="number">2</span></div><div class="line"><span class="attr">  comma-dangle:</span> <span class="number">2</span></div><div class="line"><span class="attr">  no-native-reassign:</span> <span class="number">2</span></div></pre></td></tr></table></figure>
+<p>当上面所有步骤都完成后，就可以在SubLime Text中快乐的Coding了，并且如果代码规范和<code>.eslintrc</code>冲突的话，Sublime Text会自动用红圈高亮出错代码。</p>
+<p><strong>若果上面步骤完成以后，还是不能够高亮出错代码，可以再在本地也安装eslint和babel-eslint。</strong></p>
+
+	</div>
+  
+  <!-- css -->
+  <style type="text/css">
+      .center {
+          text-align: center;
+      }
+      .hidden {
+          display: none;
+      }
+    .donate_bar a.btn_donate{
+      display: inline-block;
+      width: 82px;
+      height: 82px;
+      background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+      _background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+      -webkit-transition: background 0s;
+      -moz-transition: background 0s;
+      -o-transition: background 0s;
+      -ms-transition: background 0s;
+      transition: background 0s;
+    }
+
+    .donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+    .donate_bar .donate_txt {
+      display: block;
+      color: #9d9d9d;
+      font: 14px/2 "Microsoft Yahei";
+    }
+    .bold{ font-weight: bold; }
+  </style>
+  <!-- /css -->
+
+    <!-- Donate Module -->
+    <div id="donate_module">
+
+  <!-- btn_donate & tips -->
+  <div id="donate_board" class="donate_bar center">
+      <br>
+      ------------------------------------------------------------------------------------------------------------------------------
+      <br>
+    <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+    <span class="donate_txt">
+      打赏是对作者写作最好的鼓励~
+    </span>
+
+
+  </div>
+  <!-- /btn_donate & tips -->
+
+  <!-- donate guide -->
+
+  <div id="donate_guide" class="donate_bar center hidden">
+        <br>
+      ------------------------------------------------------------------------------------------------------------------------------
+      <br>
+      
+    <div width="100%" align="center">
+      <div name="dashmain" id="dash-main-id-878695" class="dash-main-4 878695-9.9"></div>
+    </div>
+    <script type="text/javascript" charset="utf-8" src="http://www.dashangcloud.com/static/ds.js"></script>
+    
+
+    <a href="http://oa9ep5m8h.bkt.clouddn.com/image/weixin.png" title="用微信扫一扫哦~" class="fancybox" rel="article0">
+      <img src="http://oa9ep5m8h.bkt.clouddn.com/image/weixin.png" title="微信打赏 Donate" height="190px" width="auto"/>
+    </a>
+
+
+
+    <a href="http://oa9ep5m8h.bkt.clouddn.com/image/alipay.jpg" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+      <img src="http://oa9ep5m8h.bkt.clouddn.com/image/alipay.jpg" title="支付宝打赏 Donate" height="190px" width="auto"/>
+    </a>
+
+    <span class="donate_txt">
+      打赏是对作者写作最好的鼓励~
+    </span>
+
+  </div>
+  <!-- /donate guide -->
+
+  <!-- donate script -->
+  <script type="text/javascript">
+    document.getElementById('btn_donate').onclick = function() {
+      $('#donate_board').addClass('hidden');
+      $('#donate_guide').removeClass('hidden');
+    }
+
+    function donate_on_web(){
+      $('#donate').submit();
+        }
+  </script>
+  <!-- /donate script -->
+</div>
+<!-- /Donate Module -->
+   
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Eslint/">Eslint</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://relign.github.io/2016/09/25/eslint-01/" data-title="Eslint的配置说明 | Relign Blog" data-tsina="2170275291" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https'){
+   		bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}else{
+  		bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	  }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/09/25/eslint/"  title="Eslint 配置及规则说明">
+ <strong>下一篇：</strong><br/> 
+ <span>Eslint 配置及规则说明
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/09/25/eslint-01/" data-title="Eslint的配置说明" data-url="https://relign.github.io/2016/09/25/eslint-01/"></div>
+</section>
+
+
+</div>
+
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="relign" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/转载/" title="转载">转载<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/angular/" title="angular">angular<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Eslint/" title="Eslint">Eslint<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/EditorConfig/" title="EditorConfig">EditorConfig<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/转载/" title="转载">转载<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/gulp/" title="gulp">gulp<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://hexo.io/zh-cn/" target="_blank" title="hexo官方网站">hexo</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://reactjs.cn/" target="_blank" title="react">react</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.reqianduan.com/" target="_blank" title="热前端">热前端</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ita1024.com/" target="_blank" title="ITA1024">ITA1024</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Rlign in TuoWei. <br/>
+			This is my blog,I hope you are happy.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/rain风轩" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/relign" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="http://www.zhihu.com/people/relign" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:songruigang0803@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+				<div class="cc-license">
+          <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+            <img src="/img/cc-by-nc-sa.svg" alt="Creative Commons" />
+          </a>
+        </div>
+    
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016
+		
+		<a href="/about" target="_blank" title="relign">relign</a>
+		
+
+		</p>
+		<script type="text/javascript">
+		  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+		  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+		  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+		  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+		  _st('install','4czXNpetdQbbATgWri4c','2.0.0');
+		</script>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"relign"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-80541658-1', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?f6d8bb031910344a8f074a6d7f1d6ced";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
