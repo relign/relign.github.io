@@ -13,16 +13,22 @@
     
 
     
-    <meta name="description" content="EditorConfig作用EditorConfig 用来帮助开发者在不同编辑器和IDEs之间设置和维护始终唯一的代码风格，EditorConfig项目包含一个配置文件用来定义自己项目的代码风格和一些编辑器插件用来帮助编辑器读取配置文件并按照配置文件来格式化代码。EditorConfig 配置文件简单易懂，并且能够很好的和（VCS）version control systems 协同工作。">
+    <meta name="description" content="本文转自Github Jocs 罗冉的EditorConfig_guideline中文翻译文档.
+
+EditorConfig作用EditorConfig 用来帮助开发者在不同编辑器和IDEs之间设置和维护始终唯一的代码风格，EditorConfig项目包含一个配置文件用来定义自己项目的代码风格和一些编辑器插件用来帮助编辑器读取配置文件并按照配置文件来格式化代码。EditorConfig 配置文件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【转】利用EditorConfig定义代码格式,统一代码风格">
 <meta property="og:url" content="https://relign.github.io/2016/09/25/editor-config/index.html">
 <meta property="og:site_name" content="Relign Blog">
-<meta property="og:description" content="EditorConfig作用EditorConfig 用来帮助开发者在不同编辑器和IDEs之间设置和维护始终唯一的代码风格，EditorConfig项目包含一个配置文件用来定义自己项目的代码风格和一些编辑器插件用来帮助编辑器读取配置文件并按照配置文件来格式化代码。EditorConfig 配置文件简单易懂，并且能够很好的和（VCS）version control systems 协同工作。">
-<meta property="og:updated_time" content="2016-09-25T04:25:19.000Z">
+<meta property="og:description" content="本文转自Github Jocs 罗冉的EditorConfig_guideline中文翻译文档.
+
+EditorConfig作用EditorConfig 用来帮助开发者在不同编辑器和IDEs之间设置和维护始终唯一的代码风格，EditorConfig项目包含一个配置文件用来定义自己项目的代码风格和一些编辑器插件用来帮助编辑器读取配置文件并按照配置文件来格式化代码。EditorConfig 配置文件">
+<meta property="og:updated_time" content="2016-09-25T04:31:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【转】利用EditorConfig定义代码格式,统一代码风格">
-<meta name="twitter:description" content="EditorConfig作用EditorConfig 用来帮助开发者在不同编辑器和IDEs之间设置和维护始终唯一的代码风格，EditorConfig项目包含一个配置文件用来定义自己项目的代码风格和一些编辑器插件用来帮助编辑器读取配置文件并按照配置文件来格式化代码。EditorConfig 配置文件简单易懂，并且能够很好的和（VCS）version control systems 协同工作。">
+<meta name="twitter:description" content="本文转自Github Jocs 罗冉的EditorConfig_guideline中文翻译文档.
+
+EditorConfig作用EditorConfig 用来帮助开发者在不同编辑器和IDEs之间设置和维护始终唯一的代码风格，EditorConfig项目包含一个配置文件用来定义自己项目的代码风格和一些编辑器插件用来帮助编辑器读取配置文件并按照配置文件来格式化代码。EditorConfig 配置文件">
 
     
     <link rel="alternative" href="/atom.xml" title="Relign Blog" type="application/atom+xml">
@@ -112,9 +118,12 @@
 		
 		</div>
 		
-		<h3 id="EditorConfig作用"><a href="#EditorConfig作用" class="headerlink" title="EditorConfig作用"></a>EditorConfig作用</h3><p><strong>EditorConfig</strong> 用来帮助开发者在不同编辑器和IDEs之间设置和维护始终唯一的代码风格，EditorConfig项目包含一个配置文件用来定义自己项目的代码风格和一些编辑器插件用来帮助编辑器读取配置文件并按照配置文件来格式化代码。EditorConfig 配置文件简单易懂，并且能够很好的和（VCS）version control systems 协同工作。</p>
-  <a id="more"></a>
+		<blockquote>
+<p>本文转自Github Jocs 罗冉的<a href="https://github.com/Jocs/EditorConfig_guideline" target="_blank" rel="external">EditorConfig_guideline</a>中文翻译文档.</p>
+</blockquote>
+<h3 id="EditorConfig作用"><a href="#EditorConfig作用" class="headerlink" title="EditorConfig作用"></a>EditorConfig作用</h3><p><strong>EditorConfig</strong> 用来帮助开发者在不同编辑器和IDEs之间设置和维护始终唯一的代码风格，EditorConfig项目包含一个配置文件用来定义自己项目的代码风格和一些编辑器插件用来帮助编辑器读取配置文件并按照配置文件来格式化代码。EditorConfig 配置文件简单易懂，并且能够很好的和（VCS）version control systems 协同工作。</p>
 <h3 id="EditorConfig配置文件怎么写"><a href="#EditorConfig配置文件怎么写" class="headerlink" title="EditorConfig配置文件怎么写"></a>EditorConfig配置文件怎么写</h3><h4 id="举个栗子"><a href="#举个栗子" class="headerlink" title="举个栗子"></a>举个栗子</h4><p>在下面的栗子中，<code>.editorconfig</code> 配置文件设置了end-of-line（行末换行符选择）和indentation styles（代码缩进风格），该配置文件将规范项目中Python和JavaScript文件的代码风格。</p>
+<a id="more"></a>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># EditorConfig is awesome: http://EditorConfig.org</span></div><div class="line"></div><div class="line"><span class="comment"># top-most EditorConfig file</span></div><div class="line">root = <span class="literal">true</span></div><div class="line"></div><div class="line"><span class="comment"># Unix-style newlines with a newline ending every file</span></div><div class="line">[*]</div><div class="line">end_of_line = lf</div><div class="line">insert_final_newline = <span class="literal">true</span></div><div class="line"></div><div class="line"><span class="comment"># Matches multiple files with brace expansion notation</span></div><div class="line"><span class="comment"># Set default charset</span></div><div class="line">[*.&#123;js,py&#125;]</div><div class="line">charset = utf<span class="bullet">-8</span></div><div class="line"></div><div class="line"><span class="comment"># 4 space indentation</span></div><div class="line">[*.py]</div><div class="line">indent_style = space</div><div class="line">indent_size = <span class="number">4</span></div><div class="line"></div><div class="line"><span class="comment"># Tab indentation (no size specified)</span></div><div class="line">[Makefile]</div><div class="line">indent_style = tab</div><div class="line"></div><div class="line"><span class="comment"># Indentation override for all JS under lib directory</span></div><div class="line">[lib/**.js]</div><div class="line">indent_style = space</div><div class="line">indent_size = <span class="number">2</span></div><div class="line"></div><div class="line"><span class="comment"># Matches the exact files either package.json or .travis.yml</span></div><div class="line">[&#123;package.json,.travis.yml&#125;]</div><div class="line">indent_style = space</div><div class="line">indent_size = <span class="number">2</span></div></pre></td></tr></table></figure>
 <p>在Github 上 的EditorConfig项目中Wiki，有一些使用EditorConfig的真实<a href="https://github.com/editorconfig/editorconfig/wiki/Projects-Using-EditorConfig" target="_blank" rel="external">事例</a>供参考。</p>
 <h4 id="配置文件放哪呢？"><a href="#配置文件放哪呢？" class="headerlink" title="配置文件放哪呢？"></a>配置文件放哪呢？</h4><p>当打开一个文件时，<code>EditorConfig</code>插件会在打开文件的目录和其每一级父目录查找<code>.editorconfig</code>文件，直到有一个配置文件<code>root=true</code>。</p>
@@ -348,9 +357,9 @@
  
 
 <div class="next">
-<a href="/2016/09/22/JsConf/"  title="">
+<a href="/2016/09/21/angular-02/"  title="angular启动过程解读（一）">
  <strong>下一篇：</strong><br/> 
- <span>(no title)
+ <span>angular启动过程解读（一）
 </span>
 </a>
 </div>
