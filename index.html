@@ -90,6 +90,82 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/09/27/angular-04/" title="Angular源码解读之不同版本的Extend" itemprop="url">Angular源码解读之不同版本的Extend</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="relign" target="_blank" itemprop="author">relign</a>
+		
+  <p class="article-time">
+    <time datetime="2016-09-27T13:31:53.000Z" itemprop="datePublished"> 发表于 2016-09-27</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <blockquote>
+<p>此文章比较各个版本之间Angular的Extend方法</p>
+</blockquote>
+<h3 id="版本1-2-26"><a href="#版本1-2-26" class="headerlink" title="版本1.2.26"></a>版本1.2.26</h3><p>此时的Angular Extend精简至极</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">extend</span>(<span class="params">dst</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> h = dst.$$hashKey; </div><div class="line">  forEach(<span class="built_in">arguments</span>, <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (obj !== dst) &#123; <span class="comment">// 做判断去除同类的继承</span></div><div class="line">      forEach(obj, <span class="function"><span class="keyword">function</span>(<span class="params">value, key</span>) </span>&#123;</div><div class="line">        dst[key] = value; <span class="comment">// 对传入参数进行循环,将一个或者多个的可枚举属性复制到dst对象中</span></div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  setHashKey(dst,h);<span class="comment">// 为对象增加hash值,方便后续遍历过滤处理操作</span></div><div class="line">  <span class="keyword">return</span> dst;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面的代码多的仅仅是将传入的参数中可枚举的属性复制到dst对象,并返回这个新的对象,传入参数中靠后的argument会覆盖调靠前的.<br>列举一个简单的例子:</p>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2016/09/27/angular-04/#more">显示更多</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Angular/">Angular</a><a href="/tags/extend/">extend</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/09/27/angular-04/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/09/27/angular-04/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https'){
+   		bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}else{
+  		bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	  }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/09/26/angular-03/" title="angular源码解读之minErr" itemprop="url">angular源码解读之minErr</a>
   </h1>
   <p class="article-author">By
@@ -750,6 +826,14 @@ category: 转载
 		
 			
 				<li><a href="/tags/Eslint/" title="Eslint">Eslint<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Angular/" title="Angular">Angular<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/extend/" title="extend">extend<sup>1</sup></a></li>
 			
 		
 			
