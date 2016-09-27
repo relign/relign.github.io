@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Relign Blog</title>
+    <title>angular源码解读之minErr | Relign Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     <meta name="baidu-site-verification" content="0BadmBsKMG" />
     <meta name="google-site-verification" content="21baLedz8cgdZBfRkoqRZizzKmIGN98IBSTj47K0R6g" />
@@ -13,12 +13,22 @@
     
 
     
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Relign Blog">
-<meta property="og:url" content="https://relign.github.io/index.html">
+    <meta name="description" content="错误异常是面向对象开发中的记录提示程序执行问题的一种重要机制，在程序执行发生问题的条件下，异常会在中断程序执行，同时会沿着代码的执行路径一步一步的向上抛出异常，最终会由顶层抛出异常信息。而与异常同时出现的往往是日志，而日志往往需要记录具体发生异常的模块、编码、详细的错误信息、执行堆栈等，方便问题的快速定位分析。  摘自无风听海的博客angular代码分析之异常日志设计
+
+ 打开angular源码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="angular源码解读之minErr">
+<meta property="og:url" content="https://relign.github.io/2016/09/26/angular-03/index.html">
 <meta property="og:site_name" content="Relign Blog">
+<meta property="og:description" content="错误异常是面向对象开发中的记录提示程序执行问题的一种重要机制，在程序执行发生问题的条件下，异常会在中断程序执行，同时会沿着代码的执行路径一步一步的向上抛出异常，最终会由顶层抛出异常信息。而与异常同时出现的往往是日志，而日志往往需要记录具体发生异常的模块、编码、详细的错误信息、执行堆栈等，方便问题的快速定位分析。  摘自无风听海的博客angular代码分析之异常日志设计
+
+ 打开angular源码">
+<meta property="og:updated_time" content="2016-09-27T02:17:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Relign Blog">
+<meta name="twitter:title" content="angular源码解读之minErr">
+<meta name="twitter:description" content="错误异常是面向对象开发中的记录提示程序执行问题的一种重要机制，在程序执行发生问题的条件下，异常会在中断程序执行，同时会沿着代码的执行路径一步一步的向上抛出异常，最终会由顶层抛出异常信息。而与异常同时出现的往往是日志，而日志往往需要记录具体发生异常的模块、编码、详细的错误信息、执行堆栈等，方便问题的快速定位分析。  摘自无风听海的博客angular代码分析之异常日志设计
+
+ 打开angular源码">
 
     
     <link rel="alternative" href="/atom.xml" title="Relign Blog" type="application/atom+xml">
@@ -82,12 +92,10 @@
 
     </header>
     <div id="container">
-      <div id="main">
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody">
+		<header class="article-info clearfix">
   <h1 itemprop="name">
     
       <a href="/2016/09/26/angular-03/" title="angular源码解读之minErr" itemprop="url">angular源码解读之minErr</a>
@@ -101,9 +109,16 @@
     
   </p>
 </header>
-    <div class="article-content">
-        
-        <blockquote>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			
+		
+		</div>
+		
+		<blockquote>
 <p>错误异常是面向对象开发中的记录提示程序执行问题的一种重要机制，在程序执行发生问题的条件下，异常会在中断程序执行，同时会沿着代码的执行路径一步一步的向上抛出异常，最终会由顶层抛出异常信息。而与异常同时出现的往往是日志，而日志往往需要记录具体发生异常的模块、编码、详细的错误信息、执行堆栈等，方便问题的快速定位分析。<br>  <strong><em>摘自无风听海的博客<a href="http://www.cnblogs.com/wufengtinghai/p/5428753.html" target="_blank" rel="external">angular代码分析之异常日志设计</a></em></strong></p>
 </blockquote>
 <p> 打开angular源码首先看到的就是这个<code>minErr</code>函数,这个函数是angular对异常信息的处理函数。</p>
@@ -111,13 +126,102 @@
 <p>首先angular通过<code>minErr(&#39;example&#39;)</code> 传入<code>example</code>(module参数,类似的还有:<code>minErr(ng)</code>,<code>minErr(&#39;$injector&#39;)</code>等等),并在返回的闭包函数中引用module.接着传入四个参数,初始化一些变量:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> code = <span class="built_in">arguments</span>[<span class="number">0</span>], <span class="comment">// 'one' 日志编码</span></div><div class="line">     prefix = <span class="string">'['</span> + (<span class="built_in">module</span> ? <span class="built_in">module</span> + <span class="string">':'</span> : <span class="string">''</span>) + code + <span class="string">'] '</span>, <span class="comment">// [example:one]   构造日志前缀</span></div><div class="line">     template = <span class="built_in">arguments</span>[<span class="number">1</span>], <span class="comment">// 'This &#123;0&#125; is &#123;1&#125;'  日志模板</span></div><div class="line">     templateArgs = <span class="built_in">arguments</span>, <span class="comment">// ["one", "This &#123;0&#125; is &#123;1&#125;", "1234", "3456"] 传入参数</span></div><div class="line">     stringify = <span class="function"><span class="keyword">function</span> (<span class="params">obj</span>) </span>&#123;</div><div class="line">       <span class="keyword">if</span> (<span class="keyword">typeof</span> obj === <span class="string">'function'</span>) &#123;</div><div class="line">         <span class="keyword">return</span> obj.toString().replace(<span class="regexp">/ \&#123;[\s\S]*$/</span>, <span class="string">''</span>);</div><div class="line">       &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> obj === <span class="string">'undefined'</span>) &#123;</div><div class="line">         <span class="keyword">return</span> <span class="string">'undefined'</span>;</div><div class="line">       &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> obj !== <span class="string">'string'</span>) &#123;</div><div class="line">         <span class="keyword">return</span> <span class="built_in">JSON</span>.stringify(obj);</div><div class="line">       &#125;</div><div class="line">       <span class="keyword">return</span> obj;</div><div class="line">     &#125;,<span class="comment">// 定义一个方法 先留着 不解释</span></div><div class="line">     message, i;</div></pre></td></tr></table></figure>
 
-        
-        
-        <p class="article-more-link">
-          
-       </p>
+	</div>
+  
+  <!-- css -->
+  <style type="text/css">
+      .center {
+          text-align: center;
+      }
+      .hidden {
+          display: none;
+      }
+    .donate_bar a.btn_donate{
+      display: inline-block;
+      width: 82px;
+      height: 82px;
+      background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+      _background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+      -webkit-transition: background 0s;
+      -moz-transition: background 0s;
+      -o-transition: background 0s;
+      -ms-transition: background 0s;
+      transition: background 0s;
+    }
+
+    .donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+    .donate_bar .donate_txt {
+      display: block;
+      color: #9d9d9d;
+      font: 14px/2 "Microsoft Yahei";
+    }
+    .bold{ font-weight: bold; }
+  </style>
+  <!-- /css -->
+
+    <!-- Donate Module -->
+    <div id="donate_module">
+
+  <!-- btn_donate & tips -->
+  <div id="donate_board" class="donate_bar center">
+      <br>
+      ------------------------------------------------------------------------------------------------------------------------------
+      <br>
+    <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+    <span class="donate_txt">
+      打赏是对作者写作最好的鼓励~
+    </span>
+
+
+  </div>
+  <!-- /btn_donate & tips -->
+
+  <!-- donate guide -->
+
+  <div id="donate_guide" class="donate_bar center hidden">
+        <br>
+      ------------------------------------------------------------------------------------------------------------------------------
+      <br>
+      
+    <div width="100%" align="center">
+      <div name="dashmain" id="dash-main-id-878695" class="dash-main-4 878695-9.9"></div>
     </div>
-    <footer class="article-footer clearfix">
+    <script type="text/javascript" charset="utf-8" src="http://www.dashangcloud.com/static/ds.js"></script>
+    
+
+    <a href="http://oa9ep5m8h.bkt.clouddn.com/image/weixin.png" title="用微信扫一扫哦~" class="fancybox" rel="article0">
+      <img src="http://oa9ep5m8h.bkt.clouddn.com/image/weixin.png" title="微信打赏 Donate" height="190px" width="auto"/>
+    </a>
+
+
+
+    <a href="http://oa9ep5m8h.bkt.clouddn.com/image/alipay.jpg" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+      <img src="http://oa9ep5m8h.bkt.clouddn.com/image/alipay.jpg" title="支付宝打赏 Donate" height="190px" width="auto"/>
+    </a>
+
+    <span class="donate_txt">
+      打赏是对作者写作最好的鼓励~
+    </span>
+
+  </div>
+  <!-- /donate guide -->
+
+  <!-- donate script -->
+  <script type="text/javascript">
+    document.getElementById('btn_donate').onclick = function() {
+      $('#donate_board').addClass('hidden');
+      $('#donate_guide').removeClass('hidden');
+    }
+
+    function donate_on_web(){
+      $('#donate').submit();
+        }
+  </script>
+  <!-- /donate script -->
+</div>
+<!-- /Donate Module -->
+   
+		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
 
@@ -130,13 +234,13 @@
 
 
 
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://relign.github.io/2016/09/26/angular-03/" data-title="angular源码解读之minErr | Relign Blog" data-tsina="2170275291" class="share clearfix">
+	  </div>
+	
+	</div>
 
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/09/26/angular-03/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/09/26/angular-03/" data-count-type="comments">&nbsp;</a>
-	
-</div>
 
 </footer>
 <script>
@@ -153,564 +257,29 @@
 })();
 </script>
 
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/09/25/eslint-01/" title="Eslint的配置说明" itemprop="url">Eslint的配置说明</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="relign" target="_blank" itemprop="author">relign</a>
-		
-  <p class="article-time">
-    <time datetime="2016-09-25T11:52:54.000Z" itemprop="datePublished"> 发表于 2016-09-25</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <!-- tags: [Eslint, 转载]
-category: 转载 -->
-<h2 id="什么是ESLint？"><a href="#什么是ESLint？" class="headerlink" title="什么是ESLint？"></a>什么是ESLint？</h2><p>当<code>C语言</code>刚成为计算机语言的时候，有一些常见的错误不能够被原始的编译器捕捉，所以一个名为Lint的辅助程序被开发出来，用来扫面源文件中的错误。</p>
-<p>在Douglas Rockford 的<strong><JavaScript： The Good Parts></strong> 也提到，JavaScript是一门「年轻的语言」，因此也就存在很多糟粕的地方，这些糟粕使得程序员在编写JavaScript代码的时候，容易出错，而不易被编辑器或程序员本身发现。于是Douglas Crockford亲自操刀，编写了JSLint代码规范检测工具，其认为JSLint是JavaScript的一个更加严格的子集，也就是他说的Good Parts，使用JSLint就能够检测我们在编程过程中无意得使用了一些「糟粕」的地方，避免了程序出错。</p>
-<p>而ESLint是Nicholas C.Zakas编写的另外一份JavaScript代码规范检测工具，这当然不是重复得造轮子（大神不屑造轮子，大神一般都是重新发现轮子），在使用JSLint的时候，JSLint不是以插件的形式实现的，而是重新包装一个工具，可能Nicholas C.Zakas不喜欢这种方式，其认为代码规范检测工具（ESLint）应该是可插拔（使用插件），可配置的，于是自己便高高兴兴去写ESLint了。</p>
-<p>正如ESLint官网这样定义ESLint：</p>
-<blockquote>
-<p>ESLint is designed to be completely configurable, meaning you can turn off every rule and run only with basic syntax validation, or mix and match the bundled rules and your custom rules to make ESLint perfect for your project. </p>
-</blockquote>
-<p><strong>ESLint 的设计思想就是高度可配置，在ESLint中你可以开关每一条规则，你可以使用最基本的语法检测，或者结合自定义的规则来使得ESLint完美运行在你的项目中。</strong></p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/09/25/eslint-01/#more">显示更多</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Eslint/">Eslint</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
+	</article>
 	
-	  	<span></span>
-		<a href="/2016/09/25/eslint-01/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/09/25/eslint-01/" data-count-type="comments">&nbsp;</a>
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/09/25/eslint-01/"  title="Eslint的配置说明">
+ <strong>下一篇：</strong><br/> 
+ <span>Eslint的配置说明
+</span>
+</a>
+</div>
+
+</nav>
+
 	
-</div>
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/09/26/angular-03/" data-title="angular源码解读之minErr" data-url="https://relign.github.io/2016/09/26/angular-03/"></div>
+</section>
 
-</footer>
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https'){
-   		bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-		}else{
-  		bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-	  }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/09/25/eslint/" title="Eslint 配置及规则说明" itemprop="url">Eslint 配置及规则说明</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="relign" target="_blank" itemprop="author">relign</a>
-		
-  <p class="article-time">
-    <time datetime="2016-09-25T11:42:45.000Z" itemprop="datePublished"> 发表于 2016-09-25</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <!-- 从 Jocs 罗冉大神的[github](https://github.com/Jocs)中翻阅Eslint的这几篇翻译文档,觉得相当不错,遂收录
-tags: [Eslint,转载]
-category: 转载
--->
-<h3 id="项目中包含"><a href="#项目中包含" class="headerlink" title="项目中包含"></a>项目中包含</h3><p><strong>Rules：</strong>该文件夹中包含了ESLint Rules的中文翻译（暂不包含v2.0.0新增Rules）。</p>
-<p><strong>Configration：</strong> 该文件夹内包含一个ESLint配置说明文件。</p>
-<p><strong>.eslintrc</strong>: 该文件是可以是你项目中有且仅有ESLint的配置文件，不包含规则简要解释。</p>
-<p><strong>eslintrc.json</strong>： 该文件可以是你项目中有且仅有ESLint的配置文件，包含简要的规则解释。</p>
-<p><strong>Migrating-to-v2.0.0</strong>: ESLint迁移至v2.0.0手册，和Rules和Configration相关部分进行了翻译。</p>
-<h3 id="配置文件使用说明"><a href="#配置文件使用说明" class="headerlink" title="配置文件使用说明"></a>配置文件使用说明</h3><h4 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h4><p>在<code>package.json</code>文件中添加如下依赖（如果没有<code>package.son</code>文件需首先通过<code>npm init</code> 创建<code>package.son</code> 文件）：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">"devDependencies": &#123;</div><div class="line">    "babel-core": "^6.5.2",</div><div class="line">    "babel-eslint": "^4.1.8",</div><div class="line">    "eslint": "^2.1.0",</div><div class="line">    "eslint-plugin-promise": "^1.0.8",</div><div class="line">    "eslint-plugin-standard": "^1.3.2"</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/09/25/eslint/#more">显示更多</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Eslint/">Eslint</a>
-  </div>
 
 </div>
 
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/09/25/eslint/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/09/25/eslint/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https'){
-   		bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-		}else{
-  		bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-	  }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/09/25/editor-config/" title="利用EditorConfig定义代码格式,统一代码风格" itemprop="url">利用EditorConfig定义代码格式,统一代码风格</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="relign" target="_blank" itemprop="author">relign</a>
-		
-  <p class="article-time">
-    <time datetime="2016-09-25T04:22:30.000Z" itemprop="datePublished"> 发表于 2016-09-25</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h3 id="EditorConfig作用"><a href="#EditorConfig作用" class="headerlink" title="EditorConfig作用"></a>EditorConfig作用</h3><p><strong>EditorConfig</strong> 用来帮助开发者在不同编辑器和IDEs之间设置和维护始终唯一的代码风格，EditorConfig项目包含一个配置文件用来定义自己项目的代码风格和一些编辑器插件用来帮助编辑器读取配置文件并按照配置文件来格式化代码。EditorConfig 配置文件简单易懂，并且能够很好的和（VCS）version control systems 协同工作。</p>
-<!--
-tags: [EditorConfig, 转载]
-category: 转载
-> 本文转自Github Jocs 罗冉的[EditorConfig_guideline](https://github.com/Jocs/EditorConfig_guideline)中文翻译文档.
- -->
-<h3 id="EditorConfig配置文件怎么写"><a href="#EditorConfig配置文件怎么写" class="headerlink" title="EditorConfig配置文件怎么写"></a>EditorConfig配置文件怎么写</h3><p><strong>举个栗子</strong></p>
-<p>在下面的栗子中，<code>.editorconfig</code> 配置文件设置了end-of-line（行末换行符选择）和indentation styles（代码缩进风格），该配置文件将规范项目中Python和JavaScript文件的代码风格。</p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/09/25/editor-config/#more">显示更多</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/EditorConfig/">EditorConfig</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/09/25/editor-config/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/09/25/editor-config/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https'){
-   		bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-		}else{
-  		bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-	  }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/09/21/angular-02/" title="angular启动过程解读（一）" itemprop="url">angular启动过程解读（一）</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="relign" target="_blank" itemprop="author">relign</a>
-		
-  <p class="article-time">
-    <time datetime="2016-09-21T15:31:28.000Z" itemprop="datePublished"> 发表于 2016-09-21</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h3 id="找到代码代入口点"><a href="#找到代码代入口点" class="headerlink" title="找到代码代入口点"></a>找到代码代入口点</h3>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.angular.bootstrap) &#123;</div><div class="line">  <span class="comment">//AngularJS is already loaded, so we can return here...</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'WARNING: Tried to load angular more than once.'</span>);</div><div class="line">  <span class="keyword">return</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">//首先判断angular是否是多次加载,如果多次加载,输出警告信息;</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//try to bind to jquery now so that one can write angular.element().read()</span></div><div class="line"><span class="comment">//but we will rebind on bootstrap again.</span></div><div class="line">bindJQuery();<span class="comment">//该方法会去绑定jquery,内部会判断jQuery有没有加载,有就是用jQuery,没有则调用自带的jqLite</span></div><div class="line"></div><div class="line">publishExternalAPI(angular);<span class="comment">//暴露angular对象,加载angular的一系列api方法</span></div><div class="line"></div><div class="line">jqLite(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  angularInit(<span class="built_in">document</span>, bootstrap);<span class="comment">//等待dom加载完后启动angular.</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/09/21/angular-02/#more">显示更多</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/angular/">angular</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/09/21/angular-02/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/09/21/angular-02/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https'){
-   		bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-		}else{
-  		bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-	  }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/09/21/angular-01/" title="angular源码工具函数总结" itemprop="url">angular源码工具函数总结</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="relign" target="_blank" itemprop="author">relign</a>
-		
-  <p class="article-time">
-    <time datetime="2016-09-21T15:16:01.000Z" itemprop="datePublished"> 发表于 2016-09-21</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>在了解angular启动过程之前,首先了解几个必要的angular的工具函数:</p>
-<ul>
-<li><p>isFunction</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</div><div class="line"> * @ngdoc function</div><div class="line"> * @name angular.isFunction</div><div class="line"> * @module ng</div><div class="line"> * @kind function</div><div class="line"> *</div><div class="line"> * @description</div><div class="line"> * Determines if a reference is a `Function`.</div><div class="line"> *</div><div class="line"> * @param &#123;*&#125; value Reference to check.</div><div class="line"> * @returns &#123;boolean&#125; True if `value` is a `Function`.</div><div class="line"> */</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">isFunction</span>(<span class="params">value</span>)</span>&#123;<span class="keyword">return</span> <span class="keyword">typeof</span> value === <span class="string">'function'</span>;&#125;</div></pre></td></tr></table></figure>
-<p>不多解释，判断是否是函数类型。</p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/09/21/angular-01/#more">显示更多</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/angular/">angular</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/09/21/angular-01/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/09/21/angular-01/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https'){
-   		bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-		}else{
-  		bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-	  }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/07/11/gulp/" title="gulp之学习教程" itemprop="url">gulp之学习教程</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="relign" target="_blank" itemprop="author">relign</a>
-		
-  <p class="article-time">
-    <time datetime="2016-07-11T15:24:26.000Z" itemprop="datePublished"> 发表于 2016-07-11</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h3 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h3><p>gulp是基于node环境的一款前端自动化构建工具，是自动化构建项目的神器。利用它我们可以抛弃前端项目开发中很多重复的工作,比如：压缩文件(css,js,img)，编译文件(es6、JSX、coffee),文件测试、合并、格式化,浏览器自动刷新,部署文件生成等等,极大的开发了我们的工作效率。<br>gulp与grunt非常像，但是grunt频繁进行IO操作，用插件做太多的事情，插件没有遵守单一责任原则，落后流程控制直接导致其性能滞后。而gulp有以下几个特点:</p>
-<blockquote>
-<ul>
-<li>易于使用<br>通过代码优于配置的策略，Gulp 让简单的任务简单，复杂的任务可管理。</li>
-<li>构建快速<br>利用 Node.js 流的威力，你可以快速构建项目并减少频繁的 IO 操作。</li>
-<li>插件高质<br>Gulp 严格的插件指南确保插件如你期望的那样简洁高质得工作。</li>
-<li>易于学习<br>通过最少的 API，掌握 Gulp 毫不费力，构建工作尽在掌握：如同一系列流管道。</li>
-</ul>
-</blockquote>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/07/11/gulp/#more">显示更多</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/gulp/">gulp</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/07/11/gulp/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/07/11/gulp/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https'){
-   		bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-		}else{
-  		bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-	  }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/07/10/hexo/" title="利用Hexo框架在Github上搭建个人博客" itemprop="url">利用Hexo框架在Github上搭建个人博客</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="relign" target="_blank" itemprop="author">relign</a>
-		
-  <p class="article-time">
-    <time datetime="2016-07-10T13:55:22.000Z" itemprop="datePublished"> 发表于 2016-07-10</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h3 id="导语"><a href="#导语" class="headerlink" title="导语:"></a>导语:</h3><p><a href="https://hexo.io">hexo</a> 是一款基于Node.js的静态博客框架，是一款快速、简洁且高效的博客框架。</p>
-<blockquote>
-<p>它具有以下几个特点：</p>
-<ul>
-<li>超快速度<br>Node.js 所带来的超快生成速度，让上百个页面在几秒内瞬间完成渲染。</li>
-<li>支持Markdown<br>Hexo 支持 GitHub Flavored Markdown 的所有功能，甚至可以整合 Octopress 的大多数插件。</li>
-<li>一键部署<br>只需一条指令即可部署到 GitHub Pages, Heroku 或其他网站。</li>
-<li>丰富的插件<br>Hexo 拥有强大的插件系统，安装插件可以让 Hexo 支持 Jade, CoffeeScript。  </li>
-</ul>
-</blockquote>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/07/10/hexo/#more">显示更多</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/hexo/">hexo</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/hexo/">hexo</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/07/10/hexo/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/07/10/hexo/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https'){
-   		bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-		}else{
-  		bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-	  }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
-    </article>
-
-
-
-
-
-
-
-</div>
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
 <div id="asidepart">
@@ -925,8 +494,95 @@ $(document).ready(function(){
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
 
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"relign"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
 
 
 
@@ -1004,4 +660,4 @@ var _hmt = _hmt || [];
 <!-- Tiny_search End -->
 
   </body>
- </html>
+</html>
