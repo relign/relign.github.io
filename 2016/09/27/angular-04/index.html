@@ -16,7 +16,7 @@
     <meta name="description" content="此文章比较各个版本之间Angular的Extend方法
 
 版本1.2.26此时的Angular Extend精简至极
-12345678910111213function extend(dst) &amp;#123;  var h = dst.$$hashKey;   forEach(arguments, function(obj) &amp;#123;    if (obj !== dst) &amp;#123; //">
+12345678910111213function extend(dst) &amp;#123;  var h = dst.$$hashKey;  forEach(arguments, function(obj) &amp;#123;    if (obj !== dst) &amp;#123; //">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angular源码解读之不同版本的Extend">
 <meta property="og:url" content="https://relign.github.io/2016/09/27/angular-04/index.html">
@@ -24,14 +24,14 @@
 <meta property="og:description" content="此文章比较各个版本之间Angular的Extend方法
 
 版本1.2.26此时的Angular Extend精简至极
-12345678910111213function extend(dst) &amp;#123;  var h = dst.$$hashKey;   forEach(arguments, function(obj) &amp;#123;    if (obj !== dst) &amp;#123; //">
-<meta property="og:updated_time" content="2016-09-27T15:18:59.000Z">
+12345678910111213function extend(dst) &amp;#123;  var h = dst.$$hashKey;  forEach(arguments, function(obj) &amp;#123;    if (obj !== dst) &amp;#123; //">
+<meta property="og:updated_time" content="2016-09-28T13:52:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular源码解读之不同版本的Extend">
 <meta name="twitter:description" content="此文章比较各个版本之间Angular的Extend方法
 
 版本1.2.26此时的Angular Extend精简至极
-12345678910111213function extend(dst) &amp;#123;  var h = dst.$$hashKey;   forEach(arguments, function(obj) &amp;#123;    if (obj !== dst) &amp;#123; //">
+12345678910111213function extend(dst) &amp;#123;  var h = dst.$$hashKey;  forEach(arguments, function(obj) &amp;#123;    if (obj !== dst) &amp;#123; //">
 
     
     <link rel="alternative" href="/atom.xml" title="Relign Blog" type="application/atom+xml">
@@ -125,12 +125,12 @@
 <p>此文章比较各个版本之间Angular的Extend方法</p>
 </blockquote>
 <h3 id="版本1-2-26"><a href="#版本1-2-26" class="headerlink" title="版本1.2.26"></a>版本1.2.26</h3><p>此时的Angular Extend精简至极</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">extend</span>(<span class="params">dst</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> h = dst.$$hashKey; </div><div class="line">  forEach(<span class="built_in">arguments</span>, <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (obj !== dst) &#123; <span class="comment">// 做判断去除同类的继承</span></div><div class="line">      forEach(obj, <span class="function"><span class="keyword">function</span>(<span class="params">value, key</span>) </span>&#123;</div><div class="line">        dst[key] = value; <span class="comment">// 对传入参数进行循环,将一个或者多个的可枚举属性复制到dst对象中</span></div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  setHashKey(dst,h);<span class="comment">// 为对象增加hash值,方便后续遍历过滤处理操作</span></div><div class="line">  <span class="keyword">return</span> dst;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">extend</span>(<span class="params">dst</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> h = dst.$$hashKey;</div><div class="line">  forEach(<span class="built_in">arguments</span>, <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (obj !== dst) &#123; <span class="comment">// 做判断去除同类的继承</span></div><div class="line">      forEach(obj, <span class="function"><span class="keyword">function</span>(<span class="params">value, key</span>) </span>&#123;</div><div class="line">        dst[key] = value; <span class="comment">// 对传入参数进行循环,将一个或者多个的可枚举属性复制到dst对象中</span></div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  setHashKey(dst,h);<span class="comment">// 为对象增加hash值,方便后续遍历过滤处理操作</span></div><div class="line">  <span class="keyword">return</span> dst;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>上面的代码多的仅仅是将传入的参数中可枚举的属性复制到dst对象,并返回这个新的对象,传入参数中靠后的argument会覆盖调靠前的.<br>列举一个简单的例子:</p>
 <a id="more"></a>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> consData = &#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'zhangsan'</span>,</div><div class="line">    <span class="attr">age</span>: <span class="string">'12'</span>,</div><div class="line">    <span class="attr">say</span>: &#123;</div><div class="line">        <span class="attr">sex</span>: <span class="string">'man'</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">cc</span>: [<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>]</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> bbData = &#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'lisi'</span>,</div><div class="line">    <span class="attr">nam</span>: <span class="string">'123'</span>,</div><div class="line">    <span class="attr">say</span>: &#123;</div><div class="line">        <span class="attr">sex</span>: <span class="string">'woman'</span>,</div><div class="line">        <span class="attr">mm</span>: <span class="string">'wang'</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">cc</span>: [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>]</div><div class="line">&#125;;</div><div class="line"><span class="built_in">console</span>.log(angular.extend(consData, bbData));</div></pre></td></tr></table></figure>
 <p>最终输出结果是</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Object&#123;</div><div class="line">	age: '12',</div><div class="line">	cc: ['a','b','c'],</div><div class="line">	nam: '123',</div><div class="line">	name: 'lisi',</div><div class="line">	say: &#123;</div><div class="line">		mm: 'wang',</div><div class="line">		sex: 'woman'</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Object&#123;</div><div class="line">	"age": "12",</div><div class="line">	"cc": ["a","b","c"],</div><div class="line">	"nam": "123",</div><div class="line">	"name": "lisi",</div><div class="line">	"say": &#123;</div><div class="line">		"mm": "wang",</div><div class="line">		"sex": "woman"</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>由此可见<code>extend</code>依次会将传入参数的第一层属性赋值给第一个参数的第一层属性,如果属性相同,则后面的值会覆盖前面的,如果是对象或者数组,则会引用同一个,靠后的优先级高,并返回第一个参数对象.</p>
 <h3 id="版本1-3-9"><a href="#版本1-3-9" class="headerlink" title="版本1.3.9"></a>版本1.3.9</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">extend</span>(<span class="params">dst</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> h = dst.$$hashKey;</div><div class="line"></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>, ii = <span class="built_in">arguments</span>.length; i &lt; ii; i++) &#123;</div><div class="line">    <span class="keyword">var</span> obj = <span class="built_in">arguments</span>[i];</div><div class="line">    <span class="keyword">if</span> (obj) &#123; <span class="comment">// 这里不再做同类的判断</span></div><div class="line">      <span class="keyword">var</span> keys = <span class="built_in">Object</span>.keys(obj);</div><div class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>, jj = keys.length; j &lt; jj; j++) &#123;</div><div class="line">        <span class="keyword">var</span> key = keys[j];</div><div class="line">        dst[key] = obj[key];</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  setHashKey(dst, h);</div><div class="line">  <span class="keyword">return</span> dst;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这个版本的<code>extend</code>脱离了Angular自己定义的<code>forEach</code>方法,减少了代码的耦合性. 由于Angular在1.2.4版本后就放弃了对IE8的支持,所以这里用了<code>Object.keys()</code>去获取传入对象的可枚举属性.<br>关于<code>Object.keys()</code>看下面这个例子:</p>
@@ -142,10 +142,11 @@
 <p><code>extend</code>方法返回一个闭包函数<code>baseExtend</code>,在这里你可能会对<code>slice.call(arguments, 1)</code>有疑惑.这里首先在Angular源码244行附近你会找到<code>var slice = [].slice;</code> 那么在<code>baseExtend</code>方法中传入的第二个参数实际是<code>[].slice.call(argumens, 1)</code>,其实也就是<code>Array.prototype.slice.call()</code>.我们只道<code>arguments</code>实际是一个带有<code>length</code>属性的对象,而<code>Array.prototype.slice.call()</code>这个方法可以具有length属性的对象转成数组，除了IE下的节点集合(因为ie下的dom对象是以com对象的形式实现的，js对象与com对象不能进行转换);</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = &#123;<span class="number">0</span>:<span class="string">'first'</span>,<span class="number">1</span>:<span class="string">'second'</span>,<span class="number">2</span>:<span class="string">'third'</span>&#125;;</div><div class="line"><span class="built_in">console</span>.log([].slice.call(a)); <span class="comment">// []</span></div><div class="line"><span class="keyword">var</span> b = &#123;<span class="number">0</span>:<span class="string">'first'</span>,<span class="number">1</span>:<span class="string">'second'</span>,<span class="number">2</span>:<span class="string">'third'</span>,<span class="attr">length</span>:<span class="number">3</span>&#125;;</div><div class="line"><span class="built_in">console</span>.log([].slice.call(b)); <span class="comment">// ['first','second','third']</span></div></pre></td></tr></table></figure>
 <blockquote>
-<p>关于<code>Array.prototype.slice.call()</code>实现过程的猜测见肥杜的Blog <a href="http://www.cnblogs.com/littledu/archive/2012/05/19/2508672.html" target="_blank" rel="external">Array.prototype.slice.call(arguments</a></p>
+<p>关于<code>Array.prototype.slice.call()</code>实现过程的猜测见肥杜的Blog <a href="http://www.cnblogs.com/littledu/archive/2012/05/19/2508672.html" target="_blank" rel="external">Array.prototype.slice.call(arguments)</a></p>
 </blockquote>
 <p>下面我们看看<code>baseExtend</code>干了什么:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Set or clear the hashkey for an object.</div><div class="line"> * @param obj object</div><div class="line"> * @param h the hashkey (!truthy to delete the hashkey)</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setHashKey</span>(<span class="params">obj, h</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (h) &#123;</div><div class="line">    obj.$$hashKey = h;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">delete</span> obj.$$hashKey;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">baseExtend</span>(<span class="params">dst, objs, deep</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> h = dst.$$hashKey;</div><div class="line"></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, ii = objs.length; i &lt; ii; ++i) &#123;</div><div class="line">    <span class="keyword">var</span> obj = objs[i];</div><div class="line">    <span class="keyword">if</span> (!isObject(obj) &amp;&amp; !isFunction(obj)) <span class="keyword">continue</span>;</div><div class="line">    <span class="keyword">var</span> keys = <span class="built_in">Object</span>.keys(obj);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>, jj = keys.length; j &lt; jj; j++) &#123;</div><div class="line">      <span class="keyword">var</span> key = keys[j];</div><div class="line">      <span class="keyword">var</span> src = obj[key];</div><div class="line"></div><div class="line">      <span class="keyword">if</span> (deep &amp;&amp; isObject(src)) &#123;</div><div class="line">        <span class="keyword">if</span> (!isObject(dst[key])) dst[key] = isArray(src) ? [] : &#123;&#125;;</div><div class="line">        baseExtend(dst[key], [src], <span class="literal">true</span>);</div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">        dst[key] = src;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  setHashKey(dst, h);</div><div class="line">  <span class="keyword">return</span> dst;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
 	</div>
   
   <!-- css -->
@@ -325,6 +326,10 @@
 			<li><a href="/categories/hexo/" title="hexo">hexo<sup>1</sup></a></li>
 		  
 		
+		  
+			<li><a href="/categories/转载/" title="转载">转载<sup>2</sup></a></li>
+		  
+		
 		</ul>
 </div>
 
@@ -343,15 +348,19 @@
 			
 		
 			
+				<li><a href="/tags/转载/" title="转载">转载<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/EditorConfig/" title="EditorConfig">EditorConfig<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Angular/" title="Angular">Angular<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/extend/" title="extend">extend<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/EditorConfig/" title="EditorConfig">EditorConfig<sup>1</sup></a></li>
 			
 		
 			

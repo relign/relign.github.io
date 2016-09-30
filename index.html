@@ -107,7 +107,7 @@
 <p>此文章比较各个版本之间Angular的Extend方法</p>
 </blockquote>
 <h3 id="版本1-2-26"><a href="#版本1-2-26" class="headerlink" title="版本1.2.26"></a>版本1.2.26</h3><p>此时的Angular Extend精简至极</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">extend</span>(<span class="params">dst</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> h = dst.$$hashKey; </div><div class="line">  forEach(<span class="built_in">arguments</span>, <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (obj !== dst) &#123; <span class="comment">// 做判断去除同类的继承</span></div><div class="line">      forEach(obj, <span class="function"><span class="keyword">function</span>(<span class="params">value, key</span>) </span>&#123;</div><div class="line">        dst[key] = value; <span class="comment">// 对传入参数进行循环,将一个或者多个的可枚举属性复制到dst对象中</span></div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  setHashKey(dst,h);<span class="comment">// 为对象增加hash值,方便后续遍历过滤处理操作</span></div><div class="line">  <span class="keyword">return</span> dst;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">extend</span>(<span class="params">dst</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> h = dst.$$hashKey;</div><div class="line">  forEach(<span class="built_in">arguments</span>, <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (obj !== dst) &#123; <span class="comment">// 做判断去除同类的继承</span></div><div class="line">      forEach(obj, <span class="function"><span class="keyword">function</span>(<span class="params">value, key</span>) </span>&#123;</div><div class="line">        dst[key] = value; <span class="comment">// 对传入参数进行循环,将一个或者多个的可枚举属性复制到dst对象中</span></div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  setHashKey(dst,h);<span class="comment">// 为对象增加hash值,方便后续遍历过滤处理操作</span></div><div class="line">  <span class="keyword">return</span> dst;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>上面的代码多的仅仅是将传入的参数中可枚举的属性复制到dst对象,并返回这个新的对象,传入参数中靠后的argument会覆盖调靠前的.<br>列举一个简单的例子:</p>
         
         
@@ -241,7 +241,7 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/09/25/eslint-01/" title="Eslint的配置说明" itemprop="url">Eslint的配置说明</a>
+      <a href="/2016/09/25/eslint-01/" title="【转】Eslint的配置说明" itemprop="url">【转】Eslint的配置说明</a>
   </h1>
   <p class="article-author">By
        
@@ -275,10 +275,15 @@ category: 转载 -->
     <footer class="article-footer clearfix">
 <div class="article-catetags">
 
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/转载/">转载</a>
+</div>
+
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Eslint/">Eslint</a>
+  <span></span> <a href="/tags/Eslint/">Eslint</a><a href="/tags/转载/">转载</a>
   </div>
 
 </div>
@@ -321,7 +326,7 @@ category: 转载 -->
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/09/25/eslint/" title="Eslint 配置及规则说明" itemprop="url">Eslint 配置及规则说明</a>
+      <a href="/2016/09/25/eslint/" title="【转】Eslint 配置及规则说明" itemprop="url">【转】Eslint 配置及规则说明</a>
   </h1>
   <p class="article-author">By
        
@@ -334,10 +339,9 @@ category: 转载 -->
 </header>
     <div class="article-content">
         
-        <!-- 从 Jocs 罗冉大神的[github](https://github.com/Jocs)中翻阅Eslint的这几篇翻译文档,觉得相当不错,遂收录
-tags: [Eslint,转载]
-category: 转载
--->
+        <blockquote>
+<p>从 Jocs 罗冉大神的<a href="https://github.com/Jocs">github</a>中翻阅Eslint的这几篇翻译文档,觉得相当不错,遂收录</p>
+</blockquote>
 <h3 id="项目中包含"><a href="#项目中包含" class="headerlink" title="项目中包含"></a>项目中包含</h3><p><strong>Rules：</strong>该文件夹中包含了ESLint Rules的中文翻译（暂不包含v2.0.0新增Rules）。</p>
 <p><strong>Configration：</strong> 该文件夹内包含一个ESLint配置说明文件。</p>
 <p><strong>.eslintrc</strong>: 该文件是可以是你项目中有且仅有ESLint的配置文件，不包含规则简要解释。</p>
@@ -356,10 +360,15 @@ category: 转载
     <footer class="article-footer clearfix">
 <div class="article-catetags">
 
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/转载/">转载</a>
+</div>
+
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Eslint/">Eslint</a>
+  <span></span> <a href="/tags/Eslint/">Eslint</a><a href="/tags/转载/">转载</a>
   </div>
 
 </div>
@@ -811,6 +820,10 @@ category: 转载
 			<li><a href="/categories/hexo/" title="hexo">hexo<sup>1</sup></a></li>
 		  
 		
+		  
+			<li><a href="/categories/转载/" title="转载">转载<sup>2</sup></a></li>
+		  
+		
 		</ul>
 </div>
 
@@ -829,15 +842,19 @@ category: 转载
 			
 		
 			
+				<li><a href="/tags/转载/" title="转载">转载<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/EditorConfig/" title="EditorConfig">EditorConfig<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Angular/" title="Angular">Angular<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/extend/" title="extend">extend<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/EditorConfig/" title="EditorConfig">EditorConfig<sup>1</sup></a></li>
 			
 		
 			
