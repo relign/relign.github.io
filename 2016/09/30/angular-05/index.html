@@ -1,0 +1,708 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>关于ng-table v0.3.3的那些事 (一) | Relign Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <meta name="baidu-site-verification" content="0BadmBsKMG" />
+    <meta name="google-site-verification" content="21baLedz8cgdZBfRkoqRZizzKmIGN98IBSTj47K0R6g" />
+    
+    <meta name="author" content="relign">
+    
+
+    
+    <meta name="description" content="入职一周左右发现项目中使用ngTable版本是v0.3.3,而github上ngTable版本已经更新到v1.0.0,找到一篇v0.3.3的英文api进行翻译.同时抽出时间看看官方给出的例子总结了一下v0.3.3,希望可以帮到后续入职的新同学快速上手,老司机请绕路哈.
+
+ngTable指令Config简介ngTable指令可以美化你的table.它支持表格数据排序,过滤筛选和分页.当表格初始化完">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于ng-table v0.3.3的那些事 (一)">
+<meta property="og:url" content="https://relign.github.io/2016/09/30/angular-05/index.html">
+<meta property="og:site_name" content="Relign Blog">
+<meta property="og:description" content="入职一周左右发现项目中使用ngTable版本是v0.3.3,而github上ngTable版本已经更新到v1.0.0,找到一篇v0.3.3的英文api进行翻译.同时抽出时间看看官方给出的例子总结了一下v0.3.3,希望可以帮到后续入职的新同学快速上手,老司机请绕路哈.
+
+ngTable指令Config简介ngTable指令可以美化你的table.它支持表格数据排序,过滤筛选和分页.当表格初始化完">
+<meta property="og:updated_time" content="2016-09-30T10:16:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于ng-table v0.3.3的那些事 (一)">
+<meta name="twitter:description" content="入职一周左右发现项目中使用ngTable版本是v0.3.3,而github上ngTable版本已经更新到v1.0.0,找到一篇v0.3.3的英文api进行翻译.同时抽出时间看看官方给出的例子总结了一下v0.3.3,希望可以帮到后续入职的新同学快速上手,老司机请绕路哈.
+
+ngTable指令Config简介ngTable指令可以美化你的table.它支持表格数据排序,过滤筛选和分页.当表格初始化完">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Relign Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/reacticon.png">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Relign Blog" title="Relign Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Relign Blog">Relign Blog</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+						<form class="search" id='search-box' action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<div class="search-input">
+							<div id="search-icon" class="search-icon"></div>
+							<input type="text" id="search" class="st-default-search-input" maxlength="20" placeholder="" />
+						</div>
+						</form>
+						<script>
+								var search = document.getElementById('search-icon');
+								var input = document.getElementById('search');
+								search.onclick = function () {
+										location.href = 'https://relign.github.io/search/index.html#stq='+input.value+'&stp=1';
+								}
+						</script>
+					
+					</li>
+				</ul>
+			</nav>
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody">
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/09/30/angular-05/" title="关于ng-table v0.3.3的那些事 (一)" itemprop="url">关于ng-table v0.3.3的那些事 (一)</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="relign" target="_blank" itemprop="author">relign</a>
+		
+  <p class="article-time">
+    <time datetime="2016-09-30T10:15:03.000Z" itemprop="datePublished"> 发表于 2016-09-30</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ngTable指令Config简介"><span class="toc-number">1.</span> <span class="toc-text">ngTable指令Config简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#parameters"><span class="toc-number">2.</span> <span class="toc-text">parameters</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#page"><span class="toc-number">2.1.</span> <span class="toc-text">page</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#count"><span class="toc-number">2.2.</span> <span class="toc-text">count</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#filter"><span class="toc-number">2.3.</span> <span class="toc-text">filter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sorting"><span class="toc-number">2.4.</span> <span class="toc-text">sorting</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#filterDelay"><span class="toc-number">2.5.</span> <span class="toc-text">filterDelay</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#data"><span class="toc-number">2.6.</span> <span class="toc-text">data</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#getData"><span class="toc-number">2.7.</span> <span class="toc-text">getData</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<blockquote>
+<p>入职一周左右发现项目中使用<code>ngTable</code>版本是v0.3.3,而github上<code>ngTable</code>版本已经更新到v1.0.0,找到一篇v0.3.3的英文api进行翻译.同时抽出时间看看官方给出的例子总结了一下v0.3.3,希望可以帮到后续入职的新同学快速上手,老司机请绕路哈.</p>
+</blockquote>
+<h3 id="ngTable指令Config简介"><a href="#ngTable指令Config简介" class="headerlink" title="ngTable指令Config简介"></a>ngTable指令Config简介</h3><p><code>ngTable</code>指令可以美化你的<code>table</code>.它支持表格数据排序,过滤筛选和分页.当表格初始化完成后会自动带有头部和过滤器.<br>假如你想让<code>ngTable</code>在IE9以下运行,你需要<code>jQuery</code>:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--[if lt IE 9]&gt;</span></div><div class="line">  &lt;script src="http://code.jquery.com/jquery-1.10.2.min.js"&gt;&lt;/script&gt;</div><div class="line">&lt;![endif]--&gt;</div></pre></td></tr></table></figure>
+<p><code>ngTable</code>指令通过在<code>table</code>标签上挂在<code>ng-table</code>属性来启动.而<code>ng-table</code>属性的值对应你挂载到<code>scope</code>上的一个<code>ngTableParams</code>实例化以后的对象.举个例子:    </p>
+<p>HTML:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">ng-table</span>=<span class="string">"tableParams"</span>&gt;</span></div><div class="line">	...</div><div class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>Controller:    </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$scope.tableParams = <span class="keyword">new</span> ngTableParams(parameters, settings)</div></pre></td></tr></table></figure>
+<p>当对<code>ngTableParams</code>进行实例化的时候,这个函数会接收两个参数<code>parameters</code>和<code>settings</code>.下面我们详细介绍一下这两个参数.</p>
+<h3 id="parameters"><a href="#parameters" class="headerlink" title="parameters"></a>parameters</h3><p><code>parameters</code>对象应该定义一些初始化的配置.更多复杂的配置应该在<code>setting</code>对象中进行.下面这些属性可以被设置到<code>parameters</code>对象中.</p>
+<h4 id="page"><a href="#page" class="headerlink" title="page"></a><code>page</code></h4><p>类型: <code>Number</code>,默认值:<code>1</code><br>表格展示第几页    </p>
+<h4 id="count"><a href="#count" class="headerlink" title="count"></a><code>count</code></h4><p>类型: <code>Number</code>,默认值:<code>1</code><br>表格每一页展示多少数据</p>
+<h4 id="filter"><a href="#filter" class="headerlink" title="filter"></a><code>filter</code></h4><p>类型: <code>Object</code>,默认值:<code>{}</code><br>定义表格列的过滤器.不区分大小写.举个例子,绑定一个下拉框作为表格的过滤器:<br>in view:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">"status"</span> <span class="attr">ng-model</span>=<span class="string">"filters.status"</span> <span class="attr">...</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>in controller:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$scope.filters = &#123;</div><div class="line">  <span class="attr">status</span>: <span class="string">''</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>in ngTableParams:    </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$scope.tableParams = <span class="keyword">new</span> ngTableParams(</div><div class="line">  &#123;</div><div class="line">    ...</div><div class="line">    <span class="comment">// Attach filters to ng-table.</span></div><div class="line">    filter: $scope.filters</div><div class="line">  &#125;,</div><div class="line">  &#123;</div><div class="line">    ...</div><div class="line">  &#125;</div><div class="line">);</div></pre></td></tr></table></figure>
+<h4 id="sorting"><a href="#sorting" class="headerlink" title="sorting"></a><code>sorting</code></h4><p>类型: <code>Object</code>,默认值:<code>{}</code><br>定义表格的列排序.举个例子,首先给出数据:    </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">	var data = [</div><div class="line">		&#123;"name": "Moroni", "age": 50&#125;,</div><div class="line">		&#123;"name": "Tiancum", "age": 43&#125;</div><div class="line">	];</div><div class="line">```     </div><div class="line">你可以通过设置`sorting`定义一个表格名字的升序排列:</div><div class="line"></div><div class="line">```json</div><div class="line">&#123;</div><div class="line">	"name": "asc"</div><div class="line">&#125;</div><div class="line">```    </div><div class="line">### settings    </div><div class="line">#### `total`    </div><div class="line">类型: `Number`,默认值: `0`    </div><div class="line">定义表格数据的总数,通常为你需要渲染的Array数据的length.    </div><div class="line">#### `counts`</div><div class="line">类型: `Array`,默认值: `[10,25,50,100]`    </div><div class="line">定义表格每页显示数据数量的选项卡,可以通过设置一个空的数组来禁用这个功能.    </div><div class="line">#### `defaultSort`</div><div class="line">类型: `String`, 默认值: `desc`, 可选项:`["asc","desc"]`    </div><div class="line">定义一个默认的排列顺序,当你点击一个之前没有被排序的列数据时,按照默认的排列顺序进行排序.     </div><div class="line">#### `groupBy`    </div><div class="line">类型: `String | Function`     </div><div class="line">定义表格数据分组.你可以设置`groupBy`对数据进行分组:</div><div class="line"></div><div class="line">```javascript</div><div class="line">var data = [</div><div class="line">  &#123;name: "Moroni", age: 50&#125;,</div><div class="line">  &#123;name: "Tiancum", age: 43&#125;</div><div class="line">];</div><div class="line">...</div><div class="line">groupBy: 'name'</div><div class="line">```  </div><div class="line"></div><div class="line">或者通过传入回调函数设置你的分组规则:</div><div class="line"></div><div class="line">```javascript</div><div class="line">// Group by first letter of name + age</div><div class="line">// The item parameter is provided internally by ngTable</div><div class="line">groupBy: function (item) &#123;</div><div class="line">  return item.name[0] + item.age;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>关于<code>groupBy</code>的说明并不太懂,之后会上手几个demo看看</p>
+</blockquote>
+<h4 id="filterDelay"><a href="#filterDelay" class="headerlink" title="filterDelay"></a><code>filterDelay</code></h4><p>类型: <code>Number</code>, 默认值: <code>750</code><br>定义一个表格过滤器参数变化时,数据被显示在表格中的延迟时间.例如,你先想要按键过滤器的延迟效果.</p>
+<h4 id="data"><a href="#data" class="headerlink" title="data"></a><code>data</code></h4><p>类型: <code>Array</code>, 默认值: <code>[]</code><br>最初的数据集,由 <code>{colname:value}</code>键值对组成的<code>object</code>对象.</p>
+<h4 id="getData"><a href="#getData" class="headerlink" title="getData"></a><code>getData</code></h4><p>类型: <code>Function</code><br>定义一个方法处理要展示在<code>ngTable</code>中的数据.<code>ngTable</code>可以通过<code>getData</code>传入的两个参数<code>$defer</code>和<code>params</code>进行回调.举个例子:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">getData: <span class="function"><span class="keyword">function</span> (<span class="params">$defer, params</span>) </span>&#123;</div><div class="line">  ...</div><div class="line">&#125;</div><div class="line"><span class="string">``</span><span class="string">`    </span></div><div class="line">`$defer<span class="string">` 是一个`</span><span class="built_in">Promise</span><span class="string">`对象.通过调用`</span>$defer<span class="string">`的`</span>resolve<span class="string">`方法传递`</span>data<span class="string">`数据到`</span>ngTable<span class="string">`.    </span></div><div class="line">举个例子,给出如下的`data<span class="string">`:</span></div><div class="line"></div><div class="line">`<span class="string">``</span>javascript</div><div class="line"><span class="keyword">var</span> data = [</div><div class="line">  &#123;<span class="attr">name</span>: <span class="string">"Moroni"</span>, <span class="attr">age</span>: <span class="number">50</span>&#125;,</div><div class="line">  &#123;<span class="attr">name</span>: <span class="string">"Tiancum"</span>, <span class="attr">age</span>: <span class="number">43</span>&#125;</div><div class="line">];</div><div class="line"><span class="string">``</span><span class="string">`    </span></div><div class="line"></div><div class="line">通过这个最基础的方法,你可以让`ngTable<span class="string">`获得`</span>data<span class="string">`数据:</span></div><div class="line"></div><div class="line">`<span class="string">``</span>javascript</div><div class="line">getData: <span class="function"><span class="keyword">function</span> (<span class="params">$defer, params</span>) </span>&#123;</div><div class="line">  $defer.resolve(data);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>params</code>对应的是你在<code>parameters</code>对象中的配置(否则你再<code>parameters</code>中也没有设置,就会使用<code>ngTable</code>的默认配置);<br>举个例子,检索现在<code>parameters</code>的<code>filter</code>和<code>sorting</code>的配置:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">getData: <span class="function"><span class="keyword">function</span> (<span class="params">$defer, params</span>) </span>&#123;</div><div class="line">  ...</div><div class="line">  var filter = params.filter();</div><div class="line">  <span class="keyword">var</span> sorting = params.sorting();</div><div class="line">  ...</div><div class="line">&#125;</div><div class="line"><span class="string">``</span><span class="string">`     </span></div><div class="line"></div><div class="line">设置`paramters<span class="string">`中的`</span>total<span class="string">`,你可以这样引用变量`</span>vm.tableParams.total(value)<span class="string">`.举个例子,在`</span>ngTable<span class="string">`中使用`</span>ajax<span class="string">`请求数据:</span></div><div class="line"></div><div class="line">`<span class="string">``</span>javascript</div><div class="line"><span class="keyword">this</span>.tableParams = <span class="keyword">new</span> ngTableParams(</div><div class="line">  &#123;<span class="attr">page</span>: <span class="number">1</span>, <span class="attr">count</span>: <span class="number">10</span>&#125;,</div><div class="line">  &#123;</div><div class="line">    <span class="attr">total</span>: <span class="number">0</span>,</div><div class="line">    <span class="attr">getData</span>: <span class="function"><span class="keyword">function</span> (<span class="params">$defer, params</span>) </span>&#123;</div><div class="line">      <span class="keyword">var</span> filter = params.filter();</div><div class="line">      <span class="keyword">var</span> sorting = params.sorting();</div><div class="line">      <span class="keyword">var</span> count = params.count();</div><div class="line">      <span class="keyword">var</span> page = params.page();</div><div class="line">      myService.query(page, count, filter, sorting).success(<span class="function"><span class="keyword">function</span> (<span class="params">result</span>) </span>&#123;</div><div class="line">        vm.tableParams.total(result.total);</div><div class="line">        $defer.resolve(result.data);</div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">);</div></pre></td></tr></table></figure>
+
+	</div>
+  
+  <!-- css -->
+  <style type="text/css">
+      .center {
+          text-align: center;
+      }
+      .hidden {
+          display: none;
+      }
+    .donate_bar a.btn_donate{
+      display: inline-block;
+      width: 82px;
+      height: 82px;
+      background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+      _background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+      -webkit-transition: background 0s;
+      -moz-transition: background 0s;
+      -o-transition: background 0s;
+      -ms-transition: background 0s;
+      transition: background 0s;
+    }
+
+    .donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+    .donate_bar .donate_txt {
+      display: block;
+      color: #9d9d9d;
+      font: 14px/2 "Microsoft Yahei";
+    }
+    .bold{ font-weight: bold; }
+  </style>
+  <!-- /css -->
+
+    <!-- Donate Module -->
+    <div id="donate_module">
+
+  <!-- btn_donate & tips -->
+  <div id="donate_board" class="donate_bar center">
+      <br>
+      ------------------------------------------------------------------------------------------------------------------------------
+      <br>
+    <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+    <span class="donate_txt">
+      打赏是对作者写作最好的鼓励~
+    </span>
+
+
+  </div>
+  <!-- /btn_donate & tips -->
+
+  <!-- donate guide -->
+
+  <div id="donate_guide" class="donate_bar center hidden">
+        <br>
+      ------------------------------------------------------------------------------------------------------------------------------
+      <br>
+      
+    <div width="100%" align="center">
+      <div name="dashmain" id="dash-main-id-878695" class="dash-main-4 878695-9.9"></div>
+    </div>
+    <script type="text/javascript" charset="utf-8" src="http://www.dashangcloud.com/static/ds.js"></script>
+    
+
+    <a href="http://oa9ep5m8h.bkt.clouddn.com/image/weixin.png" title="用微信扫一扫哦~" class="fancybox" rel="article0">
+      <img src="http://oa9ep5m8h.bkt.clouddn.com/image/weixin.png" title="微信打赏 Donate" height="190px" width="auto"/>
+    </a>
+
+
+
+    <a href="http://oa9ep5m8h.bkt.clouddn.com/image/alipay.jpg" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+      <img src="http://oa9ep5m8h.bkt.clouddn.com/image/alipay.jpg" title="支付宝打赏 Donate" height="190px" width="auto"/>
+    </a>
+
+    <span class="donate_txt">
+      打赏是对作者写作最好的鼓励~
+    </span>
+
+  </div>
+  <!-- /donate guide -->
+
+  <!-- donate script -->
+  <script type="text/javascript">
+    document.getElementById('btn_donate').onclick = function() {
+      $('#donate_board').addClass('hidden');
+      $('#donate_guide').removeClass('hidden');
+    }
+
+    function donate_on_web(){
+      $('#donate').submit();
+        }
+  </script>
+  <!-- /donate script -->
+</div>
+<!-- /Donate Module -->
+   
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/angular/">angular</a><a href="/tags/ng-table/">ng-table</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://relign.github.io/2016/09/30/angular-05/" data-title="关于ng-table v0.3.3的那些事 (一) | Relign Blog" data-tsina="2170275291" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https'){
+   		bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}else{
+  		bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	  }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/09/27/angular-04/"  title="Angular源码解读之不同版本的Extend">
+ <strong>下一篇：</strong><br/> 
+ <span>Angular源码解读之不同版本的Extend
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/09/30/angular-05/" data-title="关于ng-table v0.3.3的那些事 (一)" data-url="https://relign.github.io/2016/09/30/angular-05/"></div>
+</section>
+
+
+</div>
+
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="relign" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/转载/" title="转载">转载<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/angular/" title="angular">angular<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Eslint/" title="Eslint">Eslint<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/转载/" title="转载">转载<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Angular/" title="Angular">Angular<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/extend/" title="extend">extend<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ng-table/" title="ng-table">ng-table<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/EditorConfig/" title="EditorConfig">EditorConfig<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/gulp/" title="gulp">gulp<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://hexo.io/zh-cn/" target="_blank" title="hexo官方网站">hexo</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://reactjs.cn/" target="_blank" title="react">react</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.reqianduan.com/" target="_blank" title="热前端">热前端</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ita1024.com/" target="_blank" title="ITA1024">ITA1024</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Rlign in TuoWei. <br/>
+			This is my blog,I hope you are happy.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/rain风轩" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/relign" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="http://www.zhihu.com/people/relign" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:songruigang0803@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+				<div class="cc-license">
+          <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+            <img src="/img/cc-by-nc-sa.svg" alt="Creative Commons" />
+          </a>
+        </div>
+    
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016
+		
+		<a href="/about" target="_blank" title="relign">relign</a>
+		
+
+		</p>
+		<script type="text/javascript">
+		  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+		  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+		  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+		  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+		  _st('install','4czXNpetdQbbATgWri4c','2.0.0');
+		</script>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"relign"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-80541658-1', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?f6d8bb031910344a8f074a6d7f1d6ced";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
