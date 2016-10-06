@@ -15,20 +15,20 @@
     
     <meta name="description" content="在项目开发过程中,不同开发人员会使用不同的编辑器,常见的如:WebStorm,Atom,Sublime等等.不同编辑器对于缩进风格,默认的编码格式以及空白字符的设置等各有风格,因此在项目中做代码统一规范让开发人员尤为痛苦.    
 
-EditorConfig的作用EditorConfig 帮助开发人员统一和维护不同编辑器之间的代码风格,有助于项目做Eslint等的代码检查和代码规范的统一.Edi">
+作用EditorConfig 帮助开发人员统一和维护不同编辑器之间的代码风格,有助于项目做Eslint等的代码检查和代码规范的统一.EditorConfig通过在项">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用EditorConfig定义代码格式,统一代码风格">
 <meta property="og:url" content="https://relign.github.io/2016/09/25/editor-config/index.html">
 <meta property="og:site_name" content="Relign Blog">
 <meta property="og:description" content="在项目开发过程中,不同开发人员会使用不同的编辑器,常见的如:WebStorm,Atom,Sublime等等.不同编辑器对于缩进风格,默认的编码格式以及空白字符的设置等各有风格,因此在项目中做代码统一规范让开发人员尤为痛苦.    
 
-EditorConfig的作用EditorConfig 帮助开发人员统一和维护不同编辑器之间的代码风格,有助于项目做Eslint等的代码检查和代码规范的统一.Edi">
-<meta property="og:updated_time" content="2016-10-02T13:34:04.000Z">
+作用EditorConfig 帮助开发人员统一和维护不同编辑器之间的代码风格,有助于项目做Eslint等的代码检查和代码规范的统一.EditorConfig通过在项">
+<meta property="og:updated_time" content="2016-10-06T03:40:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用EditorConfig定义代码格式,统一代码风格">
 <meta name="twitter:description" content="在项目开发过程中,不同开发人员会使用不同的编辑器,常见的如:WebStorm,Atom,Sublime等等.不同编辑器对于缩进风格,默认的编码格式以及空白字符的设置等各有风格,因此在项目中做代码统一规范让开发人员尤为痛苦.    
 
-EditorConfig的作用EditorConfig 帮助开发人员统一和维护不同编辑器之间的代码风格,有助于项目做Eslint等的代码检查和代码规范的统一.Edi">
+作用EditorConfig 帮助开发人员统一和维护不同编辑器之间的代码风格,有助于项目做Eslint等的代码检查和代码规范的统一.EditorConfig通过在项">
 
     
     <link rel="alternative" href="/atom.xml" title="Relign Blog" type="application/atom+xml">
@@ -114,19 +114,19 @@ EditorConfig的作用EditorConfig 帮助开发人员统一和维护不同编辑�
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#EditorConfig的作用"><span class="toc-number">1.</span> <span class="toc-text">EditorConfig的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EditorConfig配置文件怎么写"><span class="toc-number">2.</span> <span class="toc-text">EditorConfig配置文件怎么写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置文件存放位置"><span class="toc-number">3.</span> <span class="toc-text">配置文件存放位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件格式详情"><span class="toc-number">4.</span> <span class="toc-text">文件格式详情</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Wildcard-Patterns"><span class="toc-number">4.1.</span> <span class="toc-text">Wildcard Patterns</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不需要插件的编辑器"><span class="toc-number">5.</span> <span class="toc-text">不需要插件的编辑器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#需要下载插件的编辑器"><span class="toc-number">6.</span> <span class="toc-text">需要下载插件的编辑器</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#作用"><span class="toc-number">1.</span> <span class="toc-text">作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置文件"><span class="toc-number">2.</span> <span class="toc-text">配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置文件详解"><span class="toc-number">3.</span> <span class="toc-text">配置文件详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件格式详情"><span class="toc-number">4.</span> <span class="toc-text">文件格式详情</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Wildcard-Patterns"><span class="toc-number">4.1.</span> <span class="toc-text">Wildcard Patterns</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不需要插件的编辑器"><span class="toc-number">5.</span> <span class="toc-text">不需要插件的编辑器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#需要下载插件的编辑器"><span class="toc-number">6.</span> <span class="toc-text">需要下载插件的编辑器</span></a></li></ol>
 		
 		</div>
 		
 		<blockquote>
 <p>在项目开发过程中,不同开发人员会使用不同的编辑器,常见的如:WebStorm,Atom,Sublime等等.不同编辑器对于缩进风格,默认的编码格式以及空白字符的设置等各有风格,因此在项目中做代码统一规范让开发人员尤为痛苦.    </p>
 </blockquote>
-<h3 id="EditorConfig的作用"><a href="#EditorConfig的作用" class="headerlink" title="EditorConfig的作用"></a>EditorConfig的作用</h3><p><strong>EditorConfig</strong> 帮助开发人员统一和维护不同编辑器之间的代码风格,有助于项目做<code>Eslint</code>等的代码检查和代码规范的统一.<code>EditorConfig</code>通过在项目中构建一个配置文件来让编辑器插件进行格式化代码.<code>EditorConfig</code>配置文件简单易懂，并且能够很好的和版本控制器协同工作.     </p>
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p><strong>EditorConfig</strong> 帮助开发人员统一和维护不同编辑器之间的代码风格,有助于项目做<code>Eslint</code>等的代码检查和代码规范的统一.<code>EditorConfig</code>通过在项目中构建一个配置文件来让编辑器插件进行格式化代码.<code>EditorConfig</code>配置文件简单易懂，并且能够很好的和版本控制器协同工作.     </p>
 <blockquote>
 <p>版本控制系统(Version Control Systems ,简称VCS)也称为源代码控制系统,它是跟踪并存储系统各对象源代码及文档的开发历史和变更资料,并提供了系统故障恢复及开发进程管理的功能.    </p>
 </blockquote>
 <a id="more"></a>
-<h3 id="EditorConfig配置文件怎么写"><a href="#EditorConfig配置文件怎么写" class="headerlink" title="EditorConfig配置文件怎么写"></a>EditorConfig配置文件怎么写</h3><p>在下面的例子中,<code>.editorconfig</code> 配置文件设置了end-of-line（行末换行符选择）和indentation styles（代码缩进风格),该配置文件将规范项目中Html,css,SCSS和JavaScript等文件的代码风格.</p>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>在下面的例子中,<code>.editorconfig</code> 配置文件设置了end-of-line（行末换行符选择）和indentation styles（代码缩进风格),该配置文件将规范项目中Html,css,SCSS和JavaScript等文件的代码风格.</p>
 <pre><code class="ruby"><span class="comment"># EditorConfig is awesome: http://EditorConfig.org</span>
 <span class="comment"># top-most EditorConfig file</span>
 <span class="comment"># 最顶层的配置文件</span>
@@ -161,7 +161,10 @@ indent_style = space
 indent_size = <span class="number">2</span>
 </code></pre>
 <p>这里给出一些项目中使用<code>EditorConfig</code>的<a href="https://github.com/editorconfig/editorconfig/wiki/Projects-Using-EditorConfig" target="_blank" rel="external">实例</a>.     </p>
-<h3 id="配置文件存放位置"><a href="#配置文件存放位置" class="headerlink" title="配置文件存放位置"></a>配置文件存放位置</h3><p>当打开一个文件时,<code>EditorConfig</code>插件会在打开文件的目录和其每一级父目录查找<code>.editorconfig</code>文件,直到有一个配置文件<code>root=true</code>.</p>
+<h3 id="配置文件详解"><a href="#配置文件详解" class="headerlink" title="配置文件详解"></a>配置文件详解</h3><blockquote>
+<p>转载</p>
+</blockquote>
+<p>当打开一个文件时,<code>EditorConfig</code>插件会遍历文件的目录和其每一级父目录查找<code>.editorconfig</code>文件,直到有一个配置文件<code>root=true</code>.</p>
 <p><code>EditorConfig</code>配置文件从上往下读取,并且路径最近的文件最后被读取.匹配的配置属性按照属性应用在代码上,所以最接近代码文件的属性优先级最高.</p>
 <p><strong>Windows 用户:</strong> 在资源管理器创建<code>.editorconfig</code>文件,可以先创建<code>.editorconfig.</code>文件,系统会自动重名为<code>.editorconfig</code>.</p>
 <h3 id="文件格式详情"><a href="#文件格式详情" class="headerlink" title="文件格式详情"></a>文件格式详情</h3><p><code>EditorConfig</code>文件使用INI格式(<em>译注：请参考维基百科</em>),目的是可以与<a href="https://docs.python.org/2/library/configparser.html" target="_blank" rel="external">Python ConfigParser Library</a>兼容,但是允许在分段名（译注：原文是section names）中使用“and”.分段名是全局的文件路径,格式类似于<a href="http://manpages.ubuntu.com/manpages/intrepid/man5/gitignore.5.html#contenttoc2" target="_blank" rel="external">gitignore</a>。斜杠(<code>/</code>)作为路径分隔符，<code>#</code>或者<code>;</code>作为注释。注释应该单独占一行。<code>EditorConfig</code>文件使用<code>UTF-8</code>格式、<code>CRLF</code>或<code>LF</code>作为换行符。</p>
@@ -259,7 +262,7 @@ indent_size = <span class="number">2</span>
 <li>Visual Studio Code</li>
 <li>Xcode</li>
 </ol>
-<p><strong>举个栗子</strong></p>
+<p><strong>举个例子</strong></p>
 <p><strong>Sublime Text</strong></p>
 <p>如果要安装Sublime Text插件，直接在Package Control中搜索<code>EditorConfig</code>就行。</p>
 <p><strong>WebStorm</strong></p>
@@ -481,15 +484,15 @@ indent_size = <span class="number">2</span>
 			
 		
 			
+				<li><a href="/tags/ng-table/" title="ng-table">ng-table<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Angular/" title="Angular">Angular<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/extend/" title="extend">extend<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/ng-table/" title="ng-table">ng-table<sup>1</sup></a></li>
 			
 		
 			
