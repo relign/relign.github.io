@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>gulp之学习教程 | Relign Blog</title>
+    <title>执行npm shrinkwrap error思考 | Relign Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     <meta name="baidu-site-verification" content="0BadmBsKMG" />
     <meta name="google-site-verification" content="21baLedz8cgdZBfRkoqRZizzKmIGN98IBSTj47K0R6g" />
@@ -13,16 +13,22 @@
     
 
     
-    <meta name="description" content="导语gulp是基于node环境的一款前端自动化构建工具，是自动化构建项目的神器。利用它我们可以抛弃前端项目开发中很多重复的工作,比如：压缩文件(css,js,img)，编译文件(es6、JSX、coffee),文件测试、合并、格式化,浏览器自动刷新,部署文件生成等等,极大的开发了我们的工作效率。gulp与grunt非常像，但是grunt频繁进行IO操作，用插件做太多的事情，插件没有遵守单一责任原则">
+    <meta name="description" content="做项目时执行 npm shrinkwrap 报错,并对这次错误求根问底,贴出来让大家看看,希望跟我出现一样错误的童鞋可以得到解答
+
+npm shrinkwrap 命令简介项目开发过程中,当你使用npm install [package] --save安装项目所依赖的包的时候,会在package.json文件中写入包的版本号:&amp;quot;express&amp;quot;: &amp;quot;^4.8.7&amp;qu">
 <meta property="og:type" content="article">
-<meta property="og:title" content="gulp之学习教程">
-<meta property="og:url" content="https://relign.github.io/2016/07/11/gulp/index.html">
+<meta property="og:title" content="执行npm shrinkwrap error思考">
+<meta property="og:url" content="https://relign.github.io/2016/10/13/npm-shrinkwrap/index.html">
 <meta property="og:site_name" content="Relign Blog">
-<meta property="og:description" content="导语gulp是基于node环境的一款前端自动化构建工具，是自动化构建项目的神器。利用它我们可以抛弃前端项目开发中很多重复的工作,比如：压缩文件(css,js,img)，编译文件(es6、JSX、coffee),文件测试、合并、格式化,浏览器自动刷新,部署文件生成等等,极大的开发了我们的工作效率。gulp与grunt非常像，但是grunt频繁进行IO操作，用插件做太多的事情，插件没有遵守单一责任原则">
-<meta property="og:updated_time" content="2016-09-21T14:26:38.000Z">
+<meta property="og:description" content="做项目时执行 npm shrinkwrap 报错,并对这次错误求根问底,贴出来让大家看看,希望跟我出现一样错误的童鞋可以得到解答
+
+npm shrinkwrap 命令简介项目开发过程中,当你使用npm install [package] --save安装项目所依赖的包的时候,会在package.json文件中写入包的版本号:&amp;quot;express&amp;quot;: &amp;quot;^4.8.7&amp;qu">
+<meta property="og:updated_time" content="2016-10-13T10:16:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="gulp之学习教程">
-<meta name="twitter:description" content="导语gulp是基于node环境的一款前端自动化构建工具，是自动化构建项目的神器。利用它我们可以抛弃前端项目开发中很多重复的工作,比如：压缩文件(css,js,img)，编译文件(es6、JSX、coffee),文件测试、合并、格式化,浏览器自动刷新,部署文件生成等等,极大的开发了我们的工作效率。gulp与grunt非常像，但是grunt频繁进行IO操作，用插件做太多的事情，插件没有遵守单一责任原则">
+<meta name="twitter:title" content="执行npm shrinkwrap error思考">
+<meta name="twitter:description" content="做项目时执行 npm shrinkwrap 报错,并对这次错误求根问底,贴出来让大家看看,希望跟我出现一样错误的童鞋可以得到解答
+
+npm shrinkwrap 命令简介项目开发过程中,当你使用npm install [package] --save安装项目所依赖的包的时候,会在package.json文件中写入包的版本号:&amp;quot;express&amp;quot;: &amp;quot;^4.8.7&amp;qu">
 
     
     <link rel="alternative" href="/atom.xml" title="Relign Blog" type="application/atom+xml">
@@ -92,14 +98,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/07/11/gulp/" title="gulp之学习教程" itemprop="url">gulp之学习教程</a>
+      <a href="/2016/10/13/npm-shrinkwrap/" title="执行npm shrinkwrap error思考" itemprop="url">执行npm shrinkwrap error思考</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="relign" target="_blank" itemprop="author">relign</a>
 		
   <p class="article-time">
-    <time datetime="2016-07-11T15:24:26.000Z" itemprop="datePublished"> 发表于 2016-07-11</time>
+    <time datetime="2016-10-13T09:00:48.000Z" itemprop="datePublished"> 发表于 2016-10-13</time>
     
   </p>
 </header>
@@ -108,33 +114,15 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#导语"><span class="toc-number">1.</span> <span class="toc-text">导语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装gulp"><span class="toc-number">2.</span> <span class="toc-text">安装gulp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行一个简单的任务"><span class="toc-number">3.</span> <span class="toc-text">运行一个简单的任务</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#npm-shrinkwrap-命令简介"><span class="toc-number">1.</span> <span class="toc-text">npm shrinkwrap 命令简介</span></a></li></ol>
 		
 		</div>
 		
-		<h3 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h3><p>gulp是基于node环境的一款前端自动化构建工具，是自动化构建项目的神器。利用它我们可以抛弃前端项目开发中很多重复的工作,比如：压缩文件(css,js,img)，编译文件(es6、JSX、coffee),文件测试、合并、格式化,浏览器自动刷新,部署文件生成等等,极大的开发了我们的工作效率。<br>gulp与grunt非常像，但是grunt频繁进行IO操作，用插件做太多的事情，插件没有遵守单一责任原则，落后流程控制直接导致其性能滞后。而gulp有以下几个特点:</p>
-<blockquote>
-<ul>
-<li>易于使用<br>通过代码优于配置的策略，Gulp 让简单的任务简单，复杂的任务可管理。</li>
-<li>构建快速<br>利用 Node.js 流的威力，你可以快速构建项目并减少频繁的 IO 操作。</li>
-<li>插件高质<br>Gulp 严格的插件指南确保插件如你期望的那样简洁高质得工作。</li>
-<li>易于学习<br>通过最少的 API，掌握 Gulp 毫不费力，构建工作尽在掌握：如同一系列流管道。</li>
-</ul>
+		<blockquote>
+<p>做项目时执行 <code>npm shrinkwrap</code> 报错,并对这次错误求根问底,贴出来让大家看看,希望跟我出现一样错误的童鞋可以得到解答</p>
 </blockquote>
-<a id="more"></a>
-<h3 id="安装gulp"><a href="#安装gulp" class="headerlink" title="安装gulp"></a>安装gulp</h3><p>1.由于gulp基于node环境，所以首先你需要<a href="http://jingyan.baidu.com/article/fd8044faf2e8af5030137a64.html" target="_blank" rel="external">安装node</a>;<br>2.打开命令行工具(CMD或者git),安装gulp(全局安装);<br><code>$ npm install gulp -g</code></p>
-<h3 id="运行一个简单的任务"><a href="#运行一个简单的任务" class="headerlink" title="运行一个简单的任务"></a>运行一个简单的任务</h3><p>我们通过构建一个简单的编译sass文件任务,来了解gulp;<br>1.新建一个文件夹(我的是gulp),进入这个文件夹;<br><code>$ cd gulp</code><br>2.初始化这个新项目,生成package.json;<br><code>$ npm init</code></p>
-<blockquote>
-<p>package.json文件描述了一个NPM包的所有相关信息，包括作者、简介、包依赖、构建等信息,通过它我们可以了解到项目开发中所依赖的各种插件信息。<br>当然它远不止这么简单，你可以参考这篇文章去更加详细的了解它:<a href="http://ju.outofmemory.cn/entry/130809。" target="_blank" rel="external">http://ju.outofmemory.cn/entry/130809。</a></p>
-</blockquote>
-<p>3.安装示例所需要的npm包;<br>你可以将gulp当作项目依赖安装<br><code>$ npm install gulp --save-dev</code><br>安装编译sass文件的gulp插件 gulp-sass<br><code>$ npm install gulp-sass --save-dev</code><br>安装gulp-sass依赖的 node-sass<br><code>$ npm install node-sass --save-dev</code></p>
-<blockquote>
-<p>如果安装失败,可尝试用淘宝镜像源cnpm去安装,80%的几率你会安装失败<br><code>$ npm install -g cnpm --registry=https://registry.npm.taobao.org</code></p>
-</blockquote>
-<p>4.建立gulpfile.js文件<br>在项目根目录下创建一个名为 <code>gulpfile.js</code> 的文件作为gulp的入口文件。<br>接着创立一个scss文件 index.scss<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">@mixin center($width,$height)&#123;</div><div class="line">  width: $width;</div><div class="line">  height: $height;</div><div class="line">  position: absolute;</div><div class="line">  top: 50%;</div><div class="line">  left: 50%;</div><div class="line">  margin-top: -($height) / 2;</div><div class="line">  margin-left: -($width) / 2;</div><div class="line">&#125;</div><div class="line">.box-center&#123;</div><div class="line">  @include center(500px,300px);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>在gulpfile.js中编写代码去管理sass编译:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</div><div class="line"><span class="keyword">var</span> sass = <span class="built_in">require</span>(<span class="string">'gulp-sass'</span>);</div><div class="line">gulp.task(<span class="string">'sass'</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> gulp.src(<span class="string">'./index.scss'</span>)</div><div class="line">  .pipe(sass())</div><div class="line">  .pipe(gulp.dest(<span class="string">'./build'</span>));</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<p>打开命令行(CMD或者git)执行命令<br><code>$ gulp sass</code><br>查看编译出的文件<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.box-center</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">500px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">300px</span>;</div><div class="line">  <span class="attribute">position</span>: absolute;</div><div class="line">  <span class="attribute">top</span>: <span class="number">50%</span>;</div><div class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</div><div class="line">  <span class="attribute">margin-top</span>: -<span class="number">150px</span>;</div><div class="line">  <span class="attribute">margin-left</span>: -<span class="number">250px</span>; &#125;</div></pre></td></tr></table></figure></p>
-<p>编译成功！</p>
+<h2 id="npm-shrinkwrap-命令简介"><a href="#npm-shrinkwrap-命令简介" class="headerlink" title="npm shrinkwrap 命令简介"></a>npm shrinkwrap 命令简介</h2><p>项目开发过程中,当你使用<code>npm install [package] --save</code>安装项目所依赖的包的时候,会在<code>package.json</code>文件中写入包的版本号:<code>&quot;express&quot;: &quot;^4.8.7&quot;</code>(一般是这种版本号,<code>^</code>表示允许大版本迭代,即允许<code>4.8.7</code>到<code>5.0.0</code>之间版本的升级).但这样就会出现问题,当你下次执行<code>npm install</code>安装<code>package.json</code>中文件的时候,可能会出现版本不一致导致运行结果不同的情况.<br><code>npm shrinkwrap</code>这个命令用来指定项目依赖包的安装版本,可以稳定项目的开发环境.它会在当前目录下创建<code>npm-shrinkwrap.json</code>文件,里面描述了项目所依赖的包,以及这些包内嵌套的包的确定版本号和包的下载位置:<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">"acorn-jsx": &#123;</div><div class="line">      "version": "3.0.1",</div><div class="line">      "from": "acorn-jsx@&gt;=3.0.0 &lt;4.0.0",</div><div class="line">      "resolved": "http://r.npm.sankuai.com/acorn-jsx/-/acorn-jsx-3.0.1.tgz",</div><div class="line">      "dependencies": &#123;</div><div class="line">        "acorn": &#123;</div><div class="line">          "version": "3.2.0",</div><div class="line">          "from": "acorn@&gt;=3.0.4 &lt;4.0.0",</div><div class="line">          "resolved": "http://r.npm.sankuai.com/acorn/-/acorn-3.2.0.tgz"</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">```    </div><div class="line">当项目中其他人进行开发执行`npm install`的时候就会去这个文件中找到包的下载位置和版本号去安装,从而实现项目依赖包锁定版本号.如果你想要更新`npm-shrinkwrap.json`中包的版本,你可以先`npm update [package]`更新包,再用`npm shrinkwrap`重新创建`npm-shrinkwrap.json`文件.    </div><div class="line">## 执行npm shrinkwrap报错    </div><div class="line">新人刚到公司,接手项目,偶然一次机会执行了`npm shrinkwrap`命令,发现它居然报错了,于是便追根溯源.报错信息如下:       </div><div class="line">```shell</div><div class="line">npm WARN shrinkwrap   underscore: '^1.8.3' &#125;</div><div class="line">npm ERR! Darwin 16.0.0</div><div class="line">npm ERR! argv "/Users/relign/.nvm/versions/node/v4.4.6/bin/node" "/Users/relign/.nvm/versions/node/v4.4.6/bin/npm" "shrinkwrap"</div><div class="line">npm ERR! node v4.4.6</div><div class="line">npm ERR! npm  v3.10.2</div><div class="line"></div><div class="line">npm ERR! Problems were encountered</div><div class="line">npm ERR! Please correct and try again.</div><div class="line">npm ERR! extraneous: babel-generator@6.11.4 /Users/relign/Documents/project/hotel-fe-tbms/node_modules/babel-generator</div><div class="line">npm ERR! extraneous: lodash@4.14.0 /Users/relign/Documents/project/hotel-fe-tbms/node_modules/babel-generator/node_modules/lodash</div><div class="line">npm ERR! extraneous: babel-plugin-transform-es2015-block-scoping@6.10.1 /Users/relign/Documents/project/hotel-fe-tbms/node_modules/babel-plugin-transform-es2015-block-scoping</div><div class="line">npm ERR! extraneous: lodash@4.14.0 /Users/relign/Documents/project/hotel-fe-tbms/node_modules/babel-plugin-transform-es2015-block-scoping/node_modules/lodash</div><div class="line">npm ERR! extraneous: babel-register@6.11.5 /Users/relign/Documents/project/hotel-fe-tbms/node_modules/babel-register</div><div class="line">npm ERR! extraneous: babel-core@6.11.4 /Users/relign/Documents/project/hotel-fe-tbms/node_modules/babel-register/node_modules/babel-core</div><div class="line">npm ERR! extraneous: babylon@6.8.4 /Users/relign/Documents/project/hotel-fe-tbms/node_modules/babel-register/node_modules/babylon</div><div class="line">npm ERR! extraneous: core-js@2.4.1 /Users/relign/Documents/project/hotel-fe-tbms/node_modules/babel-register/node_modules/core-js</div><div class="line">npm ERR! extraneous: lodash@4.14.0 /Users/relign/Documents/project/hotel-fe-tbms/node_modules/babel-register/node_modules/lodash</div><div class="line">npm ERR! extraneous: minimatch@3.0.2 /Users/relign/Documents/project/hotel-fe-tbms/node_modules/babel-register/node_modules/minimatch</div><div class="line">npm ERR! missing: pmx@latest, required by pm25@0.143.6</div><div class="line">npm ERR! missing: vizion@latest, required by pm25@0.143.6</div><div class="line">npm ERR! missing: pm2-axon@latest, required by pm25@0.143.6</div><div class="line">npm ERR! missing: pm2-deploy@latest, required by pm25@0.143.6</div><div class="line">npm ERR!</div><div class="line">npm ERR! If you need help, you may report this error at:</div><div class="line">npm ERR!     &lt;https://github.com/npm/npm/issues&gt;</div><div class="line"></div><div class="line">npm ERR! Please include the following file with any support request:</div><div class="line">npm ERR!     /Users/relign/Documents/project/hotel-fe-tbms/npm-debug.log</div></pre></td></tr></table></figure></p>
+<p>重点在于<code>Problems were encountered</code>,于是上万能的<code>Google</code>去搜索,搜到如下<a href="https://github.com/SaltwaterC/aws2js/issues/58" target="_blank" rel="external">结果</a>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">If you want to make shrinkwrap work, you have to have only modules installed via (dev)Dependencies in package.json.</div><div class="line"></div><div class="line">If you use solutions like napa or if you manually installed some modules in node_modules, it won&apos;t work.</div><div class="line"></div><div class="line">npm prune removes these extra modules and it should work juster after that.</div></pre></td></tr></table></figure></p>
 
 	</div>
   
@@ -237,7 +225,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/gulp/">gulp</a>
+  <span></span> <a href="/tags/npm/">npm</a><a href="/tags/shrinkwrap/">shrinkwrap</a>
   </div>
 
 </div>
@@ -246,7 +234,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://relign.github.io/2016/07/11/gulp/" data-title="gulp之学习教程 | Relign Blog" data-tsina="2170275291" class="share clearfix">
+	  <div data-url="https://relign.github.io/2016/10/13/npm-shrinkwrap/" data-title="执行npm shrinkwrap error思考 | Relign Blog" data-tsina="2170275291" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -271,19 +259,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/09/21/angular-01/" title="angular源码工具函数总结">
-  <strong>上一篇：</strong><br/>
-  <span>
-  angular源码工具函数总结</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/07/10/hexo/"  title="利用Hexo框架在Github上搭建个人博客">
+<a href="/2016/09/30/angular-05/"  title="关于ng-table v0.3.3的那些事 (一)">
  <strong>下一篇：</strong><br/> 
- <span>利用Hexo框架在Github上搭建个人博客
+ <span>关于ng-table v0.3.3的那些事 (一)
 </span>
 </a>
 </div>
@@ -292,7 +272,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/07/11/gulp/" data-title="gulp之学习教程" data-url="https://relign.github.io/2016/07/11/gulp/"></div>
+	<div class="ds-thread" data-thread-key="2016/10/13/npm-shrinkwrap/" data-title="执行npm shrinkwrap error思考" data-url="https://relign.github.io/2016/10/13/npm-shrinkwrap/"></div>
 </section>
 
 
