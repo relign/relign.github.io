@@ -106,12 +106,12 @@
         <blockquote>
 <p>做项目时执行 <code>npm shrinkwrap</code> 报错,并对这次错误求根问底,贴出来让大家看看,希望跟我出现一样错误的童鞋可以得到解答</p>
 </blockquote>
-<h2 id="npm-shrinkwrap-命令简介"><a href="#npm-shrinkwrap-命令简介" class="headerlink" title="npm shrinkwrap 命令简介"></a>npm shrinkwrap 命令简介</h2><p>项目开发过程中,当你使用<code>npm install [package] --save</code>安装项目所依赖的包的时候,会在<code>package.json</code>文件中写入包的版本号:<code>&quot;express&quot;: &quot;^4.8.7&quot;</code>(一般是这种版本号,<code>^</code>表示允许大版本迭代,即允许<code>4.8.7</code>到<code>5.0.0</code>之间版本的升级).但这样就会出现问题,当你下次执行<code>npm install</code>安装<code>package.json</code>中文件的时候,可能会出现版本不一致导致运行结果不同的情况.<br><code>npm shrinkwrap</code>这个命令用来指定项目依赖包的安装版本,可以稳定项目的开发环境.它会在当前目录下创建<code>npm-shrinkwrap.json</code>文件,里面描述了项目所依赖的包,以及这些包内嵌套的包的确定版本号和包的下载位置:<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">"acorn-jsx": &#123;</div><div class="line">      "version": "3.0.1",</div><div class="line">      "from": "acorn-jsx@&gt;=3.0.0 &lt;4.0.0",</div><div class="line">      "resolved": "http://r.npm.sankuai.com/acorn-jsx/-/acorn-jsx-3.0.1.tgz",</div><div class="line">      "dependencies": &#123;</div><div class="line">        "acorn": &#123;</div><div class="line">          "version": "3.2.0",</div><div class="line">          "from": "acorn@&gt;=3.0.4 &lt;4.0.0",</div><div class="line">          "resolved": "http://r.npm.sankuai.com/acorn/-/acorn-3.2.0.tgz"</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">```    </div><div class="line">当项目中其他人进行开发执行`npm install`的时候就会去这个文件中找到包的下载位置和版本号去安装,从而实现项目依赖包锁定版本号.如果你想要更新`npm-shrinkwrap.json`中包的版本,你可以先`npm update [package]`更新包,再用`npm shrinkwrap`重新创建`npm-shrinkwrap.json`文件.    </div><div class="line">## 执行npm shrinkwrap报错    </div><div class="line">新人刚到公司,接手项目,偶然一次机会执行了`npm shrinkwrap`命令,发现它居然报错了,于是便追根溯源.报错信息如下:       </div><div class="line">```shell</div><div class="line">npm WARN shrinkwrap   underscore: '^1.8.3' &#125;</div><div class="line">npm ERR! Darwin 16.0.0</div><div class="line">npm ERR! argv "/Users/relign/.nvm/versions/node/v4.4.6/bin/node" "/Users/relign/.nvm/versions/node/v4.4.6/bin/npm" "shrinkwrap"</div><div class="line">npm ERR! node v4.4.6</div><div class="line">npm ERR! npm  v3.10.2</div><div class="line"></div><div class="line">npm ERR! Problems were encountered</div><div class="line">npm ERR! Please correct and try again.</div><div class="line">npm ERR! extraneous: babel-generator@6.11.4 /Users/relign/Documents/project/hotel-fe-tbms/node_modules/babel-generator</div><div class="line">npm ERR! extraneous: lodash@4.14.0 /Users/relign/Documents/project/hotel-fe-tbms/node_modules/babel-generator/node_modules/lodash</div><div class="line">npm ERR! extraneous: babel-plugin-transform-es2015-block-scoping@6.10.1 /Users/relign/Documents/project/hotel-fe-tbms/node_modules/babel-plugin-transform-es2015-block-scoping</div><div class="line">npm ERR! extraneous: lodash@4.14.0 /Users/relign/Documents/project/hotel-fe-tbms/node_modules/babel-plugin-transform-es2015-block-scoping/node_modules/lodash</div><div class="line">npm ERR! extraneous: babel-register@6.11.5 /Users/relign/Documents/project/hotel-fe-tbms/node_modules/babel-register</div><div class="line">npm ERR! extraneous: babel-core@6.11.4 /Users/relign/Documents/project/hotel-fe-tbms/node_modules/babel-register/node_modules/babel-core</div><div class="line">npm ERR! extraneous: babylon@6.8.4 /Users/relign/Documents/project/hotel-fe-tbms/node_modules/babel-register/node_modules/babylon</div><div class="line">npm ERR! extraneous: core-js@2.4.1 /Users/relign/Documents/project/hotel-fe-tbms/node_modules/babel-register/node_modules/core-js</div><div class="line">npm ERR! extraneous: lodash@4.14.0 /Users/relign/Documents/project/hotel-fe-tbms/node_modules/babel-register/node_modules/lodash</div><div class="line">npm ERR! extraneous: minimatch@3.0.2 /Users/relign/Documents/project/hotel-fe-tbms/node_modules/babel-register/node_modules/minimatch</div><div class="line">npm ERR! missing: pmx@latest, required by pm25@0.143.6</div><div class="line">npm ERR! missing: vizion@latest, required by pm25@0.143.6</div><div class="line">npm ERR! missing: pm2-axon@latest, required by pm25@0.143.6</div><div class="line">npm ERR! missing: pm2-deploy@latest, required by pm25@0.143.6</div><div class="line">npm ERR!</div><div class="line">npm ERR! If you need help, you may report this error at:</div><div class="line">npm ERR!     &lt;https://github.com/npm/npm/issues&gt;</div><div class="line"></div><div class="line">npm ERR! Please include the following file with any support request:</div><div class="line">npm ERR!     /Users/relign/Documents/project/hotel-fe-tbms/npm-debug.log</div></pre></td></tr></table></figure></p>
-<p>重点在于<code>Problems were encountered</code>,于是上万能的<code>Google</code>去搜索,搜到如下<a href="https://github.com/SaltwaterC/aws2js/issues/58" target="_blank" rel="external">结果</a>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">If you want to make shrinkwrap work, you have to have only modules installed via (dev)Dependencies in package.json.</div><div class="line"></div><div class="line">If you use solutions like napa or if you manually installed some modules in node_modules, it won&apos;t work.</div><div class="line"></div><div class="line">npm prune removes these extra modules and it should work juster after that.</div></pre></td></tr></table></figure></p>
-
+<h2 id="npm-shrinkwrap-命令简介"><a href="#npm-shrinkwrap-命令简介" class="headerlink" title="npm shrinkwrap 命令简介"></a>npm shrinkwrap 命令简介</h2><p>项目开发过程中,当你使用<code>npm install [package] --save</code>安装项目所依赖的包的时候,会在<code>package.json</code>文件中写入包的版本号:<code>&quot;express&quot;: &quot;^4.8.7&quot;</code>(一般是这种版本号,<code>^</code>表示允许大版本迭代,即允许<code>4.8.7</code>到<code>5.0.0</code>之间版本的升级).但这样就会出现问题,当你下次执行<code>npm install</code>安装<code>package.json</code>中文件的时候,可能会出现版本不一致导致运行结果不同的情况.</p>
         
         
         <p class="article-more-link">
+          
+            <a href="/2016/10/13/npm-shrinkwrap/#more">显示更多</a>
           
        </p>
     </div>
@@ -948,11 +948,11 @@ category: 转载 -->
 			
 		
 			
-				<li><a href="/tags/Eslint/" title="Eslint">Eslint<sup>2</sup></a></li>
+				<li><a href="/tags/转载/" title="转载">转载<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/转载/" title="转载">转载<sup>2</sup></a></li>
+				<li><a href="/tags/Eslint/" title="Eslint">Eslint<sup>2</sup></a></li>
 			
 		
 			
@@ -960,7 +960,7 @@ category: 转载 -->
 			
 		
 			
-				<li><a href="/tags/EditorConfig/" title="EditorConfig">EditorConfig<sup>1</sup></a></li>
+				<li><a href="/tags/gulp/" title="gulp">gulp<sup>1</sup></a></li>
 			
 		
 			
@@ -968,11 +968,15 @@ category: 转载 -->
 			
 		
 			
+				<li><a href="/tags/npm/" title="npm">npm<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/shrinkwrap/" title="shrinkwrap">shrinkwrap<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+				<li><a href="/tags/EditorConfig/" title="EditorConfig">EditorConfig<sup>1</sup></a></li>
 			
 		
 			
@@ -980,11 +984,7 @@ category: 转载 -->
 			
 		
 			
-				<li><a href="/tags/gulp/" title="gulp">gulp<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/npm/" title="npm">npm<sup>1</sup></a></li>
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
 			
 		
 		</ul>
