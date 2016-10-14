@@ -23,7 +23,7 @@ npm shrinkwrap 命令简介项目开发过程中,当你使用npm install [packag
 <meta property="og:description" content="做项目时执行 npm shrinkwrap 报错,并对这次错误求根问底,贴出来让大家看看,希望跟我出现一样错误的童鞋可以得到解答
 
 npm shrinkwrap 命令简介项目开发过程中,当你使用npm install [package] --save安装项目所依赖的包的时候,会在package.json文件中写入包的版本号:&amp;quot;express&amp;quot;: &amp;quot;^4.8.7&amp;qu">
-<meta property="og:updated_time" content="2016-10-13T15:22:54.000Z">
+<meta property="og:updated_time" content="2016-10-14T02:37:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="执行npm shrinkwrap error思考">
 <meta name="twitter:description" content="做项目时执行 npm shrinkwrap 报错,并对这次错误求根问底,贴出来让大家看看,希望跟我出现一样错误的童鞋可以得到解答
@@ -114,7 +114,7 @@ npm shrinkwrap 命令简介项目开发过程中,当你使用npm install [packag
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#npm-shrinkwrap-命令简介"><span class="toc-number">1.</span> <span class="toc-text">npm shrinkwrap 命令简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#执行npm-shrinkwrap报错"><span class="toc-number">2.</span> <span class="toc-text">执行npm shrinkwrap报错</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#npm-prune命令简介"><span class="toc-number">3.</span> <span class="toc-text">npm prune命令简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新的错误"><span class="toc-number">4.</span> <span class="toc-text">新的错误</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#神奇的npm-deduqe"><span class="toc-number">5.</span> <span class="toc-text">神奇的npm deduqe</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#令人头疼的npm的依赖"><span class="toc-number">5.1.</span> <span class="toc-text">令人头疼的npm的依赖</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#npm-shrinkwrap-命令简介"><span class="toc-number">1.</span> <span class="toc-text">npm shrinkwrap 命令简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#执行npm-shrinkwrap报错"><span class="toc-number">2.</span> <span class="toc-text">执行npm shrinkwrap报错</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#npm-prune命令简介"><span class="toc-number">3.</span> <span class="toc-text">npm prune命令简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新的错误"><span class="toc-number">4.</span> <span class="toc-text">新的错误</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#神奇的npm-deduqe"><span class="toc-number">5.</span> <span class="toc-text">神奇的npm deduqe</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#令人头疼的npm的依赖"><span class="toc-number">5.1.</span> <span class="toc-text">令人头疼的npm的依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#npm-dedupe简介"><span class="toc-number">5.2.</span> <span class="toc-text">npm dedupe简介</span></a></li></ol></li></ol>
 		
 		</div>
 		
@@ -135,33 +135,41 @@ npm shrinkwrap 命令简介项目开发过程中,当你使用npm install [packag
 <h2 id="新的错误"><a href="#新的错误" class="headerlink" title="新的错误"></a>新的错误</h2><p>执行完<code>npm prune</code>后,我继续执行<code>npm shrinkwrap</code>出现了新的错误:             </p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">npm WARN shrinkwrap   underscore: '^1.8.3' &#125;</div><div class="line">npm ERR! Darwin 16.0.0</div><div class="line">npm ERR! argv "/Users/relign/.nvm/versions/node/v4.4.6/bin/node" "/Users/relign/.nvm/versions/node/v4.4.6/bin/npm" "shrinkwrap"</div><div class="line">npm ERR! node v4.4.6</div><div class="line">npm ERR! npm  v3.10.2</div><div class="line"></div><div class="line">npm ERR! Problems were encountered</div><div class="line">npm ERR! Please correct and try again.</div><div class="line">npm ERR! missing: pmx@latest, required by pm25@0.143.6</div><div class="line">npm ERR! missing: vizion@latest, required by pm25@0.143.6</div><div class="line">npm ERR! missing: pm2-axon@latest, required by pm25@0.143.6</div><div class="line">npm ERR! missing: pm2-deploy@latest, required by pm25@0.143.6</div><div class="line">npm ERR!</div><div class="line">npm ERR! If you need help, you may report this error at:</div><div class="line">npm ERR!     &lt;https://github.com/npm/npm/issues&gt;</div><div class="line"></div><div class="line">npm ERR! Please include the following file with any support request:</div><div class="line">npm ERR!     /Users/relign/Documents/project/hotel-fe-tbms/npm-debug.log</div></pre></td></tr></table></figure>
 <p>在错误日志中可以看到关于<code>extraneous</code>相关的错误已经解决了,还剩下<code>missing</code>相关的错误.紧接着好到了先关问题的<a href="https://github.com/JamieMason/shrinkpack/issues/14" target="_blank" rel="external">探讨</a>:    </p>
-<pre><code class="json">npm install
-npm prune
-npm dedupe
-npm install
-npm shrinkwrap --dev
-</code></pre>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">npm install</div><div class="line">npm prune</div><div class="line">npm dedupe</div><div class="line">npm install</div><div class="line">npm shrinkwrap --dev</div></pre></td></tr></table></figure>
 <p>关键在于<code>npm deduqe</code>命令.  </p>
 <h2 id="神奇的npm-deduqe"><a href="#神奇的npm-deduqe" class="headerlink" title="神奇的npm deduqe"></a>神奇的npm deduqe</h2><h3 id="令人头疼的npm的依赖"><a href="#令人头疼的npm的依赖" class="headerlink" title="令人头疼的npm的依赖"></a>令人头疼的npm的依赖</h3><p>用过npm1或者npm2的人,尤其是windows的用户,相信大家都遇到过<code>node_modules</code>太多太深的情况,当你复制粘贴删除就会报错.      </p>
 <p>而使用npm3的童鞋会发现自己的<code>node_modules</code>下面出现了很多你没有<code>npm install</code>安装过的模块.    </p>
 <p>究其原因是由于npm的依赖方式引起的.   </p>
 <p>假如项目开发过程中我们写了个模块app,app模块依赖两个包<code>a@1</code>和<code>b@1</code>,其中<code>a@1</code>依赖包<code>c@1</code>,<code>b@1</code>依赖包<code>c@2</code>.    </p>
 <p>npm1或者npm2安装后是这样的:    </p>
-<pre><code class="json">app
-+-- a@1 &lt;-- depends on c@1
-|   `-- c@1
-`-- b@1 &lt;-- depends on c@2
-    `-- c@2
-</code></pre>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">app</div><div class="line">+-- a@1 &lt;-- depends on c@1</div><div class="line">|   `-- c@1</div><div class="line">`-- b@1 &lt;-- depends on c@2</div><div class="line">    `-- c@2</div></pre></td></tr></table></figure>
 <p>npm1或者npm2安装模块,不会去理会包之间的公共依赖关系,依赖模块会一层一层继续安装下去,这样<code>node_modules</code>很容易就会超过windows资源管理器能处理的最长路径长度了,也就是你在windows下复制粘贴删除<code>node_modules</code>会报错的原因了.    </p>
 <p>npm3安装后是这样的:</p>
-<pre><code class="json">app
-+-- a@1 &lt;-- depends on c@1
-+-- c@1
-`-- b@1 &lt;-- depends on c@2
-    `-- c@2`
-</code></pre>
-<p>npm3会按照<code>package.json</code>中依赖模块的顺序依赖模块,安装<code>a@1</code>的时候发现<code>c@1</code>没有安装过也没有其他版本的<code>c</code>模块冲突,所以<code>c@1</code>便会放在第一层目录,而<code>c@2</code>为了避免和<code>c@1</code>冲突,还是继续放在<code>b@1</code>下面.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">app</div><div class="line">+-- a@1 &lt;-- depends on c@1</div><div class="line">+-- c@1</div><div class="line">`-- b@1 &lt;-- depends on c@2</div><div class="line">    `-- c@2`</div></pre></td></tr></table></figure>
+<p>npm3会按照<code>package.json</code>中依赖模块的顺序依赖模块,安装<code>a@1</code>的时候发现<code>c@1</code>没有安装过,在现有的情况下也没有其他版本的<code>c</code>模块冲突,它会把<code>c@1</code>便会放在第一层目录,而<code>c@2</code>为了避免和<code>c@1</code>冲突,还是继续放在<code>b@1</code>下面.    </p>
+<p><strong>npm3在一定程度上处理了包之间的公共依赖关系</strong>.<br>这里为什么要说是一定程度呢？现在app又需要安装一个<code>d@1</code>,<code>d@1</code>依赖<code>c@2</code>,npm3安装后会是这样:    </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">app</div><div class="line">+-- a@1 &lt;-- depends on c@1</div><div class="line">+-- c@1</div><div class="line">+-- b@1 &lt;-- depends on c@2</div><div class="line">    `-- c@2`</div><div class="line">`-- d@1 &lt;-- depends on c@2</div><div class="line">    `-- c@2`</div></pre></td></tr></table></figure>
+<p>因为之前安装<code>a@1</code>的时候,依赖的<code>c@1</code>已经被放到第一层目录,后续安装其他依赖包的时候,如果安装包依赖<code>c</code>,只要版本不是<code>1</code>,为了避免和<code>c@1</code>冲突,都会安装到相应的包下面.    </p>
+<p>接下来app又依赖<code>e@1</code>,而<code>e@1</code>又依赖<code>c@1</code>,但是<code>c@1</code>已经安装过了,并且不会版本冲突,那么npm3安装后就会变成这样:    </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">app</div><div class="line">+-- a@1 &lt;-- depends on c@1</div><div class="line">+-- c@1</div><div class="line">+-- b@1 &lt;-- depends on c@2</div><div class="line">    `-- c@2`</div><div class="line">+-- d@1 &lt;-- depends on c@2</div><div class="line">    `-- c@2` </div><div class="line">`-- e@1</div></pre></td></tr></table></figure>
+<p>紧接着问题来了,app要升级了,<code>a@1</code>要升成<code>a@2</code>,而<code>a@2</code>依赖<code>c@2</code>,<br><code>e@1</code>升级<code>e@2</code>,<code>e@2</code>依赖<code>c@2</code>,这时<code>c@1</code>不再被依赖,<code>npm</code>安装时就会卸载<code>c@1</code>,npm3安装后就会变成这样:   </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">app</div><div class="line">+-- a@2 &lt;-- depends on c@2</div><div class="line">    `-- c@2`</div><div class="line">+-- c@2</div><div class="line">+-- b@1 &lt;-- depends on c@2</div><div class="line">    `-- c@2`</div><div class="line">+-- d@1 &lt;-- depends on c@2</div><div class="line">    `-- c@2` </div><div class="line">`-- e@2</div></pre></td></tr></table></figure>
+<p>预期结果跟大家想的不一样吧,模块出现了冗余,既然模块都依赖<code>c@2</code>,为什么还需要安装这么多呢?这时,神奇的<code>npm dedupe</code>就出现了.    </p>
+<h3 id="npm-dedupe简介"><a href="#npm-dedupe简介" class="headerlink" title="npm dedupe简介"></a>npm dedupe简介</h3><p>项目开发过程中,npm的树状依赖结构很大几率会导致重复的模块和代码量的臃肿,<code>npm dedupe</code>可以尽量去压平依赖树.   </p>
+<p>在npm的<a href="https://docs.npmjs.com/cli/dedupe" target="_blank" rel="external">文档</a>中对它是这么解释的:    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Searches the local package tree and attempts to      </div><div class="line">simplify the overall structure by moving dependencies      </div><div class="line">further up the tree, where they can be more effectively     </div><div class="line"> shared by multiple dependent packages.</div></pre></td></tr></table></figure>
+<p>这个命令会去搜索本地的<code>node_modules</code>中的包,并且通过移动相同的依赖包到外层目录去尽量简化这种依赖树的结构,让公用包更加有效被引用.   </p>
+<p>那么上面的例子执行一次<code>npm dedupe</code>,就会变成这样:    </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">+-- a@2 &lt;-- depends on c@2</div><div class="line">+-- c@2</div><div class="line">+-- b@1 &lt;-- depends on c@2</div><div class="line">+-- d@1 &lt;-- depends on c@2</div><div class="line">`-- e@2</div></pre></td></tr></table></figure>
+<p>那么现在这个结构就是最优结构了.同时解决了Windows上令人头疼的问题.    </p>
+<p><strong>参考资料</strong>     </p>
+<ul>
+<li><a href="https://docs.npmjs.com/cli/dedupe" target="_blank" rel="external">npm-dedupe</a></li>
+<li><a href="http://www.jianshu.com/p/8a114304dd6e" target="_blank" rel="external">玩转npm</a></li>
+<li><a href="https://www.zhihu.com/question/24414899" target="_blank" rel="external">npm、bower、jamjs 等包管理器，哪个比较好用</a></li>
+<li><a href="http://www.cnblogs.com/JuFoFu/p/5643471.html" target="_blank" rel="external">npm 重点小结</a></li>
+<li><a href="http://stackoverflow.com/questions/35982100/npm-shrinkwrap-extraneous-module" target="_blank" rel="external">npm shrinkwrap extraneous module</a></li>
+</ul>
 
 	</div>
   
@@ -360,11 +368,11 @@ npm shrinkwrap --dev
 			
 		
 			
-				<li><a href="/tags/转载/" title="转载">转载<sup>2</sup></a></li>
+				<li><a href="/tags/Eslint/" title="Eslint">Eslint<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Eslint/" title="Eslint">Eslint<sup>2</sup></a></li>
+				<li><a href="/tags/转载/" title="转载">转载<sup>2</sup></a></li>
 			
 		
 			
@@ -372,7 +380,7 @@ npm shrinkwrap --dev
 			
 		
 			
-				<li><a href="/tags/extend/" title="extend">extend<sup>1</sup></a></li>
+				<li><a href="/tags/EditorConfig/" title="EditorConfig">EditorConfig<sup>1</sup></a></li>
 			
 		
 			
@@ -380,7 +388,11 @@ npm shrinkwrap --dev
 			
 		
 			
-				<li><a href="/tags/EditorConfig/" title="EditorConfig">EditorConfig<sup>1</sup></a></li>
+				<li><a href="/tags/extend/" title="extend">extend<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/gulp/" title="gulp">gulp<sup>1</sup></a></li>
 			
 		
 			
@@ -393,10 +405,6 @@ npm shrinkwrap --dev
 		
 			
 				<li><a href="/tags/shrinkwrap/" title="shrinkwrap">shrinkwrap<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/gulp/" title="gulp">gulp<sup>1</sup></a></li>
 			
 		
 		</ul>
