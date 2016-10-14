@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>执行npm shrinkwrap error思考 | Relign Blog</title>
+    <title>一场由npm shrinkwrap执行error引发的思考 | Relign Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     <meta name="baidu-site-verification" content="0BadmBsKMG" />
     <meta name="google-site-verification" content="21baLedz8cgdZBfRkoqRZizzKmIGN98IBSTj47K0R6g" />
@@ -17,15 +17,15 @@
 
 npm shrinkwrap 命令简介项目开发过程中,当你使用npm install [package] --save安装项目所依赖的包的时候,会在package.json文件中写入包的版本号:&amp;quot;express&amp;quot;: &amp;quot;^4.8.7&amp;qu">
 <meta property="og:type" content="article">
-<meta property="og:title" content="执行npm shrinkwrap error思考">
+<meta property="og:title" content="一场由npm shrinkwrap执行error引发的思考">
 <meta property="og:url" content="https://relign.github.io/2016/10/13/npm-shrinkwrap/index.html">
 <meta property="og:site_name" content="Relign Blog">
 <meta property="og:description" content="做项目时执行 npm shrinkwrap 报错,并对这次错误求根问底,贴出来让大家看看,希望跟我出现一样错误的童鞋可以得到解答
 
 npm shrinkwrap 命令简介项目开发过程中,当你使用npm install [package] --save安装项目所依赖的包的时候,会在package.json文件中写入包的版本号:&amp;quot;express&amp;quot;: &amp;quot;^4.8.7&amp;qu">
-<meta property="og:updated_time" content="2016-10-14T02:37:41.000Z">
+<meta property="og:updated_time" content="2016-10-14T02:47:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="执行npm shrinkwrap error思考">
+<meta name="twitter:title" content="一场由npm shrinkwrap执行error引发的思考">
 <meta name="twitter:description" content="做项目时执行 npm shrinkwrap 报错,并对这次错误求根问底,贴出来让大家看看,希望跟我出现一样错误的童鞋可以得到解答
 
 npm shrinkwrap 命令简介项目开发过程中,当你使用npm install [package] --save安装项目所依赖的包的时候,会在package.json文件中写入包的版本号:&amp;quot;express&amp;quot;: &amp;quot;^4.8.7&amp;qu">
@@ -98,7 +98,7 @@ npm shrinkwrap 命令简介项目开发过程中,当你使用npm install [packag
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/10/13/npm-shrinkwrap/" title="执行npm shrinkwrap error思考" itemprop="url">执行npm shrinkwrap error思考</a>
+      <a href="/2016/10/13/npm-shrinkwrap/" title="一场由npm shrinkwrap执行error引发的思考" itemprop="url">一场由npm shrinkwrap执行error引发的思考</a>
   </h1>
   <p class="article-author">By
        
@@ -157,7 +157,7 @@ npm shrinkwrap 命令简介项目开发过程中,当你使用npm install [packag
 <p>预期结果跟大家想的不一样吧,模块出现了冗余,既然模块都依赖<code>c@2</code>,为什么还需要安装这么多呢?这时,神奇的<code>npm dedupe</code>就出现了.    </p>
 <h3 id="npm-dedupe简介"><a href="#npm-dedupe简介" class="headerlink" title="npm dedupe简介"></a>npm dedupe简介</h3><p>项目开发过程中,npm的树状依赖结构很大几率会导致重复的模块和代码量的臃肿,<code>npm dedupe</code>可以尽量去压平依赖树.   </p>
 <p>在npm的<a href="https://docs.npmjs.com/cli/dedupe" target="_blank" rel="external">文档</a>中对它是这么解释的:    </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Searches the local package tree and attempts to      </div><div class="line">simplify the overall structure by moving dependencies      </div><div class="line">further up the tree, where they can be more effectively     </div><div class="line"> shared by multiple dependent packages.</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Searches the local package tree and attempts to      </div><div class="line">simplify the overall structure by moving dependencies      </div><div class="line">further up the tree, where they can be more effectively shared by multiple dependent packages.</div></pre></td></tr></table></figure>
 <p>这个命令会去搜索本地的<code>node_modules</code>中的包,并且通过移动相同的依赖包到外层目录去尽量简化这种依赖树的结构,让公用包更加有效被引用.   </p>
 <p>那么上面的例子执行一次<code>npm dedupe</code>,就会变成这样:    </p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">+-- a@2 &lt;-- depends on c@2</div><div class="line">+-- c@2</div><div class="line">+-- b@1 &lt;-- depends on c@2</div><div class="line">+-- d@1 &lt;-- depends on c@2</div><div class="line">`-- e@2</div></pre></td></tr></table></figure>
@@ -281,7 +281,7 @@ npm shrinkwrap 命令简介项目开发过程中,当你使用npm install [packag
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://relign.github.io/2016/10/13/npm-shrinkwrap/" data-title="执行npm shrinkwrap error思考 | Relign Blog" data-tsina="2170275291" class="share clearfix">
+	  <div data-url="https://relign.github.io/2016/10/13/npm-shrinkwrap/" data-title="一场由npm shrinkwrap执行error引发的思考 | Relign Blog" data-tsina="2170275291" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -319,7 +319,7 @@ npm shrinkwrap 命令简介项目开发过程中,当你使用npm install [packag
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/10/13/npm-shrinkwrap/" data-title="执行npm shrinkwrap error思考" data-url="https://relign.github.io/2016/10/13/npm-shrinkwrap/"></div>
+	<div class="ds-thread" data-thread-key="2016/10/13/npm-shrinkwrap/" data-title="一场由npm shrinkwrap执行error引发的思考" data-url="https://relign.github.io/2016/10/13/npm-shrinkwrap/"></div>
 </section>
 
 
@@ -368,11 +368,11 @@ npm shrinkwrap 命令简介项目开发过程中,当你使用npm install [packag
 			
 		
 			
-				<li><a href="/tags/Eslint/" title="Eslint">Eslint<sup>2</sup></a></li>
+				<li><a href="/tags/转载/" title="转载">转载<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/转载/" title="转载">转载<sup>2</sup></a></li>
+				<li><a href="/tags/Eslint/" title="Eslint">Eslint<sup>2</sup></a></li>
 			
 		
 			
@@ -380,7 +380,7 @@ npm shrinkwrap 命令简介项目开发过程中,当你使用npm install [packag
 			
 		
 			
-				<li><a href="/tags/EditorConfig/" title="EditorConfig">EditorConfig<sup>1</sup></a></li>
+				<li><a href="/tags/extend/" title="extend">extend<sup>1</sup></a></li>
 			
 		
 			
@@ -388,7 +388,7 @@ npm shrinkwrap 命令简介项目开发过程中,当你使用npm install [packag
 			
 		
 			
-				<li><a href="/tags/extend/" title="extend">extend<sup>1</sup></a></li>
+				<li><a href="/tags/EditorConfig/" title="EditorConfig">EditorConfig<sup>1</sup></a></li>
 			
 		
 			
