@@ -87,7 +87,7 @@
 <meta name="description" content="An Engineer in the Pursuit to Beauty">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Relign Blog">
-<meta property="og:url" content="https://relign.github.io/tags/Angular/index.html">
+<meta property="og:url" content="https://relign.github.io/tags/angular/index.html">
 <meta property="og:site_name" content="Relign Blog">
 <meta property="og:description" content="An Engineer in the Pursuit to Beauty">
 <meta name="twitter:card" content="summary">
@@ -113,10 +113,10 @@
 
 
 
-  <link rel="canonical" href="https://relign.github.io/tags/Angular/"/>
+  <link rel="canonical" href="https://relign.github.io/tags/angular/"/>
 
 
-  <title> 标签: Angular | Relign Blog </title>
+  <title> 标签: angular | Relign Blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans,en,default">
@@ -280,7 +280,7 @@
   <div id="posts" class="posts-collapse">
     <div class="collection-title">
       <h2 >
-        Angular
+        angular
         <small>标签</small>
       </h2>
     </div>
@@ -293,9 +293,9 @@
 
       <h1 class="post-title">
         
-            <a class="post-title-link" href="/2016/09/27/angular-04/" itemprop="url">
+            <a class="post-title-link" href="/2016/09/30/angular-05/" itemprop="url">
               
-                <span itemprop="name">Angular源码解读之不同版本的Extend</span>
+                <span itemprop="name">关于ng-table v0.3.3的那些事 (一)</span>
               
             </a>
         
@@ -303,9 +303,93 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2016-09-27T21:31:53+08:00"
-              content="2016-09-27" >
-          09-27
+              datetime="2016-09-30T18:15:03+08:00"
+              content="2016-09-30" >
+          09-30
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/09/26/angular-03/" itemprop="url">
+              
+                <span itemprop="name">angular源码解读之minErr</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-09-26T22:48:41+08:00"
+              content="2016-09-26" >
+          09-26
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/09/21/angular-02/" itemprop="url">
+              
+                <span itemprop="name">angular启动过程解读（一）</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-09-21T23:31:28+08:00"
+              content="2016-09-21" >
+          09-21
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/09/21/angular-01/" itemprop="url">
+              
+                <span itemprop="name">angular源码工具函数总结</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-09-21T23:16:01+08:00"
+              content="2016-09-21" >
+          09-21
         </time>
       </div>
 
@@ -425,6 +509,36 @@
         
 
         
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://hexo.io/zh-cn/,hexo官方网站" title="hexo" target="_blank">hexo</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wuchong.me" title="Jark's Blog" target="_blank">Jark's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://reactjs.cn/" title="react" target="_blank">react</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.reqianduan.com/" title="热前端" target="_blank">热前端</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.ita1024.com/" title="ITA1024" target="_blank">ITA1024</a>
+                </li>
+              
+            </ul>
+          </div>
         
 
       </section>
@@ -745,69 +859,6 @@
       var $visitors = $(".leancloud_visitors");
       var url = $visitors.attr('id').trim();
       var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-
-</body>
-</html>
-r('data-flag-title').trim();
       var query = new AV.Query(Counter);
 
       query.equalTo("url", url);
