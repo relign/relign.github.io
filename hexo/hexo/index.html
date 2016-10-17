@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="npm,shrinkwrap," />
+  <meta name="keywords" content="hexo," />
 
 
 
@@ -86,22 +86,38 @@
 
 
 
-<meta name="description" content="做项目时执行 npm shrinkwrap 报错,并对这次错误求根问底,贴出来让大家看看,希望跟我出现一样错误的童鞋可以得到解答
+<meta name="description" content="导语:hexo 是一款基于Node.js的静态博客框架，是一款快速、简洁且高效的博客框架。
 
-npm shrinkwrap 命令简介项目开发过程中,当你使用npm install [package] --save安装项目所依赖的包的时候,会在package.json文件中写入包的版本号:&amp;quot;express&amp;quot;: &amp;quot;^4.8.7&amp;qu">
+它具有以下几个特点：
+
+超快速度Node.js 所带来的超快生成速度，让上百个页面在几秒内瞬间完成渲染。
+支持MarkdownHexo 支持 GitHub Flavored Markdown 的所有功能，甚至可以整合 Octopress 的大多数插件。
+一键部署只需一条指令即可部署到 GitHub Pag">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一场由npm shrinkwrap执行error引发的思考">
-<meta property="og:url" content="https://relign.github.io/2016/10/13/npm-shrinkwrap/index.html">
+<meta property="og:title" content="利用Hexo框架在Github上搭建个人博客">
+<meta property="og:url" content="https://relign.github.io/hexo/hexo/index.html">
 <meta property="og:site_name" content="Relign Blog">
-<meta property="og:description" content="做项目时执行 npm shrinkwrap 报错,并对这次错误求根问底,贴出来让大家看看,希望跟我出现一样错误的童鞋可以得到解答
+<meta property="og:description" content="导语:hexo 是一款基于Node.js的静态博客框架，是一款快速、简洁且高效的博客框架。
 
-npm shrinkwrap 命令简介项目开发过程中,当你使用npm install [package] --save安装项目所依赖的包的时候,会在package.json文件中写入包的版本号:&amp;quot;express&amp;quot;: &amp;quot;^4.8.7&amp;qu">
-<meta property="og:updated_time" content="2016-10-14T09:00:04.000Z">
+它具有以下几个特点：
+
+超快速度Node.js 所带来的超快生成速度，让上百个页面在几秒内瞬间完成渲染。
+支持MarkdownHexo 支持 GitHub Flavored Markdown 的所有功能，甚至可以整合 Octopress 的大多数插件。
+一键部署只需一条指令即可部署到 GitHub Pag">
+<meta property="og:image" content="https://relign.github.io/images/hexo/2016-07-10_233220.png">
+<meta property="og:image" content="https://relign.github.io/images/hexo/2016-07-10_233422.png">
+<meta property="og:image" content="https://relign.github.io/images/hexo/2016-07-11_001900.png">
+<meta property="og:updated_time" content="2016-10-10T06:22:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一场由npm shrinkwrap执行error引发的思考">
-<meta name="twitter:description" content="做项目时执行 npm shrinkwrap 报错,并对这次错误求根问底,贴出来让大家看看,希望跟我出现一样错误的童鞋可以得到解答
+<meta name="twitter:title" content="利用Hexo框架在Github上搭建个人博客">
+<meta name="twitter:description" content="导语:hexo 是一款基于Node.js的静态博客框架，是一款快速、简洁且高效的博客框架。
 
-npm shrinkwrap 命令简介项目开发过程中,当你使用npm install [package] --save安装项目所依赖的包的时候,会在package.json文件中写入包的版本号:&amp;quot;express&amp;quot;: &amp;quot;^4.8.7&amp;qu">
+它具有以下几个特点：
+
+超快速度Node.js 所带来的超快生成速度，让上百个页面在几秒内瞬间完成渲染。
+支持MarkdownHexo 支持 GitHub Flavored Markdown 的所有功能，甚至可以整合 Octopress 的大多数插件。
+一键部署只需一条指令即可部署到 GitHub Pag">
+<meta name="twitter:image" content="https://relign.github.io/images/hexo/2016-07-10_233220.png">
 
 
 
@@ -122,10 +138,10 @@ npm shrinkwrap 命令简介项目开发过程中,当你使用npm install [packag
 
 
 
-  <link rel="canonical" href="https://relign.github.io/2016/10/13/npm-shrinkwrap/"/>
+  <link rel="canonical" href="https://relign.github.io/hexo/hexo/"/>
 
 
-  <title> 一场由npm shrinkwrap执行error引发的思考 | Relign Blog </title>
+  <title> 利用Hexo框架在Github上搭建个人博客 | Relign Blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans,en,default">
@@ -307,7 +323,7 @@ npm shrinkwrap 命令简介项目开发过程中,当你使用npm install [packag
             
             
               
-                一场由npm shrinkwrap执行error引发的思考
+                利用Hexo框架在Github上搭建个人博客
               
             
           </h1>
@@ -319,19 +335,38 @@ npm shrinkwrap 命令简介项目开发过程中,当你使用npm install [packag
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-13T17:00:48+08:00" content="2016-10-13">
-              2016-10-13
+            <time itemprop="dateCreated" datetime="2016-07-10T21:55:22+08:00" content="2016-07-10">
+              2016-07-10
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">hexo</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/13/npm-shrinkwrap/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/13/npm-shrinkwrap/" itemprop="commentsCount"></span>
+                <a href="/hexo/hexo/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="hexo/hexo/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -341,7 +376,7 @@ npm shrinkwrap 命令简介项目开发过程中,当你使用npm install [packag
 
           
           
-             <span id="/2016/10/13/npm-shrinkwrap/" class="leancloud_visitors" data-flag-title="一场由npm shrinkwrap执行error引发的思考">
+             <span id="/hexo/hexo/" class="leancloud_visitors" data-flag-title="利用Hexo框架在Github上搭建个人博客">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -363,58 +398,39 @@ npm shrinkwrap 命令简介项目开发过程中,当你使用npm install [packag
       
 
       
-        <blockquote>
-<p>做项目时执行 <code>npm shrinkwrap</code> 报错,并对这次错误求根问底,贴出来让大家看看,希望跟我出现一样错误的童鞋可以得到解答</p>
-</blockquote>
-<h2 id="npm-shrinkwrap-命令简介"><a href="#npm-shrinkwrap-命令简介" class="headerlink" title="npm shrinkwrap 命令简介"></a>npm shrinkwrap 命令简介</h2><p>项目开发过程中,当你使用<code>npm install [package] --save</code>安装项目所依赖的包的时候,会在<code>package.json</code>文件中写入包的版本号:<code>&quot;express&quot;: &quot;^4.8.7&quot;</code>(一般是这种版本号,<code>^</code>表示允许大版本迭代,即允许<code>4.8.7</code>到<code>5.0.0</code>之间版本的升级).但这样就会出现问题,当你下次执行<code>npm install</code>安装<code>package.json</code>中文件的时候,可能会出现版本不一致导致运行结果不同的情况.</p>
-<a id="more"></a>
-<p><code>npm shrinkwrap</code>这个命令用来指定项目依赖包的安装版本,可以稳定项目的开发环境.它会在当前目录下创建<code>npm-shrinkwrap.json</code>文件,里面描述了项目所依赖的包,以及这些包内嵌套的包的确定版本号和包的下载位置:    </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">"acorn-jsx": &#123;</div><div class="line">      "version": "3.0.1",</div><div class="line">      "from": "acorn-jsx@&gt;=3.0.0 &lt;4.0.0",</div><div class="line">      "resolved": "http://r.npm.sankuai.com/acorn-jsx/-/acorn-jsx-3.0.1.tgz",</div><div class="line">      "dependencies": &#123;</div><div class="line">        "acorn": &#123;</div><div class="line">          "version": "3.2.0",</div><div class="line">          "from": "acorn@&gt;=3.0.4 &lt;4.0.0",</div><div class="line">          "resolved": "http://r.npm.sankuai.com/acorn/-/acorn-3.2.0.tgz"</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p>当项目中其他人进行开发执行<code>npm install</code>的时候就会去这个文件中找到包的下载位置和版本号去安装,从而实现项目依赖包锁定版本号.如果你想要更新<code>npm-shrinkwrap.json</code>中包的版本,你可以先<code>npm update [package]</code>更新包,再用<code>npm shrinkwrap</code>重新创建<code>npm-shrinkwrap.json</code>文件.    </p>
-<h2 id="执行npm-shrinkwrap报错"><a href="#执行npm-shrinkwrap报错" class="headerlink" title="执行npm shrinkwrap报错"></a>执行npm shrinkwrap报错</h2><p>新人刚到公司,接手项目,偶然一次机会执行了<code>npm shrinkwrap</code>命令,发现它居然报错了,于是便追根溯源.报错信息如下:    </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">npm WARN shrinkwrap   underscore: &apos;^1.8.3&apos; &#125;</div><div class="line">npm ERR! Darwin 16.0.0</div><div class="line">npm ERR! argv &quot;/Users/relign/.nvm/versions/node/v4.4.6/bin/node&quot; &quot;/Users/relign/.nvm/versions/node/v4.4.6/bin/npm&quot; &quot;shrinkwrap&quot;</div><div class="line">npm ERR! node v4.4.6</div><div class="line">npm ERR! npm  v3.10.2</div><div class="line"></div><div class="line">npm ERR! Problems were encountered</div><div class="line">npm ERR! Please correct and try again.</div><div class="line">npm ERR! extraneous: babel-generator@6.11.4 /Users/relign/Documents/project/hotel-fe-tbms/node_modules/babel-generator</div><div class="line">npm ERR! extraneous: lodash@4.14.0 /Users/relign/Documents/project/hotel-fe-tbms/node_modules/babel-generator/node_modules/lodash</div><div class="line">npm ERR! extraneous: babel-plugin-transform-es2015-block-scoping@6.10.1 /Users/relign/Documents/project/hotel-fe-tbms/node_modules/babel-plugin-transform-es2015-block-scoping</div><div class="line">npm ERR! extraneous: lodash@4.14.0 /Users/relign/Documents/project/hotel-fe-tbms/node_modules/babel-plugin-transform-es2015-block-scoping/node_modules/lodash</div><div class="line">npm ERR! extraneous: babel-register@6.11.5 /Users/relign/Documents/project/hotel-fe-tbms/node_modules/babel-register</div><div class="line">npm ERR! extraneous: babel-core@6.11.4 /Users/relign/Documents/project/hotel-fe-tbms/node_modules/babel-register/node_modules/babel-core</div><div class="line">npm ERR! extraneous: babylon@6.8.4 /Users/relign/Documents/project/hotel-fe-tbms/node_modules/babel-register/node_modules/babylon</div><div class="line">npm ERR! extraneous: core-js@2.4.1 /Users/relign/Documents/project/hotel-fe-tbms/node_modules/babel-register/node_modules/core-js</div><div class="line">npm ERR! extraneous: lodash@4.14.0 /Users/relign/Documents/project/hotel-fe-tbms/node_modules/babel-register/node_modules/lodash</div><div class="line">npm ERR! extraneous: minimatch@3.0.2 /Users/relign/Documents/project/hotel-fe-tbms/node_modules/babel-register/node_modules/minimatch</div><div class="line">npm ERR! missing: pmx@latest, required by pm25@0.143.6</div><div class="line">npm ERR! missing: vizion@latest, required by pm25@0.143.6</div><div class="line">npm ERR! missing: pm2-axon@latest, required by pm25@0.143.6</div><div class="line">npm ERR! missing: pm2-deploy@latest, required by pm25@0.143.6</div><div class="line">npm ERR!</div><div class="line">npm ERR! If you need help, you may report this error at:</div><div class="line">npm ERR!     &lt;https://github.com/npm/npm/issues&gt;</div><div class="line"></div><div class="line">npm ERR! Please include the following file with any support request:</div><div class="line">npm ERR!     /Users/relign/Documents/project/hotel-fe-tbms/npm-debug.log</div></pre></td></tr></table></figure>
-<p>重点在于<code>Problems were encountered</code>,于是上万能的<code>Google</code>去搜索,搜到如下<a href="https://github.com/SaltwaterC/aws2js/issues/58" target="_blank" rel="external">结果</a>:    </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">If you want to make shrinkwrap work, you have to have only modules installed via (dev)Dependencies in package.json.</div><div class="line"></div><div class="line">If you use solutions like napa or if you manually installed some modules in node_modules, it won't work.</div><div class="line"></div><div class="line">npm prune removes these extra modules and it should work juster after that.</div></pre></td></tr></table></figure>
-<p>如果你想要<code>shrinkwrap</code>起作用,你就只能安装<code>package.json</code>中<code>(dev)Dependencies</code>字段名下的模块.<br>如果你使用了<code>napa</code>或者你在<code>node_modules</code>手动安装了一些模块,<code>shrinkwrap</code>不会起作用.<br><code>npm prune</code> 这个命令可以删除这些模块,然后<code>shrinkwrap</code>就会起作用了.</p>
-<h2 id="npm-prune命令简介"><a href="#npm-prune命令简介" class="headerlink" title="npm prune命令简介"></a>npm prune命令简介</h2><p><code>npm prune</code>,用于清除多余的包资源.在项目<code>package.json</code>所在路径下运行这个命令,会移除<code>package.json</code>中没有包含的<code>node_modules</code>的包,如果要移除<code>devDependencies</code>里面的包,命令中加入<code>--production</code>.    </p>
-<h2 id="新的错误"><a href="#新的错误" class="headerlink" title="新的错误"></a>新的错误</h2><p>执行完<code>npm prune</code>后,我继续执行<code>npm shrinkwrap</code>出现了新的错误:             </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">npm WARN shrinkwrap   underscore: '^1.8.3' &#125;</div><div class="line">npm ERR! Darwin 16.0.0</div><div class="line">npm ERR! argv "/Users/relign/.nvm/versions/node/v4.4.6/bin/node" "/Users/relign/.nvm/versions/node/v4.4.6/bin/npm" "shrinkwrap"</div><div class="line">npm ERR! node v4.4.6</div><div class="line">npm ERR! npm  v3.10.2</div><div class="line"></div><div class="line">npm ERR! Problems were encountered</div><div class="line">npm ERR! Please correct and try again.</div><div class="line">npm ERR! missing: pmx@latest, required by pm25@0.143.6</div><div class="line">npm ERR! missing: vizion@latest, required by pm25@0.143.6</div><div class="line">npm ERR! missing: pm2-axon@latest, required by pm25@0.143.6</div><div class="line">npm ERR! missing: pm2-deploy@latest, required by pm25@0.143.6</div><div class="line">npm ERR!</div><div class="line">npm ERR! If you need help, you may report this error at:</div><div class="line">npm ERR!     &lt;https://github.com/npm/npm/issues&gt;</div><div class="line"></div><div class="line">npm ERR! Please include the following file with any support request:</div><div class="line">npm ERR!     /Users/relign/Documents/project/hotel-fe-tbms/npm-debug.log</div></pre></td></tr></table></figure>
-<p>在错误日志中可以看到关于<code>extraneous</code>相关的错误已经解决了,还剩下<code>missing</code>相关的错误.紧接着好到了先关问题的<a href="https://github.com/JamieMason/shrinkpack/issues/14" target="_blank" rel="external">探讨</a>:    </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">npm install</div><div class="line">npm prune</div><div class="line">npm dedupe</div><div class="line">npm install</div><div class="line">npm shrinkwrap --dev</div></pre></td></tr></table></figure>
-<p>关键在于<code>npm deduqe</code>命令.  </p>
-<h2 id="神奇的npm-deduqe"><a href="#神奇的npm-deduqe" class="headerlink" title="神奇的npm deduqe"></a>神奇的npm deduqe</h2><h3 id="令人头疼的npm的依赖"><a href="#令人头疼的npm的依赖" class="headerlink" title="令人头疼的npm的依赖"></a>令人头疼的npm的依赖</h3><p>用过npm1或者npm2的人,尤其是windows的用户,相信大家都遇到过<code>node_modules</code>太多太深的情况,当你复制粘贴删除就会报错.      </p>
-<p>而使用npm3的童鞋会发现自己的<code>node_modules</code>下面出现了很多你没有<code>npm install</code>安装过的模块.    </p>
-<p>究其原因是由于npm的依赖方式引起的.   </p>
-<p>假如项目开发过程中我们写了个模块app,app模块依赖两个包<code>a@1</code>和<code>b@1</code>,其中<code>a@1</code>依赖包<code>c@1</code>,<code>b@1</code>依赖包<code>c@2</code>.    </p>
-<p>npm1或者npm2安装后是这样的:    </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">app</div><div class="line">+-- a@1 &lt;-- depends on c@1</div><div class="line">|   `-- c@1</div><div class="line">`-- b@1 &lt;-- depends on c@2</div><div class="line">    `-- c@2</div></pre></td></tr></table></figure>
-<p>npm1或者npm2安装模块,不会去理会包之间的公共依赖关系,依赖模块会一层一层继续安装下去,这样<code>node_modules</code>很容易就会超过windows资源管理器能处理的最长路径长度了,也就是你在windows下复制粘贴删除<code>node_modules</code>会报错的原因了.    </p>
-<p>npm3安装后是这样的:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">app</div><div class="line">+-- a@1 &lt;-- depends on c@1</div><div class="line">+-- c@1</div><div class="line">`-- b@1 &lt;-- depends on c@2</div><div class="line">    `-- c@2`</div></pre></td></tr></table></figure>
-<p>npm3会按照<code>package.json</code>中依赖模块的顺序依赖模块,安装<code>a@1</code>的时候发现<code>c@1</code>没有安装过,在现有的情况下也没有其他版本的<code>c</code>模块冲突,它会把<code>c@1</code>便会放在第一层目录,而<code>c@2</code>为了避免和<code>c@1</code>冲突,还是继续放在<code>b@1</code>下面.    </p>
-<p><strong>npm3在一定程度上处理了包之间的公共依赖关系</strong>.<br>这里为什么要说是一定程度呢？现在app又需要安装一个<code>d@1</code>,<code>d@1</code>依赖<code>c@2</code>,npm3安装后会是这样:    </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">app</div><div class="line">+-- a@1 &lt;-- depends on c@1</div><div class="line">+-- c@1</div><div class="line">+-- b@1 &lt;-- depends on c@2</div><div class="line">    `-- c@2`</div><div class="line">`-- d@1 &lt;-- depends on c@2</div><div class="line">    `-- c@2`</div></pre></td></tr></table></figure>
-<p>因为之前安装<code>a@1</code>的时候,依赖的<code>c@1</code>已经被放到第一层目录,后续安装其他依赖包的时候,如果安装包依赖<code>c</code>,只要版本不是<code>1</code>,为了避免和<code>c@1</code>冲突,都会安装到相应的包下面.    </p>
-<p>接下来app又依赖<code>e@1</code>,而<code>e@1</code>又依赖<code>c@1</code>,但是<code>c@1</code>已经安装过了,并且不会版本冲突,那么npm3安装后就会变成这样:    </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">app</div><div class="line">+-- a@1 &lt;-- depends on c@1</div><div class="line">+-- c@1</div><div class="line">+-- b@1 &lt;-- depends on c@2</div><div class="line">    `-- c@2`</div><div class="line">+-- d@1 &lt;-- depends on c@2</div><div class="line">    `-- c@2` </div><div class="line">`-- e@1</div></pre></td></tr></table></figure>
-<p>紧接着问题来了,app要升级了,<code>a@1</code>要升成<code>a@2</code>,而<code>a@2</code>依赖<code>c@2</code>,<br><code>e@1</code>升级<code>e@2</code>,<code>e@2</code>依赖<code>c@2</code>,这时<code>c@1</code>不再被依赖,<code>npm</code>安装时就会卸载<code>c@1</code>,npm3安装后就会变成这样:   </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">app</div><div class="line">+-- a@2 &lt;-- depends on c@2</div><div class="line">    `-- c@2`</div><div class="line">+-- c@2</div><div class="line">+-- b@1 &lt;-- depends on c@2</div><div class="line">    `-- c@2`</div><div class="line">+-- d@1 &lt;-- depends on c@2</div><div class="line">    `-- c@2` </div><div class="line">`-- e@2</div></pre></td></tr></table></figure>
-<p>预期结果跟大家想的不一样吧,模块出现了冗余,既然模块都依赖<code>c@2</code>,为什么还需要安装这么多呢?这时,神奇的<code>npm dedupe</code>就出现了.    </p>
-<h3 id="npm-dedupe简介"><a href="#npm-dedupe简介" class="headerlink" title="npm dedupe简介"></a>npm dedupe简介</h3><p>项目开发过程中,npm的树状依赖结构很大几率会导致重复的模块和代码量的臃肿,<code>npm dedupe</code>可以尽量去压平依赖树.   </p>
-<p>在npm的<a href="https://docs.npmjs.com/cli/dedupe" target="_blank" rel="external">文档</a>中对它是这么解释的:    </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Searches the local package tree and attempts to      </div><div class="line">simplify the overall structure by moving dependencies      </div><div class="line">further up the tree, where they can be more effectively shared by multiple dependent packages.</div></pre></td></tr></table></figure>
-<p>这个命令会去搜索本地的<code>node_modules</code>中的包,并且通过移动相同的依赖包到外层目录去尽量简化这种依赖树的结构,让公用包更加有效被引用.   </p>
-<p>那么上面的例子执行一次<code>npm dedupe</code>,就会变成这样:    </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">+-- a@2 &lt;-- depends on c@2</div><div class="line">+-- c@2</div><div class="line">+-- b@1 &lt;-- depends on c@2</div><div class="line">+-- d@1 &lt;-- depends on c@2</div><div class="line">`-- e@2</div></pre></td></tr></table></figure>
-<p>那么现在这个结构就是最优结构了.同时解决了Windows上令人头疼的问题.    </p>
-<p><strong>参考资料</strong>     </p>
+        <h3 id="导语"><a href="#导语" class="headerlink" title="导语:"></a>导语:</h3><p><a href="https://hexo.io" target="_blank" rel="external">hexo</a> 是一款基于Node.js的静态博客框架，是一款快速、简洁且高效的博客框架。</p>
+<blockquote>
+<p>它具有以下几个特点：</p>
 <ul>
-<li><a href="https://docs.npmjs.com/cli/dedupe" target="_blank" rel="external">npm-dedupe</a></li>
-<li><a href="http://www.jianshu.com/p/8a114304dd6e" target="_blank" rel="external">玩转npm</a></li>
-<li><a href="https://www.zhihu.com/question/24414899" target="_blank" rel="external">npm、bower、jamjs 等包管理器，哪个比较好用</a></li>
-<li><a href="http://www.cnblogs.com/JuFoFu/p/5643471.html" target="_blank" rel="external">npm 重点小结</a></li>
-<li><a href="http://stackoverflow.com/questions/35982100/npm-shrinkwrap-extraneous-module" target="_blank" rel="external">npm shrinkwrap extraneous module</a></li>
+<li>超快速度<br>Node.js 所带来的超快生成速度，让上百个页面在几秒内瞬间完成渲染。</li>
+<li>支持Markdown<br>Hexo 支持 GitHub Flavored Markdown 的所有功能，甚至可以整合 Octopress 的大多数插件。</li>
+<li>一键部署<br>只需一条指令即可部署到 GitHub Pages, Heroku 或其他网站。</li>
+<li>丰富的插件<br>Hexo 拥有强大的插件系统，安装插件可以让 Hexo 支持 Jade, CoffeeScript。  </li>
 </ul>
+</blockquote>
+<a id="more"></a>
+<h3 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装:"></a>环境安装:</h3><ol>
+<li><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137396287703354d8c6c01c904c7d9ff056ae23da865a000" target="_blank" rel="external">安装git</a></li>
+<li><a href="http://jingyan.baidu.com/article/fd8044faf2e8af5030137a64.html" target="_blank" rel="external">安装node.js</a><h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3>在你的指定文件夹中打开git或者cmd执行以下命令进行安装：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-cli -g  //安装hexo框架</div><div class="line">$ hexo init blog  //初始化你的博客项目到/blog(你也可以指定自己的目录)目录下</div><div class="line">$ cd blog  //进入博客目录</div><div class="line">$ npm install //安装blog项目所依赖的各种插件(最新版的hexo会在初始化项目时自动安装)</div><div class="line">$ hexo server //启动一个本地服务器,预览初始化后的博客 (默认为本机地址:http://localhost:4000/)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>在浏览器中打开 <a href="http://localhost:4000/，这时可以看到Hexo已为你生成了一篇blog。" target="_blank" rel="external">http://localhost:4000/，这时可以看到Hexo已为你生成了一篇blog。</a></p>
+<h3 id="在Github上创建个人博客仓库"><a href="#在Github上创建个人博客仓库" class="headerlink" title="在Github上创建个人博客仓库"></a>在Github上创建个人博客仓库</h3><p>登陆你自己的<a href="https://github.com/" target="_blank" rel="external">github</a>,在<a href="https://github.com/new" target="_blank" rel="external">创建仓库</a>页面创建自己的个人博客项目管理仓库,注意仓库名臣格式必须是username.github.io(uesername为你自己定义的项目名)</p>
+<blockquote>
+<p>github会为username.github.io命名规则的仓库开启site(站点)功能即 GitHub Pages 功能，site默认地址为：<a href="https://usename.github.io/" target="_blank" rel="external">https://usename.github.io/</a></p>
+</blockquote>
+<p><img src="/images/hexo/2016-07-10_233220.png" alt="alt text"><br><img src="/images/hexo/2016-07-10_233422.png" alt="alt text"></p>
+<h3 id="生成静态资源，部署到Github"><a href="#生成静态资源，部署到Github" class="headerlink" title="生成静态资源，部署到Github"></a>生成静态资源，部署到Github</h3><ol>
+<li>配置本地_config.yml<br>在你的博客项目根目录下找到<code>_config.yml</code>文件,在最后找到<code>deploy</code>选项,修改如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git //部署类型，我采用的是git上传</div><div class="line">  repo: git@github.com:relign/relign.github.io.git //部署的github仓库地址，此处必须是刚刚部署的仓库的SSH地址</div><div class="line">  branch: master //部署仓库的分支(默认为master分支)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="/images/hexo/2016-07-11_001900.png" alt="alt text"></p>
+<p>更多上传方式参见官网deploy参数设置:<a href="https://hexo.io/zh-cn/docs/deployment.html" target="_blank" rel="external">https://hexo.io/zh-cn/docs/deployment.html</a><br>git上传有问题的，建议通读廖雪峰的 <a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">Git教程</a></p>
+<ol>
+<li>生成静态资源<br>在博客项目根目录地址下打开git,运行命令<code>$ hexo generate</code> (可简写为<code>$ hexo g</code>) 即可生成网站的静态资源，存储在项目根目录下的 public 文件夹下。</li>
+<li>部署到Github<br>执行命令<code>$ hexo deploy</code> (可简写为<code>$ hexo d</code>) 即可将本地的静态资源上传到Github仓库中。</li>
+</ol>
+<p>最后打开浏览器输入网址：<a href="https://username.github.io/" target="_blank" rel="external">https://username.github.io/</a> (username为你之前设置的仓库名称) 即可查阅你的博客站点。</p>
 
       
     </div>
@@ -458,9 +474,7 @@ npm shrinkwrap 命令简介项目开发过程中,当你使用npm install [packag
       
         <div class="post-tags">
           
-            <a href="/tags/npm/" rel="tag">#npm</a>
-          
-            <a href="/tags/shrinkwrap/" rel="tag">#shrinkwrap</a>
+            <a href="/tags/hexo/" rel="tag">#hexo</a>
           
         </div>
       
@@ -469,13 +483,13 @@ npm shrinkwrap 命令简介项目开发过程中,当你使用npm install [packag
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/30/angular-05/" rel="next" title="关于ng-table v0.3.3的那些事 (一)">
-                <i class="fa fa-chevron-left"></i> 关于ng-table v0.3.3的那些事 (一)
-              </a>
-            
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/common/gulp/" rel="prev" title="gulp之学习教程">
+                gulp之学习教程 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -504,8 +518,8 @@ npm shrinkwrap 命令简介项目开发过程中,当你使用npm install [packag
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/10/13/npm-shrinkwrap/"
-           data-title="一场由npm shrinkwrap执行error引发的思考" data-url="https://relign.github.io/2016/10/13/npm-shrinkwrap/">
+      <div class="ds-thread" data-thread-key="hexo/hexo/"
+           data-title="利用Hexo框架在Github上搭建个人博客" data-url="https://relign.github.io/hexo/hexo/">
       </div>
     
   </div>
@@ -672,7 +686,7 @@ npm shrinkwrap 命令简介项目开发过程中,当你使用npm install [packag
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#npm-shrinkwrap-命令简介"><span class="nav-number">1.</span> <span class="nav-text">npm shrinkwrap 命令简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行npm-shrinkwrap报错"><span class="nav-number">2.</span> <span class="nav-text">执行npm shrinkwrap报错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#npm-prune命令简介"><span class="nav-number">3.</span> <span class="nav-text">npm prune命令简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新的错误"><span class="nav-number">4.</span> <span class="nav-text">新的错误</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#神奇的npm-deduqe"><span class="nav-number">5.</span> <span class="nav-text">神奇的npm deduqe</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#令人头疼的npm的依赖"><span class="nav-number">5.1.</span> <span class="nav-text">令人头疼的npm的依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm-dedupe简介"><span class="nav-number">5.2.</span> <span class="nav-text">npm dedupe简介</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境安装"><span class="nav-number">2.</span> <span class="nav-text">环境安装:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装hexo"><span class="nav-number">3.</span> <span class="nav-text">安装hexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在Github上创建个人博客仓库"><span class="nav-number">4.</span> <span class="nav-text">在Github上创建个人博客仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成静态资源，部署到Github"><span class="nav-number">5.</span> <span class="nav-text">生成静态资源，部署到Github</span></a></li></ol></div>
             
           </div>
         </section>

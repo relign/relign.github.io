@@ -5,7 +5,7 @@
     
     <entry>
       <title><![CDATA[一场由npm shrinkwrap执行error引发的思考]]></title>
-      <url>https://relign.github.io/2016/10/13/npm-shrinkwrap/</url>
+      <url>https://relign.github.io/common/npm-shrinkwrap/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>做项目时执行 <code>npm shrinkwrap</code> 报错,并对这次错误求根问底,贴出来让大家看看,希望跟我出现一样错误的童鞋可以得到解答</p>
 </blockquote>
@@ -63,7 +63,7 @@
     
     <entry>
       <title><![CDATA[关于ng-table v0.3.3的那些事 (一)]]></title>
-      <url>https://relign.github.io/2016/09/30/angular-05/</url>
+      <url>https://relign.github.io/common/angular-05/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>入职一周左右发现项目中使用<code>ngTable</code>版本是v0.3.3,而github上<code>ngTable</code>版本已经更新到v1.0.0,找到一篇v0.3.3的英文api进行翻译.同时抽出时间看看官方给出的例子总结了一下v0.3.3,希望可以帮到后续入职的新同学快速上手,老司机请绕路哈.</p>
 </blockquote>
@@ -116,7 +116,7 @@
     
     <entry>
       <title><![CDATA[Angular源码解读之不同版本的Extend]]></title>
-      <url>https://relign.github.io/2016/09/27/angular-04/</url>
+      <url>https://relign.github.io/common/angular-04/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>此文章比较各个版本之间Angular的Extend方法</p>
 </blockquote>
@@ -147,7 +147,7 @@
     
     <entry>
       <title><![CDATA[angular源码解读之minErr]]></title>
-      <url>https://relign.github.io/2016/09/26/angular-03/</url>
+      <url>https://relign.github.io/common/angular-03/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>错误异常是面向对象开发中的记录提示程序执行问题的一种重要机制，在程序执行发生问题的条件下，异常会在中断程序执行，同时会沿着代码的执行路径一步一步的向上抛出异常，最终会由顶层抛出异常信息。而与异常同时出现的往往是日志，而日志往往需要记录具体发生异常的模块、编码、详细的错误信息、执行堆栈等，方便问题的快速定位分析。<br>  <strong><em>摘自无风听海的博客<a href="http://www.cnblogs.com/wufengtinghai/p/5428753.html" target="_blank" rel="external">angular代码分析之异常日志设计</a></em></strong></p>
 </blockquote>
@@ -163,7 +163,7 @@
     
     <entry>
       <title><![CDATA[【转】Eslint的配置说明]]></title>
-      <url>https://relign.github.io/2016/09/25/eslint-01/</url>
+      <url>https://relign.github.io/%E8%BD%AC%E8%BD%BD/eslint-01/</url>
       <content type="html"><![CDATA[<!-- tags: [Eslint, 转载]
 category: 转载 -->
 <h2 id="什么是ESLint？"><a href="#什么是ESLint？" class="headerlink" title="什么是ESLint？"></a>什么是ESLint？</h2><p>当<code>C语言</code>刚成为计算机语言的时候，有一些常见的错误不能够被原始的编译器捕捉，所以一个名为Lint的辅助程序被开发出来，用来扫面源文件中的错误。</p>
@@ -342,7 +342,7 @@ category: 转载 -->
     
     <entry>
       <title><![CDATA[【转】Eslint 配置及规则说明]]></title>
-      <url>https://relign.github.io/2016/09/25/eslint/</url>
+      <url>https://relign.github.io/%E8%BD%AC%E8%BD%BD/eslint/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>从 Jocs 罗冉大神的<a href="https://github.com/Jocs" target="_blank" rel="external">github</a>中翻阅Eslint的这几篇翻译文档,觉得相当不错,遂收录</p>
 </blockquote>
@@ -373,7 +373,7 @@ category: 转载 -->
     
     <entry>
       <title><![CDATA[利用EditorConfig定义代码格式,统一代码风格]]></title>
-      <url>https://relign.github.io/2016/09/25/editor-config/</url>
+      <url>https://relign.github.io/common/editor-config/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>在项目开发过程中,不同开发人员会使用不同的编辑器,常见的如:WebStorm,Atom,Sublime等等.不同编辑器对于缩进风格,默认的编码格式以及空白字符的设置等各有风格,因此在项目中做代码统一规范让开发人员尤为痛苦.    </p>
 </blockquote>
@@ -531,7 +531,7 @@ indent_size = <span class="number">2</span>
     
     <entry>
       <title><![CDATA[angular启动过程解读（一）]]></title>
-      <url>https://relign.github.io/2016/09/21/angular-02/</url>
+      <url>https://relign.github.io/common/angular-02/</url>
       <content type="html"><![CDATA[<h3 id="找到代码代入口点"><a href="#找到代码代入口点" class="headerlink" title="找到代码代入口点"></a>找到代码代入口点</h3>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.angular.bootstrap) &#123;</div><div class="line">  <span class="comment">//AngularJS is already loaded, so we can return here...</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'WARNING: Tried to load angular more than once.'</span>);</div><div class="line">  <span class="keyword">return</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">//首先判断angular是否是多次加载,如果多次加载,输出警告信息;</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//try to bind to jquery now so that one can write angular.element().read()</span></div><div class="line"><span class="comment">//but we will rebind on bootstrap again.</span></div><div class="line">bindJQuery();<span class="comment">//该方法会去绑定jquery,内部会判断jQuery有没有加载,有就是用jQuery,没有则调用自带的jqLite</span></div><div class="line"></div><div class="line">publishExternalAPI(angular);<span class="comment">//暴露angular对象,加载angular的一系列api方法</span></div><div class="line"></div><div class="line">jqLite(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  angularInit(<span class="built_in">document</span>, bootstrap);<span class="comment">//等待dom加载完后启动angular.</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
   <a id="more"></a>
 <h3 id="bindJQuery"><a href="#bindJQuery" class="headerlink" title="bindJQuery()"></a>bindJQuery()</h3>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bindJQuery</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// bind to jQuery if present;</span></div><div class="line">  jQuery = <span class="built_in">window</span>.jQuery;</div><div class="line">  <span class="comment">// Use jQuery if it exists with proper functionality, otherwise default to us.</span></div><div class="line">  <span class="comment">// Angular 1.2+ requires jQuery 1.7.1+ for on()/off() support.</span></div><div class="line">  <span class="keyword">if</span> (jQuery &amp;&amp; jQuery.fn.on) &#123;</div><div class="line">    jqLite = jQuery;</div><div class="line">    extend(jQuery.fn, &#123;</div><div class="line">      <span class="attr">scope</span>: JQLitePrototype.scope,</div><div class="line">      <span class="attr">isolateScope</span>: JQLitePrototype.isolateScope,</div><div class="line">      <span class="attr">controller</span>: JQLitePrototype.controller,</div><div class="line">      <span class="attr">injector</span>: JQLitePrototype.injector,</div><div class="line">      <span class="attr">inheritedData</span>: JQLitePrototype.inheritedData</div><div class="line">    &#125;);</div><div class="line">    <span class="comment">// Method signature:</span></div><div class="line">    <span class="comment">//     jqLitePatchJQueryRemove(name, dispatchThis, filterElems, getterIfNoArguments)</span></div><div class="line">    jqLitePatchJQueryRemove(<span class="string">'remove'</span>, <span class="literal">true</span>, <span class="literal">true</span>, <span class="literal">false</span>);</div><div class="line">    jqLitePatchJQueryRemove(<span class="string">'empty'</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">false</span>);</div><div class="line">    jqLitePatchJQueryRemove(<span class="string">'html'</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">true</span>);</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    jqLite = JQLite;</div><div class="line">  &#125;</div><div class="line">  angular.element = jqLite;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -569,7 +569,7 @@ indent_size = <span class="number">2</span>
     
     <entry>
       <title><![CDATA[angular源码工具函数总结]]></title>
-      <url>https://relign.github.io/2016/09/21/angular-01/</url>
+      <url>https://relign.github.io/common/angular-01/</url>
       <content type="html"><![CDATA[<p>在了解angular启动过程之前,首先了解几个必要的angular的工具函数:</p>
 <ul>
 <li><p>isFunction</p>
@@ -598,7 +598,7 @@ indent_size = <span class="number">2</span>
     
     <entry>
       <title><![CDATA[gulp之学习教程]]></title>
-      <url>https://relign.github.io/2016/07/11/gulp/</url>
+      <url>https://relign.github.io/common/gulp/</url>
       <content type="html"><![CDATA[<h3 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h3><p>gulp是基于node环境的一款前端自动化构建工具，是自动化构建项目的神器。利用它我们可以抛弃前端项目开发中很多重复的工作,比如：压缩文件(css,js,img)，编译文件(es6、JSX、coffee),文件测试、合并、格式化,浏览器自动刷新,部署文件生成等等,极大的开发了我们的工作效率。<br>gulp与grunt非常像，但是grunt频繁进行IO操作，用插件做太多的事情，插件没有遵守单一责任原则，落后流程控制直接导致其性能滞后。而gulp有以下几个特点:</p>
 <blockquote>
 <ul>
@@ -627,7 +627,7 @@ indent_size = <span class="number">2</span>
     
     <entry>
       <title><![CDATA[利用Hexo框架在Github上搭建个人博客]]></title>
-      <url>https://relign.github.io/2016/07/10/hexo/</url>
+      <url>https://relign.github.io/hexo/hexo/</url>
       <content type="html"><![CDATA[<h3 id="导语"><a href="#导语" class="headerlink" title="导语:"></a>导语:</h3><p><a href="https://hexo.io" target="_blank" rel="external">hexo</a> 是一款基于Node.js的静态博客框架，是一款快速、简洁且高效的博客框架。</p>
 <blockquote>
 <p>它具有以下几个特点：</p>

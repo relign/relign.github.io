@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Angular,extend," />
+  <meta name="keywords" content="EditorConfig," />
 
 
 
@@ -86,25 +86,22 @@
 
 
 
-<meta name="description" content="此文章比较各个版本之间Angular的Extend方法
+<meta name="description" content="在项目开发过程中,不同开发人员会使用不同的编辑器,常见的如:WebStorm,Atom,Sublime等等.不同编辑器对于缩进风格,默认的编码格式以及空白字符的设置等各有风格,因此在项目中做代码统一规范让开发人员尤为痛苦.    
 
-版本1.2.26此时的Angular Extend精简至极
-12345678910111213function extend(dst) &amp;#123;  var h = dst.$$hashKey;  forEach(arguments, function(obj) &amp;#123;    if (obj !== dst) &amp;#123; //">
+作用EditorConfig 帮助开发人员统一和维护不同编辑器之间的代码风格,有助于项目做Eslint等的代码检查和代码规范的统一.EditorConfig通过在项">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Angular源码解读之不同版本的Extend">
-<meta property="og:url" content="https://relign.github.io/2016/09/27/angular-04/index.html">
+<meta property="og:title" content="利用EditorConfig定义代码格式,统一代码风格">
+<meta property="og:url" content="https://relign.github.io/common/editor-config/index.html">
 <meta property="og:site_name" content="Relign Blog">
-<meta property="og:description" content="此文章比较各个版本之间Angular的Extend方法
+<meta property="og:description" content="在项目开发过程中,不同开发人员会使用不同的编辑器,常见的如:WebStorm,Atom,Sublime等等.不同编辑器对于缩进风格,默认的编码格式以及空白字符的设置等各有风格,因此在项目中做代码统一规范让开发人员尤为痛苦.    
 
-版本1.2.26此时的Angular Extend精简至极
-12345678910111213function extend(dst) &amp;#123;  var h = dst.$$hashKey;  forEach(arguments, function(obj) &amp;#123;    if (obj !== dst) &amp;#123; //">
-<meta property="og:updated_time" content="2016-09-28T13:52:00.000Z">
+作用EditorConfig 帮助开发人员统一和维护不同编辑器之间的代码风格,有助于项目做Eslint等的代码检查和代码规范的统一.EditorConfig通过在项">
+<meta property="og:updated_time" content="2016-10-06T03:40:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Angular源码解读之不同版本的Extend">
-<meta name="twitter:description" content="此文章比较各个版本之间Angular的Extend方法
+<meta name="twitter:title" content="利用EditorConfig定义代码格式,统一代码风格">
+<meta name="twitter:description" content="在项目开发过程中,不同开发人员会使用不同的编辑器,常见的如:WebStorm,Atom,Sublime等等.不同编辑器对于缩进风格,默认的编码格式以及空白字符的设置等各有风格,因此在项目中做代码统一规范让开发人员尤为痛苦.    
 
-版本1.2.26此时的Angular Extend精简至极
-12345678910111213function extend(dst) &amp;#123;  var h = dst.$$hashKey;  forEach(arguments, function(obj) &amp;#123;    if (obj !== dst) &amp;#123; //">
+作用EditorConfig 帮助开发人员统一和维护不同编辑器之间的代码风格,有助于项目做Eslint等的代码检查和代码规范的统一.EditorConfig通过在项">
 
 
 
@@ -125,10 +122,10 @@
 
 
 
-  <link rel="canonical" href="https://relign.github.io/2016/09/27/angular-04/"/>
+  <link rel="canonical" href="https://relign.github.io/common/editor-config/"/>
 
 
-  <title> Angular源码解读之不同版本的Extend | Relign Blog </title>
+  <title> 利用EditorConfig定义代码格式,统一代码风格 | Relign Blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans,en,default">
@@ -310,7 +307,7 @@
             
             
               
-                Angular源码解读之不同版本的Extend
+                利用EditorConfig定义代码格式,统一代码风格
               
             
           </h1>
@@ -322,8 +319,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-27T21:31:53+08:00" content="2016-09-27">
-              2016-09-27
+            <time itemprop="dateCreated" datetime="2016-09-25T12:22:30+08:00" content="2016-09-25">
+              2016-09-25
             </time>
           </span>
 
@@ -333,8 +330,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/09/27/angular-04/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/27/angular-04/" itemprop="commentsCount"></span>
+                <a href="/common/editor-config/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="common/editor-config/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -344,7 +341,7 @@
 
           
           
-             <span id="/2016/09/27/angular-04/" class="leancloud_visitors" data-flag-title="Angular源码解读之不同版本的Extend">
+             <span id="/common/editor-config/" class="leancloud_visitors" data-flag-title="利用EditorConfig定义代码格式,统一代码风格">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -367,30 +364,157 @@
 
       
         <blockquote>
-<p>此文章比较各个版本之间Angular的Extend方法</p>
+<p>在项目开发过程中,不同开发人员会使用不同的编辑器,常见的如:WebStorm,Atom,Sublime等等.不同编辑器对于缩进风格,默认的编码格式以及空白字符的设置等各有风格,因此在项目中做代码统一规范让开发人员尤为痛苦.    </p>
 </blockquote>
-<h3 id="版本1-2-26"><a href="#版本1-2-26" class="headerlink" title="版本1.2.26"></a>版本1.2.26</h3><p>此时的Angular Extend精简至极</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">extend</span>(<span class="params">dst</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> h = dst.$$hashKey;</div><div class="line">  forEach(<span class="built_in">arguments</span>, <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (obj !== dst) &#123; <span class="comment">// 做判断去除同类的继承</span></div><div class="line">      forEach(obj, <span class="function"><span class="keyword">function</span>(<span class="params">value, key</span>) </span>&#123;</div><div class="line">        dst[key] = value; <span class="comment">// 对传入参数进行循环,将一个或者多个的可枚举属性复制到dst对象中</span></div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  setHashKey(dst,h);<span class="comment">// 为对象增加hash值,方便后续遍历过滤处理操作</span></div><div class="line">  <span class="keyword">return</span> dst;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>上面的代码多的仅仅是将传入的参数中可枚举的属性复制到dst对象,并返回这个新的对象,传入参数中靠后的argument会覆盖调靠前的.<br>列举一个简单的例子:</p>
-<a id="more"></a>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> consData = &#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'zhangsan'</span>,</div><div class="line">    <span class="attr">age</span>: <span class="string">'12'</span>,</div><div class="line">    <span class="attr">say</span>: &#123;</div><div class="line">        <span class="attr">sex</span>: <span class="string">'man'</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">cc</span>: [<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>]</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> bbData = &#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'lisi'</span>,</div><div class="line">    <span class="attr">nam</span>: <span class="string">'123'</span>,</div><div class="line">    <span class="attr">say</span>: &#123;</div><div class="line">        <span class="attr">sex</span>: <span class="string">'woman'</span>,</div><div class="line">        <span class="attr">mm</span>: <span class="string">'wang'</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">cc</span>: [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>]</div><div class="line">&#125;;</div><div class="line"><span class="built_in">console</span>.log(angular.extend(consData, bbData));</div></pre></td></tr></table></figure>
-<p>最终输出结果是</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Object&#123;</div><div class="line">	"age": "12",</div><div class="line">	"cc": ["a","b","c"],</div><div class="line">	"nam": "123",</div><div class="line">	"name": "lisi",</div><div class="line">	"say": &#123;</div><div class="line">		"mm": "wang",</div><div class="line">		"sex": "woman"</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>由此可见<code>extend</code>依次会将传入参数的第一层属性赋值给第一个参数的第一层属性,如果属性相同,则后面的值会覆盖前面的,如果是对象或者数组,则会引用同一个,靠后的优先级高,并返回第一个参数对象.</p>
-<h3 id="版本1-3-9"><a href="#版本1-3-9" class="headerlink" title="版本1.3.9"></a>版本1.3.9</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">extend</span>(<span class="params">dst</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> h = dst.$$hashKey;</div><div class="line"></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>, ii = <span class="built_in">arguments</span>.length; i &lt; ii; i++) &#123;</div><div class="line">    <span class="keyword">var</span> obj = <span class="built_in">arguments</span>[i];</div><div class="line">    <span class="keyword">if</span> (obj) &#123; <span class="comment">// 这里不再做同类的判断</span></div><div class="line">      <span class="keyword">var</span> keys = <span class="built_in">Object</span>.keys(obj);</div><div class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>, jj = keys.length; j &lt; jj; j++) &#123;</div><div class="line">        <span class="keyword">var</span> key = keys[j];</div><div class="line">        dst[key] = obj[key];</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  setHashKey(dst, h);</div><div class="line">  <span class="keyword">return</span> dst;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这个版本的<code>extend</code>脱离了Angular自己定义的<code>forEach</code>方法,减少了代码的耦合性. 由于Angular在1.2.4版本后就放弃了对IE8的支持,所以这里用了<code>Object.keys()</code>去获取传入对象的可枚举属性.<br>关于<code>Object.keys()</code>看下面这个例子:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> consData = &#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'zhangsan'</span>,</div><div class="line">    <span class="attr">age</span>: <span class="string">'12'</span>,</div><div class="line">    <span class="attr">say</span>: &#123;</div><div class="line">        <span class="attr">sex</span>: <span class="string">'man'</span></div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.keys(consData));</div></pre></td></tr></table></figure>
-<p>输出结果是<code>[&#39;name&#39;,&#39;age&#39;,&#39;say&#39;]</code>,由此也可以看出<code>angular.extend()</code>并不支持深拷贝.<br>关于<code>Object.keys()</code>你还要需要注意:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Object</span>.keys(<span class="string">"foo"</span>);</div><div class="line"><span class="comment">// TypeError: "foo" is not an object (ES5 code)</span></div><div class="line"></div><div class="line"><span class="built_in">Object</span>.keys(<span class="string">"foo"</span>);</div><div class="line"><span class="comment">// ["0", "1", "2"]                   (ES6 code)</span></div></pre></td></tr></table></figure>
-<h3 id="版本1-4-0"><a href="#版本1-4-0" class="headerlink" title="版本1.4.0"></a>版本1.4.0</h3><p><code>Angular.extend()</code> 方法发生重大变化:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">extend</span>(<span class="params">dst</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> baseExtend(dst, slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>), <span class="literal">false</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><code>extend</code>方法返回一个闭包函数<code>baseExtend</code>,在这里你可能会对<code>slice.call(arguments, 1)</code>有疑惑.这里首先在Angular源码244行附近你会找到<code>var slice = [].slice;</code> 那么在<code>baseExtend</code>方法中传入的第二个参数实际是<code>[].slice.call(argumens, 1)</code>,其实也就是<code>Array.prototype.slice.call()</code>.我们只道<code>arguments</code>实际是一个带有<code>length</code>属性的对象,而<code>Array.prototype.slice.call()</code>这个方法可以具有length属性的对象转成数组，除了IE下的节点集合(因为ie下的dom对象是以com对象的形式实现的，js对象与com对象不能进行转换);</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = &#123;<span class="number">0</span>:<span class="string">'first'</span>,<span class="number">1</span>:<span class="string">'second'</span>,<span class="number">2</span>:<span class="string">'third'</span>&#125;;</div><div class="line"><span class="built_in">console</span>.log([].slice.call(a)); <span class="comment">// []</span></div><div class="line"><span class="keyword">var</span> b = &#123;<span class="number">0</span>:<span class="string">'first'</span>,<span class="number">1</span>:<span class="string">'second'</span>,<span class="number">2</span>:<span class="string">'third'</span>,<span class="attr">length</span>:<span class="number">3</span>&#125;;</div><div class="line"><span class="built_in">console</span>.log([].slice.call(b)); <span class="comment">// ['first','second','third']</span></div></pre></td></tr></table></figure>
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p><strong>EditorConfig</strong> 帮助开发人员统一和维护不同编辑器之间的代码风格,有助于项目做<code>Eslint</code>等的代码检查和代码规范的统一.<code>EditorConfig</code>通过在项目中构建一个配置文件来让编辑器插件进行格式化代码.<code>EditorConfig</code>配置文件简单易懂，并且能够很好的和版本控制器协同工作.     </p>
 <blockquote>
-<p>关于<code>Array.prototype.slice.call()</code>实现过程的猜测见肥杜的Blog <a href="http://www.cnblogs.com/littledu/archive/2012/05/19/2508672.html" target="_blank" rel="external">Array.prototype.slice.call(arguments)</a></p>
+<p>版本控制系统(Version Control Systems ,简称VCS)也称为源代码控制系统,它是跟踪并存储系统各对象源代码及文档的开发历史和变更资料,并提供了系统故障恢复及开发进程管理的功能.    </p>
 </blockquote>
-<p>下面我们看看<code>baseExtend</code>干了什么:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Set or clear the hashkey for an object.</div><div class="line"> * @param obj object</div><div class="line"> * @param h the hashkey (!truthy to delete the hashkey)</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setHashKey</span>(<span class="params">obj, h</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (h) &#123;</div><div class="line">    obj.$$hashKey = h;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">delete</span> obj.$$hashKey;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">baseExtend</span>(<span class="params">dst, objs, deep</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> h = dst.$$hashKey;</div><div class="line"></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, ii = objs.length; i &lt; ii; ++i) &#123;</div><div class="line">    <span class="keyword">var</span> obj = objs[i];</div><div class="line">    <span class="keyword">if</span> (!isObject(obj) &amp;&amp; !isFunction(obj)) <span class="keyword">continue</span>;</div><div class="line">    <span class="keyword">var</span> keys = <span class="built_in">Object</span>.keys(obj);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>, jj = keys.length; j &lt; jj; j++) &#123;</div><div class="line">      <span class="keyword">var</span> key = keys[j];</div><div class="line">      <span class="keyword">var</span> src = obj[key];</div><div class="line"></div><div class="line">      <span class="keyword">if</span> (deep &amp;&amp; isObject(src)) &#123;</div><div class="line">        <span class="keyword">if</span> (!isObject(dst[key])) dst[key] = isArray(src) ? [] : &#123;&#125;;</div><div class="line">        baseExtend(dst[key], [src], <span class="literal">true</span>);</div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">        dst[key] = src;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  setHashKey(dst, h);</div><div class="line">  <span class="keyword">return</span> dst;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>在下面的例子中,<code>.editorconfig</code> 配置文件设置了end-of-line（行末换行符选择）和indentation styles（代码缩进风格),该配置文件将规范项目中Html,css,SCSS和JavaScript等文件的代码风格.</p>
+<pre><code class="ruby"><span class="comment"># EditorConfig is awesome: http://EditorConfig.org</span>
+<span class="comment"># top-most EditorConfig file</span>
+<span class="comment"># 最顶层的配置文件</span>
+root = <span class="literal">true</span>
+<span class="comment"># Unix-style newlines with a newline ending every file</span>
+<span class="comment"># 行末应该采用什么符号来进行换行</span>
+[*]
+end_of_line = lf
+<span class="comment"># 文件以空白行结尾</span>
+insert_final_newline = <span class="literal">true</span>
+<span class="comment"># Matches multiple files with brace expansion notation</span>
+<span class="comment"># Set default charset</span>
+<span class="comment"># 设置默认的编码格式</span>
+[*]
+charset = utf-<span class="number">8</span>
+<span class="comment"># 4 space indentation</span>
+[*.{js,html}]
+<span class="comment"># 缩进样式是 tab  还是 space</span>
+indent_style = space
+<span class="comment"># 每次缩进相当于多少列</span>
+indent_size = <span class="number">4</span>
+<span class="comment"># 去除代码行末的任意空白字符</span>
+trim_trailing_whitespace = <span class="literal">true</span>
+<span class="comment"># Indentation override for all JS under lib directory</span>
+[*.scss]
+indent_style = space
+indent_size = <span class="number">2</span>
+trim_trailing_whitespace = <span class="literal">true</span>
+<span class="comment"># Matches the exact files either package.json or .travis.yml</span>
+[{package.json,.travis.yml}]
+indent_style = space
+indent_size = <span class="number">2</span>
+</code></pre>
+<p>这里给出一些项目中使用<code>EditorConfig</code>的<a href="https://github.com/editorconfig/editorconfig/wiki/Projects-Using-EditorConfig" target="_blank" rel="external">实例</a>.     </p>
+<h3 id="配置文件详解"><a href="#配置文件详解" class="headerlink" title="配置文件详解"></a>配置文件详解</h3><blockquote>
+<p>转载</p>
+</blockquote>
+<p>当打开一个文件时,<code>EditorConfig</code>插件会遍历文件的目录和其每一级父目录查找<code>.editorconfig</code>文件,直到有一个配置文件<code>root=true</code>.</p>
+<p><code>EditorConfig</code>配置文件从上往下读取,并且路径最近的文件最后被读取.匹配的配置属性按照属性应用在代码上,所以最接近代码文件的属性优先级最高.</p>
+<p><strong>Windows 用户:</strong> 在资源管理器创建<code>.editorconfig</code>文件,可以先创建<code>.editorconfig.</code>文件,系统会自动重名为<code>.editorconfig</code>.</p>
+<h3 id="文件格式详情"><a href="#文件格式详情" class="headerlink" title="文件格式详情"></a>文件格式详情</h3><p><code>EditorConfig</code>文件使用INI格式(<em>译注：请参考维基百科</em>),目的是可以与<a href="https://docs.python.org/2/library/configparser.html" target="_blank" rel="external">Python ConfigParser Library</a>兼容,但是允许在分段名（译注：原文是section names）中使用“and”.分段名是全局的文件路径,格式类似于<a href="http://manpages.ubuntu.com/manpages/intrepid/man5/gitignore.5.html#contenttoc2" target="_blank" rel="external">gitignore</a>。斜杠(<code>/</code>)作为路径分隔符，<code>#</code>或者<code>;</code>作为注释。注释应该单独占一行。<code>EditorConfig</code>文件使用<code>UTF-8</code>格式、<code>CRLF</code>或<code>LF</code>作为换行符。</p>
+<p>下面将详细解释文件路径匹配模式和EditorConfig 目前支持的配置属性。</p>
+<h4 id="Wildcard-Patterns"><a href="#Wildcard-Patterns" class="headerlink" title="Wildcard Patterns"></a>Wildcard Patterns</h4><table>
+<thead>
+<tr>
+<th>*</th>
+<th style="text-align:left"><strong>除路径分隔符<code>\</code>外匹配所有字符串字符</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>**</td>
+<td style="text-align:left"><strong>除路径分隔符<code>\</code>外匹配所有字符串字符</strong></td>
+</tr>
+<tr>
+<td>?</td>
+<td style="text-align:left"><strong>匹配所有单个字符</strong></td>
+</tr>
+<tr>
+<td>[name]</td>
+<td style="text-align:left"><strong>匹配name字符</strong></td>
+</tr>
+<tr>
+<td>[!name]</td>
+<td style="text-align:left"><strong>匹配非name字符</strong></td>
+</tr>
+<tr>
+<td>{s1, s2, s3}</td>
+<td style="text-align:left"><strong>匹配任意给定的字符串（通过逗号分隔）</strong></td>
+</tr>
+</tbody>
+</table>
+<p>特殊字符需要通过转移符进行转义，使得特殊字符不会被当做通配符解析。</p>
+<p><strong>EditorConfig支持的配置属性</strong></p>
+<p><strong>注意</strong>：并不是所有的编辑器插件都支持以下全部配置属性，<a href="https://github.com/editorconfig/editorconfig/wiki/EditorConfig-Properties" target="_blank" rel="external">项目Wiki</a>上有一份兼容配置属性的表格供参考。</p>
+<ul>
+<li><p><code>indent_style</code>: set to tab or space to use hard tabs or soft tabs respectively.</p>
+<p>缩进样式：可以设置为<code>tab</code>和<code>space</code>两个值。</p>
+</li>
+<li><p><code>indent_size</code>: a whole number defining the number of columns used for each indentation level and the width of soft tabs (when supported). When set to tab, the value of <strong>tab_width</strong> (if specified) will be used.</p>
+<p>当缩进样式设置为<code>space</code>时，<code>indent_size</code>用来设置每次缩进相当于多少列。</p>
+</li>
+<li><p><code>tab_width</code>: a whole number defining the number of columns used to represent a tab character. This defaults to the value of <strong>indent_size</strong> and doesn’t usually need to be specified.</p>
+<p>当缩进设置为<code>tab</code>时，<code>tab_width</code> 用来设置每次缩进相当于多少列代码。</p>
+</li>
+<li><p><code>end_of_line</code>: set to lf, cr, or crlf to control how line breaks are represented.</p>
+<p><code>end_of_line</code>用来定义行末采用什么符号来进行换行，可以的选择包括<code>lf</code> <code>cr</code> 和<code>crlf</code>.</p>
+</li>
+<li><p><code>charset</code>: set to latin1, utf-8, utf-8-bom, utf-16beor utf-16le to control the character set. Use of utf-8-bom is discouraged.</p>
+<p>编码格式，支持<code>latin1</code>、<code>utf-8</code>、<code>utf-8-bom</code>、<code>utf-16be</code>和<code>utf-16le</code>，不建议使用<code>uft-8-bom</code>。</p>
+</li>
+<li><p><code>trim_trailing_whitespace</code>: set to true to remove any whitespace characters preceding newline characters and false to ensure it doesn’t.</p>
+<p>设为<code>true</code>表示会除去代码行末的任意空白字符，<code>false</code>反之。</p>
+</li>
+<li><p><code>insert_final_newline</code>: set to true ensure file ends with a newline when saving and false to ensure it doesn’t.</p>
+<p>设为<code>true</code>表明使文件以一个空白行结尾，<code>false</code>反之。</p>
+</li>
+<li><p><code>root</code>: special property that should be specified at the top of the file outside of any sections. Set to true to stop <code>.editorconfig</code> files search on current file.</p>
+<p>表明是最顶层的配置文件，发现设为<code>true</code>时，才会停止查找<code>.editorconfig</code>文件。</p>
+</li>
+</ul>
+<p>目前所有的属性名和属性值都是大小写不敏感的。编译时都会将其转为小写。通常，如果没有明确指定某个属性，则会使用编辑器的配置，而<code>EditorConfig</code>不会处理。</p>
+<p>推荐不要指定某些<code>EditorConfig</code>属性。比如，<code>tab_width</code>不需要特别指定，除非它与<code>indent_size</code>不同。同样的，当<code>indent_style</code>设为<code>tab</code>时，不需要配置<code>indent_size</code>，这样才方便阅读者使用他们习惯的缩进格式。另外，如果某些属性并没有规范化（比如<code>end_of_line</code>），就最好不要设置它。</p>
+<h3 id="不需要插件的编辑器"><a href="#不需要插件的编辑器" class="headerlink" title="不需要插件的编辑器"></a>不需要插件的编辑器</h3><ol>
+<li>BBEdit</li>
+<li>C lion</li>
+<li>GitHub</li>
+<li>InfelliJIDEA</li>
+<li>RubyMine</li>
+<li>Source Lair</li>
+<li>WebStorm</li>
+</ol>
+<h3 id="需要下载插件的编辑器"><a href="#需要下载插件的编辑器" class="headerlink" title="需要下载插件的编辑器"></a>需要下载插件的编辑器</h3><ol>
+<li>AppCode</li>
+<li>ATOM</li>
+<li>Brackets</li>
+<li>Coda</li>
+<li>Code::Blocks</li>
+<li>eclipse</li>
+<li>Emacs</li>
+<li>Geany</li>
+<li>gedit</li>
+<li>jEdit</li>
+<li>Komodo</li>
+<li>NetBeans</li>
+<li>Nodepad++</li>
+<li>PhpStorm</li>
+<li>PyCharm</li>
+<li>Sublime Text</li>
+<li>textmate</li>
+<li>Vim</li>
+<li>Visual Stuido</li>
+<li>Visual Studio Code</li>
+<li>Xcode</li>
+</ol>
+<p><strong>举个例子</strong></p>
+<p><strong>Sublime Text</strong></p>
+<p>如果要安装Sublime Text插件，直接在Package Control中搜索<code>EditorConfig</code>就行。</p>
+<p><strong>WebStorm</strong></p>
+<p>在Setting–&gt;Plugins–&gt;Browse JetBrains Plugins里搜索<code>EditorConfig</code>即可。</p>
+<p><code>IntellijIDEA</code>、<code>PhpStorm</code>、<code>PyCharm</code>等应该类似。</p>
+<p><em>注：</em>从9.X版本开始，<code>WebStorm</code>原生就内置了<code>EditorConfig</code>，不需要装任何插件。</p>
+<p><em>译注：</em>支持的编辑器/IDE很多，使用也都很简单，大家自己去<a href="http://editorconfig.org/#download" target="_blank" rel="external">官网</a>下吧。</p>
 
       
     </div>
@@ -434,9 +558,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Angular/" rel="tag">#Angular</a>
-          
-            <a href="/tags/extend/" rel="tag">#extend</a>
+            <a href="/tags/EditorConfig/" rel="tag">#EditorConfig</a>
           
         </div>
       
@@ -445,16 +567,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/26/angular-03/" rel="next" title="angular源码解读之minErr">
-                <i class="fa fa-chevron-left"></i> angular源码解读之minErr
+              <a href="/common/angular-02/" rel="next" title="angular启动过程解读（一）">
+                <i class="fa fa-chevron-left"></i> angular启动过程解读（一）
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/09/30/angular-05/" rel="prev" title="关于ng-table v0.3.3的那些事 (一)">
-                关于ng-table v0.3.3的那些事 (一) <i class="fa fa-chevron-right"></i>
+              <a href="/转载/eslint/" rel="prev" title="【转】Eslint 配置及规则说明">
+                【转】Eslint 配置及规则说明 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -484,8 +606,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/09/27/angular-04/"
-           data-title="Angular源码解读之不同版本的Extend" data-url="https://relign.github.io/2016/09/27/angular-04/">
+      <div class="ds-thread" data-thread-key="common/editor-config/"
+           data-title="利用EditorConfig定义代码格式,统一代码风格" data-url="https://relign.github.io/common/editor-config/">
       </div>
     
   </div>
@@ -652,7 +774,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#版本1-2-26"><span class="nav-number">1.</span> <span class="nav-text">版本1.2.26</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#版本1-3-9"><span class="nav-number">2.</span> <span class="nav-text">版本1.3.9</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#版本1-4-0"><span class="nav-number">3.</span> <span class="nav-text">版本1.4.0</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#作用"><span class="nav-number">1.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置文件"><span class="nav-number">2.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置文件详解"><span class="nav-number">3.</span> <span class="nav-text">配置文件详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件格式详情"><span class="nav-number">4.</span> <span class="nav-text">文件格式详情</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Wildcard-Patterns"><span class="nav-number">4.1.</span> <span class="nav-text">Wildcard Patterns</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不需要插件的编辑器"><span class="nav-number">5.</span> <span class="nav-text">不需要插件的编辑器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需要下载插件的编辑器"><span class="nav-number">6.</span> <span class="nav-text">需要下载插件的编辑器</span></a></li></ol></div>
             
           </div>
         </section>

@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="EditorConfig," />
+  <meta name="keywords" content="angular,ng-table," />
 
 
 
@@ -86,22 +86,22 @@
 
 
 
-<meta name="description" content="在项目开发过程中,不同开发人员会使用不同的编辑器,常见的如:WebStorm,Atom,Sublime等等.不同编辑器对于缩进风格,默认的编码格式以及空白字符的设置等各有风格,因此在项目中做代码统一规范让开发人员尤为痛苦.    
+<meta name="description" content="入职一周左右发现项目中使用ngTable版本是v0.3.3,而github上ngTable版本已经更新到v1.0.0,找到一篇v0.3.3的英文api进行翻译.同时抽出时间看看官方给出的例子总结了一下v0.3.3,希望可以帮到后续入职的新同学快速上手,老司机请绕路哈.
 
-作用EditorConfig 帮助开发人员统一和维护不同编辑器之间的代码风格,有助于项目做Eslint等的代码检查和代码规范的统一.EditorConfig通过在项">
+ngTable指令Config简介ngTable指令可以美化你的table.它支持表格数据排序,过滤筛选和分页.当表格初始化完">
 <meta property="og:type" content="article">
-<meta property="og:title" content="利用EditorConfig定义代码格式,统一代码风格">
-<meta property="og:url" content="https://relign.github.io/2016/09/25/editor-config/index.html">
+<meta property="og:title" content="关于ng-table v0.3.3的那些事 (一)">
+<meta property="og:url" content="https://relign.github.io/common/angular-05/index.html">
 <meta property="og:site_name" content="Relign Blog">
-<meta property="og:description" content="在项目开发过程中,不同开发人员会使用不同的编辑器,常见的如:WebStorm,Atom,Sublime等等.不同编辑器对于缩进风格,默认的编码格式以及空白字符的设置等各有风格,因此在项目中做代码统一规范让开发人员尤为痛苦.    
+<meta property="og:description" content="入职一周左右发现项目中使用ngTable版本是v0.3.3,而github上ngTable版本已经更新到v1.0.0,找到一篇v0.3.3的英文api进行翻译.同时抽出时间看看官方给出的例子总结了一下v0.3.3,希望可以帮到后续入职的新同学快速上手,老司机请绕路哈.
 
-作用EditorConfig 帮助开发人员统一和维护不同编辑器之间的代码风格,有助于项目做Eslint等的代码检查和代码规范的统一.EditorConfig通过在项">
-<meta property="og:updated_time" content="2016-10-06T03:40:51.000Z">
+ngTable指令Config简介ngTable指令可以美化你的table.它支持表格数据排序,过滤筛选和分页.当表格初始化完">
+<meta property="og:updated_time" content="2016-09-30T10:24:02.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="利用EditorConfig定义代码格式,统一代码风格">
-<meta name="twitter:description" content="在项目开发过程中,不同开发人员会使用不同的编辑器,常见的如:WebStorm,Atom,Sublime等等.不同编辑器对于缩进风格,默认的编码格式以及空白字符的设置等各有风格,因此在项目中做代码统一规范让开发人员尤为痛苦.    
+<meta name="twitter:title" content="关于ng-table v0.3.3的那些事 (一)">
+<meta name="twitter:description" content="入职一周左右发现项目中使用ngTable版本是v0.3.3,而github上ngTable版本已经更新到v1.0.0,找到一篇v0.3.3的英文api进行翻译.同时抽出时间看看官方给出的例子总结了一下v0.3.3,希望可以帮到后续入职的新同学快速上手,老司机请绕路哈.
 
-作用EditorConfig 帮助开发人员统一和维护不同编辑器之间的代码风格,有助于项目做Eslint等的代码检查和代码规范的统一.EditorConfig通过在项">
+ngTable指令Config简介ngTable指令可以美化你的table.它支持表格数据排序,过滤筛选和分页.当表格初始化完">
 
 
 
@@ -122,10 +122,10 @@
 
 
 
-  <link rel="canonical" href="https://relign.github.io/2016/09/25/editor-config/"/>
+  <link rel="canonical" href="https://relign.github.io/common/angular-05/"/>
 
 
-  <title> 利用EditorConfig定义代码格式,统一代码风格 | Relign Blog </title>
+  <title> 关于ng-table v0.3.3的那些事 (一) | Relign Blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans,en,default">
@@ -307,7 +307,7 @@
             
             
               
-                利用EditorConfig定义代码格式,统一代码风格
+                关于ng-table v0.3.3的那些事 (一)
               
             
           </h1>
@@ -319,8 +319,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-25T12:22:30+08:00" content="2016-09-25">
-              2016-09-25
+            <time itemprop="dateCreated" datetime="2016-09-30T18:15:03+08:00" content="2016-09-30">
+              2016-09-30
             </time>
           </span>
 
@@ -330,8 +330,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/09/25/editor-config/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/25/editor-config/" itemprop="commentsCount"></span>
+                <a href="/common/angular-05/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="common/angular-05/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -341,7 +341,7 @@
 
           
           
-             <span id="/2016/09/25/editor-config/" class="leancloud_visitors" data-flag-title="利用EditorConfig定义代码格式,统一代码风格">
+             <span id="/common/angular-05/" class="leancloud_visitors" data-flag-title="关于ng-table v0.3.3的那些事 (一)">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -364,157 +364,52 @@
 
       
         <blockquote>
-<p>在项目开发过程中,不同开发人员会使用不同的编辑器,常见的如:WebStorm,Atom,Sublime等等.不同编辑器对于缩进风格,默认的编码格式以及空白字符的设置等各有风格,因此在项目中做代码统一规范让开发人员尤为痛苦.    </p>
+<p>入职一周左右发现项目中使用<code>ngTable</code>版本是v0.3.3,而github上<code>ngTable</code>版本已经更新到v1.0.0,找到一篇v0.3.3的英文api进行翻译.同时抽出时间看看官方给出的例子总结了一下v0.3.3,希望可以帮到后续入职的新同学快速上手,老司机请绕路哈.</p>
 </blockquote>
-<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p><strong>EditorConfig</strong> 帮助开发人员统一和维护不同编辑器之间的代码风格,有助于项目做<code>Eslint</code>等的代码检查和代码规范的统一.<code>EditorConfig</code>通过在项目中构建一个配置文件来让编辑器插件进行格式化代码.<code>EditorConfig</code>配置文件简单易懂，并且能够很好的和版本控制器协同工作.     </p>
-<blockquote>
-<p>版本控制系统(Version Control Systems ,简称VCS)也称为源代码控制系统,它是跟踪并存储系统各对象源代码及文档的开发历史和变更资料,并提供了系统故障恢复及开发进程管理的功能.    </p>
-</blockquote>
+<h3 id="ngTable指令Config简介"><a href="#ngTable指令Config简介" class="headerlink" title="ngTable指令Config简介"></a>ngTable指令Config简介</h3><p><code>ngTable</code>指令可以美化你的<code>table</code>.它支持表格数据排序,过滤筛选和分页.当表格初始化完成后会自动带有头部和过滤器.<br>假如你想让<code>ngTable</code>在IE9以下运行,你需要<code>jQuery</code>:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--[if lt IE 9]&gt;</span></div><div class="line">  &lt;script src="http://code.jquery.com/jquery-1.10.2.min.js"&gt;&lt;/script&gt;</div><div class="line">&lt;![endif]--&gt;</div></pre></td></tr></table></figure>
+<p><code>ngTable</code>指令通过在<code>table</code>标签上挂在<code>ng-table</code>属性来启动.而<code>ng-table</code>属性的值对应你挂载到<code>scope</code>上的一个<code>ngTableParams</code>实例化以后的对象.举个例子:    </p>
+<p>HTML:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">ng-table</span>=<span class="string">"tableParams"</span>&gt;</span></div><div class="line">	...</div><div class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></div></pre></td></tr></table></figure>
 <a id="more"></a>
-<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>在下面的例子中,<code>.editorconfig</code> 配置文件设置了end-of-line（行末换行符选择）和indentation styles（代码缩进风格),该配置文件将规范项目中Html,css,SCSS和JavaScript等文件的代码风格.</p>
-<pre><code class="ruby"><span class="comment"># EditorConfig is awesome: http://EditorConfig.org</span>
-<span class="comment"># top-most EditorConfig file</span>
-<span class="comment"># 最顶层的配置文件</span>
-root = <span class="literal">true</span>
-<span class="comment"># Unix-style newlines with a newline ending every file</span>
-<span class="comment"># 行末应该采用什么符号来进行换行</span>
-[*]
-end_of_line = lf
-<span class="comment"># 文件以空白行结尾</span>
-insert_final_newline = <span class="literal">true</span>
-<span class="comment"># Matches multiple files with brace expansion notation</span>
-<span class="comment"># Set default charset</span>
-<span class="comment"># 设置默认的编码格式</span>
-[*]
-charset = utf-<span class="number">8</span>
-<span class="comment"># 4 space indentation</span>
-[*.{js,html}]
-<span class="comment"># 缩进样式是 tab  还是 space</span>
-indent_style = space
-<span class="comment"># 每次缩进相当于多少列</span>
-indent_size = <span class="number">4</span>
-<span class="comment"># 去除代码行末的任意空白字符</span>
-trim_trailing_whitespace = <span class="literal">true</span>
-<span class="comment"># Indentation override for all JS under lib directory</span>
-[*.scss]
-indent_style = space
-indent_size = <span class="number">2</span>
-trim_trailing_whitespace = <span class="literal">true</span>
-<span class="comment"># Matches the exact files either package.json or .travis.yml</span>
-[{package.json,.travis.yml}]
-indent_style = space
-indent_size = <span class="number">2</span>
-</code></pre>
-<p>这里给出一些项目中使用<code>EditorConfig</code>的<a href="https://github.com/editorconfig/editorconfig/wiki/Projects-Using-EditorConfig" target="_blank" rel="external">实例</a>.     </p>
-<h3 id="配置文件详解"><a href="#配置文件详解" class="headerlink" title="配置文件详解"></a>配置文件详解</h3><blockquote>
-<p>转载</p>
+<p>Controller:    </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$scope.tableParams = <span class="keyword">new</span> ngTableParams(parameters, settings)</div></pre></td></tr></table></figure>
+<p>当对<code>ngTableParams</code>进行实例化的时候,这个函数会接收两个参数<code>parameters</code>和<code>settings</code>.下面我们详细介绍一下这两个参数.</p>
+<h3 id="parameters"><a href="#parameters" class="headerlink" title="parameters"></a>parameters</h3><p><code>parameters</code>对象应该定义一些初始化的配置.更多复杂的配置应该在<code>setting</code>对象中进行.下面这些属性可以被设置到<code>parameters</code>对象中.</p>
+<h4 id="page"><a href="#page" class="headerlink" title="page"></a><code>page</code></h4><p>类型: <code>Number</code>,默认值:<code>1</code><br>表格展示第几页    </p>
+<h4 id="count"><a href="#count" class="headerlink" title="count"></a><code>count</code></h4><p>类型: <code>Number</code>,默认值:<code>1</code><br>表格每一页展示多少数据</p>
+<h4 id="filter"><a href="#filter" class="headerlink" title="filter"></a><code>filter</code></h4><p>类型: <code>Object</code>,默认值:<code>{}</code><br>定义表格列的过滤器.不区分大小写.举个例子,绑定一个下拉框作为表格的过滤器:<br>in view:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">"status"</span> <span class="attr">ng-model</span>=<span class="string">"filters.status"</span> <span class="attr">...</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>in controller:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$scope.filters = &#123;</div><div class="line">  <span class="attr">status</span>: <span class="string">''</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>in ngTableParams:    </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$scope.tableParams = <span class="keyword">new</span> ngTableParams(</div><div class="line">  &#123;</div><div class="line">    ...</div><div class="line">    <span class="comment">// Attach filters to ng-table.</span></div><div class="line">    filter: $scope.filters</div><div class="line">  &#125;,</div><div class="line">  &#123;</div><div class="line">    ...</div><div class="line">  &#125;</div><div class="line">);</div></pre></td></tr></table></figure>
+<h4 id="sorting"><a href="#sorting" class="headerlink" title="sorting"></a><code>sorting</code></h4><p>类型: <code>Object</code>,默认值:<code>{}</code><br>定义表格的列排序.举个例子,首先给出数据:    </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> data = [</div><div class="line">	&#123;<span class="string">"name"</span>: <span class="string">"Moroni"</span>, <span class="string">"age"</span>: <span class="number">50</span>&#125;,</div><div class="line">	&#123;<span class="string">"name"</span>: <span class="string">"Tiancum"</span>, <span class="string">"age"</span>: <span class="number">43</span>&#125;</div><div class="line">];</div></pre></td></tr></table></figure>
+<p>你可以通过设置<code>sorting</code>定义一个表格名字的升序排列:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="string">"name"</span>: <span class="string">"asc"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="settings"><a href="#settings" class="headerlink" title="settings"></a>settings</h3><h4 id="total"><a href="#total" class="headerlink" title="total"></a><code>total</code></h4><p>类型: <code>Number</code>,默认值: <code>0</code><br>定义表格数据的总数,通常为你需要渲染的Array数据的length.    </p>
+<h4 id="counts"><a href="#counts" class="headerlink" title="counts"></a><code>counts</code></h4><p>类型: <code>Array</code>,默认值: <code>[10,25,50,100]</code><br>定义表格每页显示数据数量的选项卡,可以通过设置一个空的数组来禁用这个功能.    </p>
+<h4 id="defaultSort"><a href="#defaultSort" class="headerlink" title="defaultSort"></a><code>defaultSort</code></h4><p>类型: <code>String</code>, 默认值: <code>desc</code>, 可选项:<code>[&quot;asc&quot;,&quot;desc&quot;]</code><br>定义一个默认的排列顺序,当你点击一个之前没有被排序的列数据时,按照默认的排列顺序进行排序.     </p>
+<h4 id="groupBy"><a href="#groupBy" class="headerlink" title="groupBy"></a><code>groupBy</code></h4><p>类型: <code>String | Function</code><br>定义表格数据分组.你可以设置<code>groupBy</code>对数据进行分组:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> data = [</div><div class="line">  &#123;<span class="attr">name</span>: <span class="string">"Moroni"</span>, <span class="attr">age</span>: <span class="number">50</span>&#125;,</div><div class="line">  &#123;<span class="attr">name</span>: <span class="string">"Tiancum"</span>, <span class="attr">age</span>: <span class="number">43</span>&#125;</div><div class="line">];</div><div class="line">...</div><div class="line">groupBy: <span class="string">'name'</span></div></pre></td></tr></table></figure>
+<p>或者通过传入回调函数设置你的分组规则:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Group by first letter of name + age</span></div><div class="line"><span class="comment">// The item parameter is provided internally by ngTable</span></div><div class="line">groupBy: <span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> item.name[<span class="number">0</span>] + item.age;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>关于<code>groupBy</code>的说明并不太懂,之后会上手几个demo看看</p>
 </blockquote>
-<p>当打开一个文件时,<code>EditorConfig</code>插件会遍历文件的目录和其每一级父目录查找<code>.editorconfig</code>文件,直到有一个配置文件<code>root=true</code>.</p>
-<p><code>EditorConfig</code>配置文件从上往下读取,并且路径最近的文件最后被读取.匹配的配置属性按照属性应用在代码上,所以最接近代码文件的属性优先级最高.</p>
-<p><strong>Windows 用户:</strong> 在资源管理器创建<code>.editorconfig</code>文件,可以先创建<code>.editorconfig.</code>文件,系统会自动重名为<code>.editorconfig</code>.</p>
-<h3 id="文件格式详情"><a href="#文件格式详情" class="headerlink" title="文件格式详情"></a>文件格式详情</h3><p><code>EditorConfig</code>文件使用INI格式(<em>译注：请参考维基百科</em>),目的是可以与<a href="https://docs.python.org/2/library/configparser.html" target="_blank" rel="external">Python ConfigParser Library</a>兼容,但是允许在分段名（译注：原文是section names）中使用“and”.分段名是全局的文件路径,格式类似于<a href="http://manpages.ubuntu.com/manpages/intrepid/man5/gitignore.5.html#contenttoc2" target="_blank" rel="external">gitignore</a>。斜杠(<code>/</code>)作为路径分隔符，<code>#</code>或者<code>;</code>作为注释。注释应该单独占一行。<code>EditorConfig</code>文件使用<code>UTF-8</code>格式、<code>CRLF</code>或<code>LF</code>作为换行符。</p>
-<p>下面将详细解释文件路径匹配模式和EditorConfig 目前支持的配置属性。</p>
-<h4 id="Wildcard-Patterns"><a href="#Wildcard-Patterns" class="headerlink" title="Wildcard Patterns"></a>Wildcard Patterns</h4><table>
-<thead>
-<tr>
-<th>*</th>
-<th style="text-align:left"><strong>除路径分隔符<code>\</code>外匹配所有字符串字符</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>**</td>
-<td style="text-align:left"><strong>除路径分隔符<code>\</code>外匹配所有字符串字符</strong></td>
-</tr>
-<tr>
-<td>?</td>
-<td style="text-align:left"><strong>匹配所有单个字符</strong></td>
-</tr>
-<tr>
-<td>[name]</td>
-<td style="text-align:left"><strong>匹配name字符</strong></td>
-</tr>
-<tr>
-<td>[!name]</td>
-<td style="text-align:left"><strong>匹配非name字符</strong></td>
-</tr>
-<tr>
-<td>{s1, s2, s3}</td>
-<td style="text-align:left"><strong>匹配任意给定的字符串（通过逗号分隔）</strong></td>
-</tr>
-</tbody>
-</table>
-<p>特殊字符需要通过转移符进行转义，使得特殊字符不会被当做通配符解析。</p>
-<p><strong>EditorConfig支持的配置属性</strong></p>
-<p><strong>注意</strong>：并不是所有的编辑器插件都支持以下全部配置属性，<a href="https://github.com/editorconfig/editorconfig/wiki/EditorConfig-Properties" target="_blank" rel="external">项目Wiki</a>上有一份兼容配置属性的表格供参考。</p>
-<ul>
-<li><p><code>indent_style</code>: set to tab or space to use hard tabs or soft tabs respectively.</p>
-<p>缩进样式：可以设置为<code>tab</code>和<code>space</code>两个值。</p>
-</li>
-<li><p><code>indent_size</code>: a whole number defining the number of columns used for each indentation level and the width of soft tabs (when supported). When set to tab, the value of <strong>tab_width</strong> (if specified) will be used.</p>
-<p>当缩进样式设置为<code>space</code>时，<code>indent_size</code>用来设置每次缩进相当于多少列。</p>
-</li>
-<li><p><code>tab_width</code>: a whole number defining the number of columns used to represent a tab character. This defaults to the value of <strong>indent_size</strong> and doesn’t usually need to be specified.</p>
-<p>当缩进设置为<code>tab</code>时，<code>tab_width</code> 用来设置每次缩进相当于多少列代码。</p>
-</li>
-<li><p><code>end_of_line</code>: set to lf, cr, or crlf to control how line breaks are represented.</p>
-<p><code>end_of_line</code>用来定义行末采用什么符号来进行换行，可以的选择包括<code>lf</code> <code>cr</code> 和<code>crlf</code>.</p>
-</li>
-<li><p><code>charset</code>: set to latin1, utf-8, utf-8-bom, utf-16beor utf-16le to control the character set. Use of utf-8-bom is discouraged.</p>
-<p>编码格式，支持<code>latin1</code>、<code>utf-8</code>、<code>utf-8-bom</code>、<code>utf-16be</code>和<code>utf-16le</code>，不建议使用<code>uft-8-bom</code>。</p>
-</li>
-<li><p><code>trim_trailing_whitespace</code>: set to true to remove any whitespace characters preceding newline characters and false to ensure it doesn’t.</p>
-<p>设为<code>true</code>表示会除去代码行末的任意空白字符，<code>false</code>反之。</p>
-</li>
-<li><p><code>insert_final_newline</code>: set to true ensure file ends with a newline when saving and false to ensure it doesn’t.</p>
-<p>设为<code>true</code>表明使文件以一个空白行结尾，<code>false</code>反之。</p>
-</li>
-<li><p><code>root</code>: special property that should be specified at the top of the file outside of any sections. Set to true to stop <code>.editorconfig</code> files search on current file.</p>
-<p>表明是最顶层的配置文件，发现设为<code>true</code>时，才会停止查找<code>.editorconfig</code>文件。</p>
-</li>
-</ul>
-<p>目前所有的属性名和属性值都是大小写不敏感的。编译时都会将其转为小写。通常，如果没有明确指定某个属性，则会使用编辑器的配置，而<code>EditorConfig</code>不会处理。</p>
-<p>推荐不要指定某些<code>EditorConfig</code>属性。比如，<code>tab_width</code>不需要特别指定，除非它与<code>indent_size</code>不同。同样的，当<code>indent_style</code>设为<code>tab</code>时，不需要配置<code>indent_size</code>，这样才方便阅读者使用他们习惯的缩进格式。另外，如果某些属性并没有规范化（比如<code>end_of_line</code>），就最好不要设置它。</p>
-<h3 id="不需要插件的编辑器"><a href="#不需要插件的编辑器" class="headerlink" title="不需要插件的编辑器"></a>不需要插件的编辑器</h3><ol>
-<li>BBEdit</li>
-<li>C lion</li>
-<li>GitHub</li>
-<li>InfelliJIDEA</li>
-<li>RubyMine</li>
-<li>Source Lair</li>
-<li>WebStorm</li>
-</ol>
-<h3 id="需要下载插件的编辑器"><a href="#需要下载插件的编辑器" class="headerlink" title="需要下载插件的编辑器"></a>需要下载插件的编辑器</h3><ol>
-<li>AppCode</li>
-<li>ATOM</li>
-<li>Brackets</li>
-<li>Coda</li>
-<li>Code::Blocks</li>
-<li>eclipse</li>
-<li>Emacs</li>
-<li>Geany</li>
-<li>gedit</li>
-<li>jEdit</li>
-<li>Komodo</li>
-<li>NetBeans</li>
-<li>Nodepad++</li>
-<li>PhpStorm</li>
-<li>PyCharm</li>
-<li>Sublime Text</li>
-<li>textmate</li>
-<li>Vim</li>
-<li>Visual Stuido</li>
-<li>Visual Studio Code</li>
-<li>Xcode</li>
-</ol>
-<p><strong>举个例子</strong></p>
-<p><strong>Sublime Text</strong></p>
-<p>如果要安装Sublime Text插件，直接在Package Control中搜索<code>EditorConfig</code>就行。</p>
-<p><strong>WebStorm</strong></p>
-<p>在Setting–&gt;Plugins–&gt;Browse JetBrains Plugins里搜索<code>EditorConfig</code>即可。</p>
-<p><code>IntellijIDEA</code>、<code>PhpStorm</code>、<code>PyCharm</code>等应该类似。</p>
-<p><em>注：</em>从9.X版本开始，<code>WebStorm</code>原生就内置了<code>EditorConfig</code>，不需要装任何插件。</p>
-<p><em>译注：</em>支持的编辑器/IDE很多，使用也都很简单，大家自己去<a href="http://editorconfig.org/#download" target="_blank" rel="external">官网</a>下吧。</p>
+<h4 id="filterDelay"><a href="#filterDelay" class="headerlink" title="filterDelay"></a><code>filterDelay</code></h4><p>类型: <code>Number</code>, 默认值: <code>750</code><br>定义一个表格过滤器参数变化时,数据被显示在表格中的延迟时间.例如,你先想要按键过滤器的延迟效果.</p>
+<h4 id="data"><a href="#data" class="headerlink" title="data"></a><code>data</code></h4><p>类型: <code>Array</code>, 默认值: <code>[]</code><br>最初的数据集,由 <code>{colname:value}</code>键值对组成的<code>object</code>对象.</p>
+<h4 id="getData"><a href="#getData" class="headerlink" title="getData"></a><code>getData</code></h4><p>类型: <code>Function</code><br>定义一个方法处理要展示在<code>ngTable</code>中的数据.<code>ngTable</code>可以通过<code>getData</code>传入的两个参数<code>$defer</code>和<code>params</code>进行回调.举个例子:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">getData: <span class="function"><span class="keyword">function</span> (<span class="params">$defer, params</span>) </span>&#123;</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>$defer</code> 是一个<code>Promise</code>对象.通过调用<code>$defer</code>的<code>resolve</code>方法传递<code>data</code>数据到<code>ngTable</code>.<br>举个例子,给出如下的<code>data</code>:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> data = [</div><div class="line">  &#123;<span class="attr">name</span>: <span class="string">"Moroni"</span>, <span class="attr">age</span>: <span class="number">50</span>&#125;,</div><div class="line">  &#123;<span class="attr">name</span>: <span class="string">"Tiancum"</span>, <span class="attr">age</span>: <span class="number">43</span>&#125;</div><div class="line">];</div></pre></td></tr></table></figure>
+<p>通过这个最基础的方法,你可以让<code>ngTable</code>获得<code>data</code>数据:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">getData: <span class="function"><span class="keyword">function</span> (<span class="params">$defer, params</span>) </span>&#123;</div><div class="line">  $defer.resolve(data);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>params</code>对应的是你在<code>parameters</code>对象中的配置(否则你再<code>parameters</code>中也没有设置,就会使用<code>ngTable</code>的默认配置);<br>举个例子,检索现在<code>parameters</code>的<code>filter</code>和<code>sorting</code>的配置:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">getData: <span class="function"><span class="keyword">function</span> (<span class="params">$defer, params</span>) </span>&#123;</div><div class="line">  ...</div><div class="line">  var filter = params.filter();</div><div class="line">  <span class="keyword">var</span> sorting = params.sorting();</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>设置<code>paramters</code>中的<code>total</code>,你可以这样引用变量<code>vm.tableParams.total(value)</code>.举个例子,在<code>ngTable</code>中使用<code>ajax</code>请求数据:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.tableParams = <span class="keyword">new</span> ngTableParams(</div><div class="line">  &#123;<span class="attr">page</span>: <span class="number">1</span>, <span class="attr">count</span>: <span class="number">10</span>&#125;,</div><div class="line">  &#123;</div><div class="line">    <span class="attr">total</span>: <span class="number">0</span>,</div><div class="line">    <span class="attr">getData</span>: <span class="function"><span class="keyword">function</span> (<span class="params">$defer, params</span>) </span>&#123;</div><div class="line">      <span class="keyword">var</span> filter = params.filter();</div><div class="line">      <span class="keyword">var</span> sorting = params.sorting();</div><div class="line">      <span class="keyword">var</span> count = params.count();</div><div class="line">      <span class="keyword">var</span> page = params.page();</div><div class="line">      myService.query(page, count, filter, sorting).success(<span class="function"><span class="keyword">function</span> (<span class="params">result</span>) </span>&#123;</div><div class="line">        vm.tableParams.total(result.total);</div><div class="line">        $defer.resolve(result.data);</div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">);</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -558,7 +453,9 @@ indent_size = <span class="number">2</span>
       
         <div class="post-tags">
           
-            <a href="/tags/EditorConfig/" rel="tag">#EditorConfig</a>
+            <a href="/tags/angular/" rel="tag">#angular</a>
+          
+            <a href="/tags/ng-table/" rel="tag">#ng-table</a>
           
         </div>
       
@@ -567,16 +464,16 @@ indent_size = <span class="number">2</span>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/21/angular-02/" rel="next" title="angular启动过程解读（一）">
-                <i class="fa fa-chevron-left"></i> angular启动过程解读（一）
+              <a href="/common/angular-04/" rel="next" title="Angular源码解读之不同版本的Extend">
+                <i class="fa fa-chevron-left"></i> Angular源码解读之不同版本的Extend
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/09/25/eslint/" rel="prev" title="【转】Eslint 配置及规则说明">
-                【转】Eslint 配置及规则说明 <i class="fa fa-chevron-right"></i>
+              <a href="/common/npm-shrinkwrap/" rel="prev" title="一场由npm shrinkwrap执行error引发的思考">
+                一场由npm shrinkwrap执行error引发的思考 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -606,8 +503,8 @@ indent_size = <span class="number">2</span>
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/09/25/editor-config/"
-           data-title="利用EditorConfig定义代码格式,统一代码风格" data-url="https://relign.github.io/2016/09/25/editor-config/">
+      <div class="ds-thread" data-thread-key="common/angular-05/"
+           data-title="关于ng-table v0.3.3的那些事 (一)" data-url="https://relign.github.io/common/angular-05/">
       </div>
     
   </div>
@@ -774,7 +671,7 @@ indent_size = <span class="number">2</span>
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#作用"><span class="nav-number">1.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置文件"><span class="nav-number">2.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置文件详解"><span class="nav-number">3.</span> <span class="nav-text">配置文件详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件格式详情"><span class="nav-number">4.</span> <span class="nav-text">文件格式详情</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Wildcard-Patterns"><span class="nav-number">4.1.</span> <span class="nav-text">Wildcard Patterns</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不需要插件的编辑器"><span class="nav-number">5.</span> <span class="nav-text">不需要插件的编辑器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需要下载插件的编辑器"><span class="nav-number">6.</span> <span class="nav-text">需要下载插件的编辑器</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ngTable指令Config简介"><span class="nav-number">1.</span> <span class="nav-text">ngTable指令Config简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#parameters"><span class="nav-number">2.</span> <span class="nav-text">parameters</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#page"><span class="nav-number">2.1.</span> <span class="nav-text">page</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#count"><span class="nav-number">2.2.</span> <span class="nav-text">count</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#filter"><span class="nav-number">2.3.</span> <span class="nav-text">filter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sorting"><span class="nav-number">2.4.</span> <span class="nav-text">sorting</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#settings"><span class="nav-number">3.</span> <span class="nav-text">settings</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#total"><span class="nav-number">3.1.</span> <span class="nav-text">total</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#counts"><span class="nav-number">3.2.</span> <span class="nav-text">counts</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#defaultSort"><span class="nav-number">3.3.</span> <span class="nav-text">defaultSort</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#groupBy"><span class="nav-number">3.4.</span> <span class="nav-text">groupBy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#filterDelay"><span class="nav-number">3.5.</span> <span class="nav-text">filterDelay</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#data"><span class="nav-number">3.6.</span> <span class="nav-text">data</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#getData"><span class="nav-number">3.7.</span> <span class="nav-text">getData</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
