@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="angular," />
+  <meta name="keywords" content="Angular," />
 
 
 
@@ -88,20 +88,20 @@
 
 <meta name="description" content="错误异常是面向对象开发中的记录提示程序执行问题的一种重要机制，在程序执行发生问题的条件下，异常会在中断程序执行，同时会沿着代码的执行路径一步一步的向上抛出异常，最终会由顶层抛出异常信息。而与异常同时出现的往往是日志，而日志往往需要记录具体发生异常的模块、编码、详细的错误信息、执行堆栈等，方便问题的快速定位分析。  摘自无风听海的博客angular代码分析之异常日志设计
 
- 打开angular源码">
+ 打开Angular源码">
 <meta property="og:type" content="article">
-<meta property="og:title" content="angular源码解读之minErr">
+<meta property="og:title" content="Angular源码解读之minErr">
 <meta property="og:url" content="https://relign.github.io/common/angular-03/index.html">
 <meta property="og:site_name" content="Relign Blog">
 <meta property="og:description" content="错误异常是面向对象开发中的记录提示程序执行问题的一种重要机制，在程序执行发生问题的条件下，异常会在中断程序执行，同时会沿着代码的执行路径一步一步的向上抛出异常，最终会由顶层抛出异常信息。而与异常同时出现的往往是日志，而日志往往需要记录具体发生异常的模块、编码、详细的错误信息、执行堆栈等，方便问题的快速定位分析。  摘自无风听海的博客angular代码分析之异常日志设计
 
- 打开angular源码">
-<meta property="og:updated_time" content="2016-09-27T07:37:35.000Z">
+ 打开Angular源码">
+<meta property="og:updated_time" content="2016-10-23T07:43:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="angular源码解读之minErr">
+<meta name="twitter:title" content="Angular源码解读之minErr">
 <meta name="twitter:description" content="错误异常是面向对象开发中的记录提示程序执行问题的一种重要机制，在程序执行发生问题的条件下，异常会在中断程序执行，同时会沿着代码的执行路径一步一步的向上抛出异常，最终会由顶层抛出异常信息。而与异常同时出现的往往是日志，而日志往往需要记录具体发生异常的模块、编码、详细的错误信息、执行堆栈等，方便问题的快速定位分析。  摘自无风听海的博客angular代码分析之异常日志设计
 
- 打开angular源码">
+ 打开Angular源码">
 
 
 
@@ -125,7 +125,7 @@
   <link rel="canonical" href="https://relign.github.io/common/angular-03/"/>
 
 
-  <title> angular源码解读之minErr | Relign Blog </title>
+  <title> Angular源码解读之minErr | Relign Blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans,en,default">
@@ -307,7 +307,7 @@
             
             
               
-                angular源码解读之minErr
+                Angular源码解读之minErr
               
             
           </h1>
@@ -341,7 +341,7 @@
 
           
           
-             <span id="/common/angular-03/" class="leancloud_visitors" data-flag-title="angular源码解读之minErr">
+             <span id="/common/angular-03/" class="leancloud_visitors" data-flag-title="Angular源码解读之minErr">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -366,7 +366,7 @@
         <blockquote>
 <p>错误异常是面向对象开发中的记录提示程序执行问题的一种重要机制，在程序执行发生问题的条件下，异常会在中断程序执行，同时会沿着代码的执行路径一步一步的向上抛出异常，最终会由顶层抛出异常信息。而与异常同时出现的往往是日志，而日志往往需要记录具体发生异常的模块、编码、详细的错误信息、执行堆栈等，方便问题的快速定位分析。<br>  <strong><em>摘自无风听海的博客<a href="http://www.cnblogs.com/wufengtinghai/p/5428753.html" target="_blank" rel="external">angular代码分析之异常日志设计</a></em></strong></p>
 </blockquote>
-<p> 打开angular源码首先看到的就是这个<code>minErr</code>函数,这个函数是angular对异常信息的处理函数。</p>
+<p> 打开Angular源码首先看到的就是这个<code>minErr</code>函数,这个函数是angular对异常信息的处理函数。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * @description</div><div class="line"> *</div><div class="line"> * This object provides a utility for producing rich Error messages within</div><div class="line"> * Angular. It can be called as follows:</div><div class="line"> *</div><div class="line"> * var exampleMinErr = minErr('example');</div><div class="line"> * throw exampleMinErr('one', 'This &#123;0&#125; is &#123;1&#125;', foo, bar);</div><div class="line"> *</div><div class="line"> * The above creates an instance of minErr in the example namespace. The</div><div class="line"> * resulting error will have a namespaced error code of example.one.  The</div><div class="line"> * resulting error will replace &#123;0&#125; with the value of foo, and &#123;1&#125; with the</div><div class="line"> * value of bar. The object is not restricted in the number of arguments it can</div><div class="line"> * take.</div><div class="line"> *</div><div class="line"> * If fewer arguments are specified than necessary for interpolation, the extra</div><div class="line"> * interpolation markers will be preserved in the final string.</div><div class="line"> *</div><div class="line"> * Since data will be parsed statically during a build step, some restrictions</div><div class="line"> * are applied with respect to how minErr instances are created and called.</div><div class="line"> * Instances should have names of the form namespaceMinErr for a minErr created</div><div class="line"> * using minErr('namespace') . Error codes, namespaces and template strings</div><div class="line"> * should all be static strings, not variables or general expressions.</div><div class="line"> *</div><div class="line"> * @param &#123;string&#125; module The namespace to use for the new minErr instance.</div><div class="line"> * @returns &#123;function(code:string, template:string, ...templateArgs): Error&#125; minErr instance</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">minErr</span>(<span class="params">module</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> code = <span class="built_in">arguments</span>[<span class="number">0</span>],</div><div class="line">      prefix = <span class="string">'['</span> + (<span class="built_in">module</span> ? <span class="built_in">module</span> + <span class="string">':'</span> : <span class="string">''</span>) + code + <span class="string">'] '</span>, <span class="comment">//构造日志前缀</span></div><div class="line">      template = <span class="built_in">arguments</span>[<span class="number">1</span>],</div><div class="line">      templateArgs = <span class="built_in">arguments</span>,</div><div class="line">      stringify = <span class="function"><span class="keyword">function</span> (<span class="params">obj</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> obj === <span class="string">'function'</span>) &#123;</div><div class="line">          <span class="keyword">return</span> obj.toString().replace(<span class="regexp">/ \&#123;[\s\S]*$/</span>, <span class="string">''</span>);</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> obj === <span class="string">'undefined'</span>) &#123;</div><div class="line">          <span class="keyword">return</span> <span class="string">'undefined'</span>;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> obj !== <span class="string">'string'</span>) &#123;</div><div class="line">          <span class="keyword">return</span> <span class="built_in">JSON</span>.stringify(obj);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> obj;</div><div class="line">      &#125;,</div><div class="line">      message, i;</div><div class="line">	<span class="comment">//模板信息替换</span></div><div class="line">    message = prefix + template.replace(<span class="regexp">/\&#123;\d+\&#125;/g</span>, <span class="function"><span class="keyword">function</span> (<span class="params">match</span>) </span>&#123;</div><div class="line">    <span class="comment">//获取占位符索引,转化为数字</span></div><div class="line">      <span class="keyword">var</span> index = +match.slice(<span class="number">1</span>, <span class="number">-1</span>), arg;</div><div class="line">	<span class="comment">//获取替换占位符的传入参数对象的字符串表示形式</span></div><div class="line">      <span class="keyword">if</span> (index + <span class="number">2</span> &lt; templateArgs.length) &#123;</div><div class="line">        arg = templateArgs[index + <span class="number">2</span>];</div><div class="line">        <span class="comment">// 将传入的对象转化为便于调试的字符串形式</span></div><div class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> arg === <span class="string">'function'</span>) &#123;</div><div class="line">          <span class="keyword">return</span> arg.toString().replace(<span class="regexp">/ ?\&#123;[\s\S]*$/</span>, <span class="string">''</span>);<span class="comment">// 如果是函数则清空函数体</span></div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> arg === <span class="string">'undefined'</span>) &#123;</div><div class="line">          <span class="keyword">return</span> <span class="string">'undefined'</span>;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> arg !== <span class="string">'string'</span>) &#123;</div><div class="line">          <span class="keyword">return</span> toJson(arg);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> arg;</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">return</span> match;</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    message = message + <span class="string">'\nhttp://errors.angularjs.org/1.2.26/'</span> +</div><div class="line">      (<span class="built_in">module</span> ? <span class="built_in">module</span> + <span class="string">'/'</span> : <span class="string">''</span>) + code;</div><div class="line">    <span class="keyword">for</span> (i = <span class="number">2</span>; i &lt; <span class="built_in">arguments</span>.length; i++) &#123;</div><div class="line">      message = message + (i == <span class="number">2</span> ? <span class="string">'?'</span> : <span class="string">'&amp;'</span>) + <span class="string">'p'</span> + (i<span class="number">-2</span>) + <span class="string">'='</span> +</div><div class="line">        <span class="built_in">encodeURIComponent</span>(stringify(<span class="built_in">arguments</span>[i]));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Error</span>(message);</div><div class="line">  &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>结合注释给出的例子来看:</p>
@@ -416,7 +416,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/angular/" rel="tag">#angular</a>
+            <a href="/tags/Angular/" rel="tag">#Angular</a>
           
         </div>
       
@@ -465,7 +465,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="common/angular-03/"
-           data-title="angular源码解读之minErr" data-url="https://relign.github.io/common/angular-03/">
+           data-title="Angular源码解读之minErr" data-url="https://relign.github.io/common/angular-03/">
       </div>
     
   </div>
@@ -510,7 +510,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">12</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

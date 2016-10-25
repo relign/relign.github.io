@@ -88,23 +88,23 @@
 
 <meta name="description" content="此文章比较各个版本之间Angular的Extend方法
 
-版本1.2.26此时的Angular Extend精简至极
-12345678910111213function extend(dst) &amp;#123;  var h = dst.$$hashKey;  forEach(arguments, function(obj) &amp;#123;    if (obj !== dst) &amp;#123; //">
+版本1.2.26此时的Angular Extend精简至极,只进行了浅拷贝.
+12345678910111213function extend(dst) &amp;#123;  var h = dst.$$hashKey;  forEach(arguments, function(obj) &amp;#123;    if (obj !== dst) &amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angular源码解读之不同版本的Extend">
 <meta property="og:url" content="https://relign.github.io/common/angular-04/index.html">
 <meta property="og:site_name" content="Relign Blog">
 <meta property="og:description" content="此文章比较各个版本之间Angular的Extend方法
 
-版本1.2.26此时的Angular Extend精简至极
-12345678910111213function extend(dst) &amp;#123;  var h = dst.$$hashKey;  forEach(arguments, function(obj) &amp;#123;    if (obj !== dst) &amp;#123; //">
-<meta property="og:updated_time" content="2016-09-28T13:52:00.000Z">
+版本1.2.26此时的Angular Extend精简至极,只进行了浅拷贝.
+12345678910111213function extend(dst) &amp;#123;  var h = dst.$$hashKey;  forEach(arguments, function(obj) &amp;#123;    if (obj !== dst) &amp;">
+<meta property="og:updated_time" content="2016-10-23T07:46:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular源码解读之不同版本的Extend">
 <meta name="twitter:description" content="此文章比较各个版本之间Angular的Extend方法
 
-版本1.2.26此时的Angular Extend精简至极
-12345678910111213function extend(dst) &amp;#123;  var h = dst.$$hashKey;  forEach(arguments, function(obj) &amp;#123;    if (obj !== dst) &amp;#123; //">
+版本1.2.26此时的Angular Extend精简至极,只进行了浅拷贝.
+12345678910111213function extend(dst) &amp;#123;  var h = dst.$$hashKey;  forEach(arguments, function(obj) &amp;#123;    if (obj !== dst) &amp;">
 
 
 
@@ -369,7 +369,7 @@
         <blockquote>
 <p>此文章比较各个版本之间Angular的Extend方法</p>
 </blockquote>
-<h3 id="版本1-2-26"><a href="#版本1-2-26" class="headerlink" title="版本1.2.26"></a>版本1.2.26</h3><p>此时的Angular Extend精简至极</p>
+<h3 id="版本1-2-26"><a href="#版本1-2-26" class="headerlink" title="版本1.2.26"></a>版本1.2.26</h3><p>此时的Angular Extend精简至极,只进行了浅拷贝.</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">extend</span>(<span class="params">dst</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> h = dst.$$hashKey;</div><div class="line">  forEach(<span class="built_in">arguments</span>, <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (obj !== dst) &#123; <span class="comment">// 做判断去除同类的继承</span></div><div class="line">      forEach(obj, <span class="function"><span class="keyword">function</span>(<span class="params">value, key</span>) </span>&#123;</div><div class="line">        dst[key] = value; <span class="comment">// 对传入参数进行循环,将一个或者多个的可枚举属性复制到dst对象中</span></div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  setHashKey(dst,h);<span class="comment">// 为对象增加hash值,方便后续遍历过滤处理操作</span></div><div class="line">  <span class="keyword">return</span> dst;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>上面的代码多的仅仅是将传入的参数中可枚举的属性复制到dst对象,并返回这个新的对象,传入参数中靠后的argument会覆盖调靠前的.<br>列举一个简单的例子:</p>
 <a id="more"></a>
@@ -378,7 +378,8 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Object&#123;</div><div class="line">	"age": "12",</div><div class="line">	"cc": ["a","b","c"],</div><div class="line">	"nam": "123",</div><div class="line">	"name": "lisi",</div><div class="line">	"say": &#123;</div><div class="line">		"mm": "wang",</div><div class="line">		"sex": "woman"</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>由此可见<code>extend</code>依次会将传入参数的第一层属性赋值给第一个参数的第一层属性,如果属性相同,则后面的值会覆盖前面的,如果是对象或者数组,则会引用同一个,靠后的优先级高,并返回第一个参数对象.</p>
 <h3 id="版本1-3-9"><a href="#版本1-3-9" class="headerlink" title="版本1.3.9"></a>版本1.3.9</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">extend</span>(<span class="params">dst</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> h = dst.$$hashKey;</div><div class="line"></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>, ii = <span class="built_in">arguments</span>.length; i &lt; ii; i++) &#123;</div><div class="line">    <span class="keyword">var</span> obj = <span class="built_in">arguments</span>[i];</div><div class="line">    <span class="keyword">if</span> (obj) &#123; <span class="comment">// 这里不再做同类的判断</span></div><div class="line">      <span class="keyword">var</span> keys = <span class="built_in">Object</span>.keys(obj);</div><div class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>, jj = keys.length; j &lt; jj; j++) &#123;</div><div class="line">        <span class="keyword">var</span> key = keys[j];</div><div class="line">        dst[key] = obj[key];</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  setHashKey(dst, h);</div><div class="line">  <span class="keyword">return</span> dst;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这个版本的<code>extend</code>脱离了Angular自己定义的<code>forEach</code>方法,减少了代码的耦合性. 由于Angular在1.2.4版本后就放弃了对IE8的支持,所以这里用了<code>Object.keys()</code>去获取传入对象的可枚举属性.<br>关于<code>Object.keys()</code>看下面这个例子:</p>
+<p>这个版本的<code>extend</code>脱离了Angular自己定义的<code>forEach</code>方法,减少了代码的耦合性.     </p>
+<h4 id="Object-keys"><a href="#Object-keys" class="headerlink" title="Object.keys()"></a><code>Object.keys()</code></h4><p>由于Angular在1.2.4版本后就放弃了对IE8的支持,所以这里用了<code>Object.keys()</code>去获取传入对象的可枚举属性.<br>关于<code>Object.keys()</code>看下面这个例子:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> consData = &#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'zhangsan'</span>,</div><div class="line">    <span class="attr">age</span>: <span class="string">'12'</span>,</div><div class="line">    <span class="attr">say</span>: &#123;</div><div class="line">        <span class="attr">sex</span>: <span class="string">'man'</span></div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.keys(consData));</div></pre></td></tr></table></figure>
 <p>输出结果是<code>[&#39;name&#39;,&#39;age&#39;,&#39;say&#39;]</code>,由此也可以看出<code>angular.extend()</code>并不支持深拷贝.<br>关于<code>Object.keys()</code>你还要需要注意:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Object</span>.keys(<span class="string">"foo"</span>);</div><div class="line"><span class="comment">// TypeError: "foo" is not an object (ES5 code)</span></div><div class="line"></div><div class="line"><span class="built_in">Object</span>.keys(<span class="string">"foo"</span>);</div><div class="line"><span class="comment">// ["0", "1", "2"]                   (ES6 code)</span></div></pre></td></tr></table></figure>
@@ -445,8 +446,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/common/angular-03/" rel="next" title="angular源码解读之minErr">
-                <i class="fa fa-chevron-left"></i> angular源码解读之minErr
+              <a href="/common/angular-03/" rel="next" title="Angular源码解读之minErr">
+                <i class="fa fa-chevron-left"></i> Angular源码解读之minErr
               </a>
             
           </div>
@@ -530,7 +531,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">12</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -652,7 +653,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#版本1-2-26"><span class="nav-number">1.</span> <span class="nav-text">版本1.2.26</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#版本1-3-9"><span class="nav-number">2.</span> <span class="nav-text">版本1.3.9</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#版本1-4-0"><span class="nav-number">3.</span> <span class="nav-text">版本1.4.0</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#版本1-2-26"><span class="nav-number">1.</span> <span class="nav-text">版本1.2.26</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#版本1-3-9"><span class="nav-number">2.</span> <span class="nav-text">版本1.3.9</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Object-keys"><span class="nav-number">2.1.</span> <span class="nav-text">Object.keys()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#版本1-4-0"><span class="nav-number">3.</span> <span class="nav-text">版本1.4.0</span></a></li></ol></div>
             
           </div>
         </section>
