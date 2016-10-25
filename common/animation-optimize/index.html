@@ -99,7 +99,7 @@
 快速响应和高度交互的页面往往能够吸引大量的用户群体.相反,如果页面存在性能低下的动画,动画不流畅,动画过程中页面闪烁等等,那么将失去的是市场份额的占有率.      
 现代浏览器根据设备的刷新率来刷新页面中的内容，对大多数设备而言，屏幕以 60 次每秒的频率刷新，即 60HZ。如果在屏幕上出现了某些运动，如滚动、过渡或动">
 <meta property="og:image" content="https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/webkitflow.png">
-<meta property="og:updated_time" content="2016-10-25T06:50:08.000Z">
+<meta property="og:updated_time" content="2016-10-25T06:52:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="调研实现高性能动画笔记">
 <meta name="twitter:description" content="本文是调研如何实现高性能动画,提升用户体验的总结,文中大部分内容来自资料
@@ -385,6 +385,7 @@
 <li>Image Resize</li>
 <li>Composite Layers</li>
 </ol>
+<a id="more"></a>
 <h5 id="HTML-Parser"><a href="#HTML-Parser" class="headerlink" title="HTML Parser"></a>HTML Parser</h5><p>发送<code>http</code>请求,获取请求内容,然后解析HTML的过程.更加详细的可以看这里<a href="https://github.com/alex/what-happens-when" target="_blank" rel="external">What happens when…</a>以及对应的翻译文档<a href="https://github.com/skyline75489/what-happens-when-zh_CN" target="_blank" rel="external">当···时发生了什么?</a></p>
 <h5 id="Recalculate-Style"><a href="#Recalculate-Style" class="headerlink" title="Recalculate Style"></a>Recalculate Style</h5><p>即重新计算样式.      </p>
 <p>Recalculate被触发的时候做的事情就是处理JavaScript给元素设置的样式.此时Recalculate Style会计算Render树(渲染树),然后从根节点开始进行页面渲染,将CSS附加到DOM上的过程.      </p>

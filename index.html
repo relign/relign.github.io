@@ -362,8 +362,7 @@
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p>本文是调研如何实现高性能动画,提升用户体验的总结,文中大部分内容来自资料</p>
 </blockquote>
 <p>快速响应和高度交互的页面往往能够吸引大量的用户群体.相反,如果页面存在性能低下的动画,动画不流畅,动画过程中页面闪烁等等,那么将失去的是市场份额的占有率.      </p>
@@ -380,69 +379,11 @@
 <li>Image Resize</li>
 <li>Composite Layers</li>
 </ol>
-<h5 id="HTML-Parser"><a href="#HTML-Parser" class="headerlink" title="HTML Parser"></a>HTML Parser</h5><p>发送<code>http</code>请求,获取请求内容,然后解析HTML的过程.更加详细的可以看这里<a href="https://github.com/alex/what-happens-when" target="_blank" rel="external">What happens when…</a>以及对应的翻译文档<a href="https://github.com/skyline75489/what-happens-when-zh_CN" target="_blank" rel="external">当···时发生了什么?</a></p>
-<h5 id="Recalculate-Style"><a href="#Recalculate-Style" class="headerlink" title="Recalculate Style"></a>Recalculate Style</h5><p>即重新计算样式.      </p>
-<p>Recalculate被触发的时候做的事情就是处理JavaScript给元素设置的样式.此时Recalculate Style会计算Render树(渲染树),然后从根节点开始进行页面渲染,将CSS附加到DOM上的过程.      </p>
-<p><strong>任何企图改变元素样式的操作都会触发Recalculate</strong>.同Layout一样,它们都是JavaScript执行完后才触发的.</p>
-<h5 id="Layout"><a href="#Layout" class="headerlink" title="Layout"></a>Layout</h5><p>计算页面上的布局,即元素在文档中的位置及大小.正如前面所述,Layout计算的是布局位置信息.任何有可能改变元素位置或大小的样式都会触发这个Layout事件.     </p>
-<p>常见触发Layout的CSS属性有:</p>
-<ul>
-<li><code>width</code></li>
-<li><code>height</code></li>
-<li><code>padding</code></li>
-<li><code>margin</code></li>
-<li><code>display</code></li>
-<li><code>border-width</code></li>
-<li><code>border</code></li>
-<li><code>top</code></li>
-<li><code>position</code></li>
-<li><code>font-size</code></li>
-<li><code>float</code></li>
-<li><code>text-align</code></li>
-<li><code>overflow-y</code></li>
-<li><code>font-weight</code></li>
-<li><code>overflow</code></li>
-<li><code>left</code></li>
-<li><code>font-family</code></li>
-<li><code>line-height</code></li>
-<li><code>vertical-align</code></li>
-<li><code>right</code></li>
-<li><code>clear</code></li>
-<li><code>white-space</code></li>
-<li><code>bottom</code></li>
-<li><code>min-height</code></li>
-</ul>
-<p>等等,更多触发Layout事件的属性,可以在<a href="https://csstriggers.com/" target="_blank" rel="external">CSS Triggers</a>网站查阅.    </p>
-<h5 id="Rasterizer"><a href="#Rasterizer" class="headerlink" title="Rasterizer"></a>Rasterizer</h5><p>光栅化,一般的安卓手机都会进行光栅化,光栅主要是针对图形的一个栅格化过程.低端手机在这部分耗时还是蛮多的.</p>
-<h5 id="Paint"><a href="#Paint" class="headerlink" title="Paint"></a>Paint</h5><p>页面上显示东西有任何变动都会触发Paint.包括拖动滚动条,鼠标选择中文字等这些完全不改变样式,只改变显示结果的动作都会触发Paint.</p>
-<p>Paint的工作就是把文档中用户可见的那一部分展现给用户.Paint是把Layout和Recalculate的计算的结果直接在浏览器视窗上绘制出来,它并不实现具体的元素计算.     </p>
-<p>常见引起Paint的样式:</p>
-<ul>
-<li><code>color</code></li>
-<li><code>border-style</code></li>
-<li><code>visibility</code></li>
-<li><code>background</code></li>
-<li><code>text-decoration</code></li>
-<li><code>background-image</code></li>
-<li><code>background-position</code></li>
-<li><code>background-repeat</code></li>
-<li><code>outline-color</code></li>
-<li><code>outline</code></li>
-<li><code>outline-style</code></li>
-<li><code>border-radius</code></li>
-<li><code>outline-width</code></li>
-<li><code>box-shadow</code></li>
-<li><code>background-size</code></li>
-</ul>
-<p>如果你在元素中对以上的属性设置动画,那么将会引起重绘,并且元素所属的图层将提交给GPU进行处理.<br>对于移动端设备来说,这代价是非常昂贵的,因为它们的CPU的处理能力明显弱于桌面端.这意味着,任务将用更长的时间来完成;并且CPU和GPU之间的带宽是有限的,所以数据的上传需要花费很长的一段时间.    </p>
-<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><ul>
-<li><a href="http://www.w3cplus.com/animation/how-to-achieve-60-fps-animations-with-css3.html" target="_blank" rel="external">使用CSS3实现60FPS动画</a></li>
-<li><a href="https://www.html5rocks.com/zh/tutorials/speed/high-performance-animations/" target="_blank" rel="external">High Performance Animations</a></li>
-<li><a href="http://bubkoo.com/2016/03/31/high-performance-animations/" target="_blank" rel="external">使用 FLIP 来提高 Web 动画的性能</a></li>
-<li><a href="https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/" target="_blank" rel="external">浏览器的工作原理：新式网络浏览器幕后揭秘</a></li>
-</ul>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/common/animation-optimize/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>

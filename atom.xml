@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://relign.github.io/"/>
-  <updated>2016-10-25T06:50:08.000Z</updated>
+  <updated>2016-10-25T06:52:35.000Z</updated>
   <id>https://relign.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://relign.github.io/common/animation-optimize/"/>
     <id>https://relign.github.io/common/animation-optimize/</id>
     <published>2016-10-25T06:49:22.000Z</published>
-    <updated>2016-10-25T06:50:08.000Z</updated>
+    <updated>2016-10-25T06:52:35.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>本文是调研如何实现高性能动画,提升用户体验的总结,文中大部分内容来自资料</p>
@@ -39,6 +39,7 @@
 <li>Image Resize</li>
 <li>Composite Layers</li>
 </ol>
+<a id="more"></a>
 <h5 id="HTML-Parser"><a href="#HTML-Parser" class="headerlink" title="HTML Parser"></a>HTML Parser</h5><p>发送<code>http</code>请求,获取请求内容,然后解析HTML的过程.更加详细的可以看这里<a href="https://github.com/alex/what-happens-when" target="_blank" rel="external">What happens when…</a>以及对应的翻译文档<a href="https://github.com/skyline75489/what-happens-when-zh_CN" target="_blank" rel="external">当···时发生了什么?</a></p>
 <h5 id="Recalculate-Style"><a href="#Recalculate-Style" class="headerlink" title="Recalculate Style"></a>Recalculate Style</h5><p>即重新计算样式.      </p>
 <p>Recalculate被触发的时候做的事情就是处理JavaScript给元素设置的样式.此时Recalculate Style会计算Render树(渲染树),然后从根节点开始进行页面渲染,将CSS附加到DOM上的过程.      </p>
@@ -107,7 +108,20 @@
       &lt;blockquote&gt;
 &lt;p&gt;本文是调研如何实现高性能动画,提升用户体验的总结,文中大部分内容来自资料&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;快速响应和高度交互的页面往往能够吸引大量的用户群体.相反,如果页面存在性能低下的动画,动画不流畅,动画过程中页面闪烁等等,那么将失去
+&lt;p&gt;快速响应和高度交互的页面往往能够吸引大量的用户群体.相反,如果页面存在性能低下的动画,动画不流畅,动画过程中页面闪烁等等,那么将失去的是市场份额的占有率.      &lt;/p&gt;
+&lt;p&gt;现代浏览器根据设备的刷新率来刷新页面中的内容，对大多数设备而言，屏幕以 60 次每秒的频率刷新，即 60HZ。如果在屏幕上出现了某些运动，如滚动、过渡或动画，浏览器应该每秒刷新 60 帧，如果某些帧花费的时间太长，进而导致浏览器的刷新频率跟不上设备的刷新频率（跳帧现象），就会出现页面闪烁。所以在 Web 应用中运行的动画都应该保持在 60FPS 下。&lt;/p&gt;
+&lt;h4 id=&quot;浏览器渲染过程&quot;&gt;&lt;a href=&quot;#浏览器渲染过程&quot; class=&quot;headerlink&quot; title=&quot;浏览器渲染过程&quot;&gt;&lt;/a&gt;浏览器渲染过程&lt;/h4&gt;&lt;p&gt;Chrome渲染过程:&lt;br&gt;&lt;img src=&quot;https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/webkitflow.png&quot; alt=&quot;Chrome渲染过程&quot;&gt;    &lt;/p&gt;
+&lt;p&gt;从图中可以看出,浏览在渲染页面过程中主要经历了:      &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;HTML Parser&lt;/li&gt;
+&lt;li&gt;Recalculate Style&lt;/li&gt;
+&lt;li&gt;Layout&lt;/li&gt;
+&lt;li&gt;Rasterizer&lt;/li&gt;
+&lt;li&gt;Paint&lt;/li&gt;
+&lt;li&gt;Image Decode&lt;/li&gt;
+&lt;li&gt;Image Resize&lt;/li&gt;
+&lt;li&gt;Composite Layers&lt;/li&gt;
+&lt;/ol&gt;
     
     </summary>
     

@@ -23,6 +23,7 @@
 <li>Image Resize</li>
 <li>Composite Layers</li>
 </ol>
+<a id="more"></a>
 <h5 id="HTML-Parser"><a href="#HTML-Parser" class="headerlink" title="HTML Parser"></a>HTML Parser</h5><p>发送<code>http</code>请求,获取请求内容,然后解析HTML的过程.更加详细的可以看这里<a href="https://github.com/alex/what-happens-when" target="_blank" rel="external">What happens when…</a>以及对应的翻译文档<a href="https://github.com/skyline75489/what-happens-when-zh_CN" target="_blank" rel="external">当···时发生了什么?</a></p>
 <h5 id="Recalculate-Style"><a href="#Recalculate-Style" class="headerlink" title="Recalculate Style"></a>Recalculate Style</h5><p>即重新计算样式.      </p>
 <p>Recalculate被触发的时候做的事情就是处理JavaScript给元素设置的样式.此时Recalculate Style会计算Render树(渲染树),然后从根节点开始进行页面渲染,将CSS附加到DOM上的过程.      </p>
