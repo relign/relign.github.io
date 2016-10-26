@@ -304,7 +304,7 @@
               
                 
                 <a class="post-title-link" href="/common/animation-optimize/" itemprop="url">
-                  调研实现高性能动画笔记
+                  调研实现高性能动画
                 </a>
               
             
@@ -339,7 +339,7 @@
 
           
           
-             <span id="/common/animation-optimize/" class="leancloud_visitors" data-flag-title="调研实现高性能动画笔记">
+             <span id="/common/animation-optimize/" class="leancloud_visitors" data-flag-title="调研实现高性能动画">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -363,11 +363,16 @@
       
         
           <blockquote>
-<p>本文是调研如何实现高性能动画,提升用户体验的总结,文中大部分内容来自资料</p>
+<p>本文是调研如何实现高性能动画,提升用户体验的总结</p>
 </blockquote>
-<p>快速响应和高度交互的页面往往能够吸引大量的用户群体.相反,如果页面存在性能低下的动画,动画不流畅,动画过程中页面闪烁等等,那么将失去的是市场份额的占有率.      </p>
-<p>现代浏览器根据设备的刷新率来刷新页面中的内容，对大多数设备而言，屏幕以 60 次每秒的频率刷新，即 60HZ。如果在屏幕上出现了某些运动，如滚动、过渡或动画，浏览器应该每秒刷新 60 帧，如果某些帧花费的时间太长，进而导致浏览器的刷新频率跟不上设备的刷新频率（跳帧现象），就会出现页面闪烁。所以在 Web 应用中运行的动画都应该保持在 60FPS 下。</p>
-<h4 id="浏览器渲染过程"><a href="#浏览器渲染过程" class="headerlink" title="浏览器渲染过程"></a>浏览器渲染过程</h4><p>Chrome渲染过程:<br><img src="https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/webkitflow.png" alt="Chrome渲染过程">    </p>
+<p>快速响应和高度交互的页面往往能够吸引大量的用户群体.相反,如果页面存在性能低下的动画,动画不流畅,动画过程中页面闪烁等等,如此粗糙的交互体验必然丧失用户量.      </p>
+<p>对于大多数的设备而言,屏幕以 60 次每秒的频率刷新,即 60HZ.如果一个动画中的某些帧超过了这个时间,就会导致浏览器的刷新频率跟不上设备的刷新频率（跳帧现象）,出现页面闪烁.因此,高性能的动画都应该保持在 60FPS 下.</p>
+<h3 id="浏览器渲染过程"><a href="#浏览器渲染过程" class="headerlink" title="浏览器渲染过程"></a>浏览器渲染过程</h3><p>要实现一个高性能的动画,首选我们必须对浏览器的渲染机制有所了解:</p>
+<blockquote>
+<p>更加详细的渲染过程解读详见<a href="https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/">浏览器的工作原理：新式网络浏览器幕后揭秘</a></p>
+</blockquote>
+<p>Chrome渲染过程:<br><img src="https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/webkitflow.png" alt="Chrome渲染过程">    </p>
+<p>&gt;</p>
 <p>从图中可以看出,浏览在渲染页面过程中主要经历了:      </p>
 <ol>
 <li>HTML Parser</li>
@@ -375,8 +380,6 @@
 <li>Layout</li>
 <li>Rasterizer</li>
 <li>Paint</li>
-<li>Image Decode</li>
-<li>Image Resize</li>
 <li>Composite Layers</li>
 </ol>
           <div class="post-more-link text-center">
@@ -1653,6 +1656,10 @@ category: 转载 -->
               
                 <li class="links-of-blogroll-item">
                   <a href="http://mrzhang123.github.io/" title="张毅's Blog" target="_blank">张毅's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.w3cplus.com/" title="W3Cplus" target="_blank">W3Cplus</a>
                 </li>
               
             </ul>
