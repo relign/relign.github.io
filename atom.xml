@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://relign.github.io/"/>
-  <updated>2016-11-13T05:27:07.000Z</updated>
+  <updated>2016-11-13T09:34:03.000Z</updated>
   <id>https://relign.github.io/</id>
   
   <author>
@@ -20,18 +20,29 @@
     <link href="https://relign.github.io/common/animation-optimize/"/>
     <id>https://relign.github.io/common/animation-optimize/</id>
     <published>2016-10-25T06:49:22.000Z</published>
-    <updated>2016-11-13T05:27:07.000Z</updated>
+    <updated>2016-11-13T09:34:03.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>本文是调研如何实现高性能动画,提升用户体验的总结</p>
 </blockquote>
 <p>快速响应和高度交互的页面往往能够吸引大量的用户群体.相反,如果页面存在性能低下的动画,动画不流畅,动画过程中页面闪烁等等,如此粗糙的交互体验必然丧失用户量.      </p>
-<p>对于大多数的设备而言,屏幕以 60 次每秒的频率刷新,即 60HZ.如果一个动画中的某些帧超过了这个时间,就会导致浏览器的刷新频率跟不上设备的刷新频率（跳帧现象）,出现页面闪烁.因此,高性能的动画都应该保持在 60FPS 下.</p>
-<h3 id="javaScript基于帧的动画"><a href="#javaScript基于帧的动画" class="headerlink" title="javaScript基于帧的动画"></a>javaScript基于帧的动画</h3><iframe height="298" scrolling="no" title="rWeGoX" src="//codepen.io/relign/embed/rWeGoX/?height=298&theme-id=light&default-tab=js,result&embed-version=2" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="http://codepen.io/relign/pen/rWeGoX/" target="_blank" rel="external">rWeGoX</a> by songruigang (<a href="http://codepen.io/relign" target="_blank" rel="external">@relign</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.<br></iframe>
+<p>对于大多数的设备而言,屏幕以 60 次每秒的频率刷新,即<code>60HZ</code>.如果一个动画中的某些帧超过了这个时间,就会导致浏览器的刷新频率跟不上设备的刷新频率（跳帧现象）,出现页面闪烁.因此,高性能的动画都应该保持在<code>60fps</code>左右.    </p>
+<p>接下来我们看几种动画的实现方式.</p>
+<h3 id="JavaScript基于setTimeout或者setInterval实现的动画"><a href="#JavaScript基于setTimeout或者setInterval实现的动画" class="headerlink" title="JavaScript基于setTimeout或者setInterval实现的动画"></a>JavaScript基于<code>setTimeout</code>或者<code>setInterval</code>实现的动画</h3><h4 id="基于帧算法实现的动画"><a href="#基于帧算法实现的动画" class="headerlink" title="基于帧算法实现的动画"></a>基于帧算法实现的动画</h4><iframe height="400" scrolling="no" title="rWeGoX" src="//codepen.io/relign/embed/rWeGoX/?height=400&theme-id=0&default-tab=js,result&embed-version=2" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="http://codepen.io/relign/pen/rWeGoX/" target="_blank" rel="external">rWeGoX</a> by songruigang (<a href="http://codepen.io/relign" target="_blank" rel="external">@relign</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.<br></iframe>
 
+<p>这是一个基于帧算法实现的JavaScript动画,这里设置的每秒钟更新60次,即<code>60fps</code>.大家可以看到现在的动画还是非常流畅的.动画的帧率也在60附近.    </p>
+<p>但是由于JavaScript运行时需要耗费时间,而JavaScript又是单线程的,所以如果一个定时器如果比较耗时的话,是会阻塞下一个定时器的执行.所以即使你这里设置了<code>1000 / 60</code>每秒<code>60帧</code>的帧率,在不同的浏览器平台的差异也会导致实际上你的没有<code>60fps</code>的帧率.    </p>
+<p>所以上面代码在一个手机上执行的时候可能有<code>60fps</code>的帧率,在另外一个手机上可能就只有<code>30fps</code>,更甚可能只有<code>10fps</code>.   </p>
+<p>我们去模拟一下这几个帧率下的动画:</p>
+<iframe height="666" scrolling="no" title="xRVXyG" src="//codepen.io/relign/embed/xRVXyG/?height=666&theme-id=0&default-tab=js,result&embed-version=2" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="http://codepen.io/relign/pen/xRVXyG/" target="_blank" rel="external">xRVXyG</a> by songruigang (<a href="http://codepen.io/relign" target="_blank" rel="external">@relign</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.<br></iframe>   
 
-
-<h3 id="浏览器渲染过程"><a href="#浏览器渲染过程" class="headerlink" title="浏览器渲染过程"></a>浏览器渲染过程</h3><p>要实现一个高性能的动画,首选我们必须对浏览器的渲染机制有所了解:</p>
+<p>很明显产生的交互效果是不符合预期的.导致这种情况的原因很简单,因为我们计算和绘制每个<code>div</code>位置的时候是在每帧更新,每帧移动<code>2px</code>.在<code>60fps</code>的情况下,我们1秒钟会执行<code>60帧</code>,所以小块每秒钟会移动<code>60 * 2 = 120px</code>;如果是<code>30fps</code>,小块每秒就移动<code>30 * 2 = 60px</code>,以此类推<code>10fps</code>就是每秒移动<code>20px</code>.三个小块在单位时间内移动的距离不一样.    </p>
+<h4 id="基于时间算法实现的动画"><a href="#基于时间算法实现的动画" class="headerlink" title="基于时间算法实现的动画"></a>基于时间算法实现的动画</h4><p>针对于这种情况,我们对其作出改进.我们不再以帧为基准来更新方块的位置,而是以时间为单位更新.也就是说,我们之前是<code>px/frame</code>,现在换成<code>px/ms</code>.    </p>
+<p>但是使用<code>setTimeout</code>和<code>setInterval</code>来绘制动画,计算延时的精确度是不够的.延时的计算依靠的是浏览器的内置时钟,而时钟的精确度又取决于时钟更新的频率.不同版本的浏览器,这个频率是不一样的:IE8及其之前的IE版本更新间隔为15.6毫秒,最新版的Chrome与IE9+浏览器的更新频率都为4ms.而且如果你使用的是笔记本电脑,并且在使用电池而非电源的模式下,为了节省资源,浏览器会将更新频率切换至于系统时间相同,更新频率更低.    </p>
+<p>而另外一个问题,使用<code>setTimeout</code>和<code>setInterval</code>,需要面临异步队列问题.因为异步关系,<code>setTimeout</code>和<code>setInterval</code>中回调函数并非立即执行.而是需要加入等待队列中.但问题是,如果在等待延迟触发的过程中,有新的同步脚本需要执行,那么同步脚本不会排在回调之后,而是立即执行.    </p>
+<p>例如:</p>
+<p>很显然这样的动画效果是让人无法忍受的.</p>
+<h3 id="JavaScript基于时间的动画"><a href="#JavaScript基于时间的动画" class="headerlink" title="JavaScript基于时间的动画"></a>JavaScript基于时间的动画</h3><h3 id="浏览器渲染过程"><a href="#浏览器渲染过程" class="headerlink" title="浏览器渲染过程"></a>浏览器渲染过程</h3><p>要实现一个高性能的动画,首选我们必须对浏览器的渲染机制有所了解:</p>
 <blockquote>
 <p>更加详细的渲染过程解读详见<a href="https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/" target="_blank" rel="external">浏览器的工作原理：新式网络浏览器幕后揭秘</a></p>
 </blockquote>
@@ -103,6 +114,7 @@
 </ul>
 <p>如果你在元素中对以上的属性设置动画,那么将会引起重绘,并且元素所属的图层将提交给GPU进行处理.<br>对于移动端设备来说,这代价是非常昂贵的,因为它们的CPU的处理能力明显弱于桌面端.这意味着,任务将用更长的时间来完成;并且CPU和GPU之间的带宽是有限的,所以数据的上传需要花费很长的一段时间.    </p>
 <h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
+<li><a href="http://www.infoq.com/cn/articles/javascript-high-performance-animation-and-page-rendering/" target="_blank" rel="external">Javascript高性能动画与页面渲染</a></li>
 <li><a href="http://www.w3cplus.com/animation/how-to-achieve-60-fps-animations-with-css3.html" target="_blank" rel="external">使用CSS3实现60FPS动画</a></li>
 <li><a href="https://www.html5rocks.com/zh/tutorials/speed/high-performance-animations/" target="_blank" rel="external">High Performance Animations</a></li>
 <li><a href="http://bubkoo.com/2016/03/31/high-performance-animations/" target="_blank" rel="external">使用 FLIP 来提高 Web 动画的性能</a></li>
@@ -117,12 +129,23 @@
 &lt;p&gt;本文是调研如何实现高性能动画,提升用户体验的总结&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;快速响应和高度交互的页面往往能够吸引大量的用户群体.相反,如果页面存在性能低下的动画,动画不流畅,动画过程中页面闪烁等等,如此粗糙的交互体验必然丧失用户量.      &lt;/p&gt;
-&lt;p&gt;对于大多数的设备而言,屏幕以 60 次每秒的频率刷新,即 60HZ.如果一个动画中的某些帧超过了这个时间,就会导致浏览器的刷新频率跟不上设备的刷新频率（跳帧现象）,出现页面闪烁.因此,高性能的动画都应该保持在 60FPS 下.&lt;/p&gt;
-&lt;h3 id=&quot;javaScript基于帧的动画&quot;&gt;&lt;a href=&quot;#javaScript基于帧的动画&quot; class=&quot;headerlink&quot; title=&quot;javaScript基于帧的动画&quot;&gt;&lt;/a&gt;javaScript基于帧的动画&lt;/h3&gt;&lt;iframe height=&#39;298&#39; scrolling=&#39;no&#39; title=&#39;rWeGoX&#39; src=&#39;//codepen.io/relign/embed/rWeGoX/?height=298&amp;theme-id=light&amp;default-tab=js,result&amp;embed-version=2&#39; frameborder=&#39;no&#39; allowtransparency=&#39;true&#39; allowfullscreen=&#39;true&#39; style=&#39;width: 100%;&#39;&gt;See the Pen &lt;a href=&#39;http://codepen.io/relign/pen/rWeGoX/&#39;&gt;rWeGoX&lt;/a&gt; by songruigang (&lt;a href=&#39;http://codepen.io/relign&#39;&gt;@relign&lt;/a&gt;) on &lt;a href=&#39;http://codepen.io&#39;&gt;CodePen&lt;/a&gt;.&lt;br&gt;&lt;/iframe&gt;
+&lt;p&gt;对于大多数的设备而言,屏幕以 60 次每秒的频率刷新,即&lt;code&gt;60HZ&lt;/code&gt;.如果一个动画中的某些帧超过了这个时间,就会导致浏览器的刷新频率跟不上设备的刷新频率（跳帧现象）,出现页面闪烁.因此,高性能的动画都应该保持在&lt;code&gt;60fps&lt;/code&gt;左右.    &lt;/p&gt;
+&lt;p&gt;接下来我们看几种动画的实现方式.&lt;/p&gt;
+&lt;h3 id=&quot;JavaScript基于setTimeout或者setInterval实现的动画&quot;&gt;&lt;a href=&quot;#JavaScript基于setTimeout或者setInterval实现的动画&quot; class=&quot;headerlink&quot; title=&quot;JavaScript基于setTimeout或者setInterval实现的动画&quot;&gt;&lt;/a&gt;JavaScript基于&lt;code&gt;setTimeout&lt;/code&gt;或者&lt;code&gt;setInterval&lt;/code&gt;实现的动画&lt;/h3&gt;&lt;h4 id=&quot;基于帧算法实现的动画&quot;&gt;&lt;a href=&quot;#基于帧算法实现的动画&quot; class=&quot;headerlink&quot; title=&quot;基于帧算法实现的动画&quot;&gt;&lt;/a&gt;基于帧算法实现的动画&lt;/h4&gt;&lt;iframe height=&#39;400&#39; scrolling=&#39;no&#39; title=&#39;rWeGoX&#39; src=&#39;//codepen.io/relign/embed/rWeGoX/?height=400&amp;theme-id=0&amp;default-tab=js,result&amp;embed-version=2&#39; frameborder=&#39;no&#39; allowtransparency=&#39;true&#39; allowfullscreen=&#39;true&#39; style=&#39;width: 100%;&#39;&gt;See the Pen &lt;a href=&#39;http://codepen.io/relign/pen/rWeGoX/&#39;&gt;rWeGoX&lt;/a&gt; by songruigang (&lt;a href=&#39;http://codepen.io/relign&#39;&gt;@relign&lt;/a&gt;) on &lt;a href=&#39;http://codepen.io&#39;&gt;CodePen&lt;/a&gt;.&lt;br&gt;&lt;/iframe&gt;
 
+&lt;p&gt;这是一个基于帧算法实现的JavaScript动画,这里设置的每秒钟更新60次,即&lt;code&gt;60fps&lt;/code&gt;.大家可以看到现在的动画还是非常流畅的.动画的帧率也在60附近.    &lt;/p&gt;
+&lt;p&gt;但是由于JavaScript运行时需要耗费时间,而JavaScript又是单线程的,所以如果一个定时器如果比较耗时的话,是会阻塞下一个定时器的执行.所以即使你这里设置了&lt;code&gt;1000 / 60&lt;/code&gt;每秒&lt;code&gt;60帧&lt;/code&gt;的帧率,在不同的浏览器平台的差异也会导致实际上你的没有&lt;code&gt;60fps&lt;/code&gt;的帧率.    &lt;/p&gt;
+&lt;p&gt;所以上面代码在一个手机上执行的时候可能有&lt;code&gt;60fps&lt;/code&gt;的帧率,在另外一个手机上可能就只有&lt;code&gt;30fps&lt;/code&gt;,更甚可能只有&lt;code&gt;10fps&lt;/code&gt;.   &lt;/p&gt;
+&lt;p&gt;我们去模拟一下这几个帧率下的动画:&lt;/p&gt;
+&lt;iframe height=&#39;666&#39; scrolling=&#39;no&#39; title=&#39;xRVXyG&#39; src=&#39;//codepen.io/relign/embed/xRVXyG/?height=666&amp;theme-id=0&amp;default-tab=js,result&amp;embed-version=2&#39; frameborder=&#39;no&#39; allowtransparency=&#39;true&#39; allowfullscreen=&#39;true&#39; style=&#39;width: 100%;&#39;&gt;See the Pen &lt;a href=&#39;http://codepen.io/relign/pen/xRVXyG/&#39;&gt;xRVXyG&lt;/a&gt; by songruigang (&lt;a href=&#39;http://codepen.io/relign&#39;&gt;@relign&lt;/a&gt;) on &lt;a href=&#39;http://codepen.io&#39;&gt;CodePen&lt;/a&gt;.&lt;br&gt;&lt;/iframe&gt;   
 
-
-&lt;h3 id=&quot;浏览器渲染过程&quot;&gt;&lt;a href=&quot;#浏览器渲染过程&quot; class=&quot;headerlink&quot; title=&quot;浏览器渲染过程&quot;&gt;&lt;/a&gt;浏览器渲染过程&lt;/h3&gt;&lt;p&gt;要实现一个高性能的动画,首选我们必须对浏览器的渲染机制有所了解:&lt;/p&gt;
+&lt;p&gt;很明显产生的交互效果是不符合预期的.导致这种情况的原因很简单,因为我们计算和绘制每个&lt;code&gt;div&lt;/code&gt;位置的时候是在每帧更新,每帧移动&lt;code&gt;2px&lt;/code&gt;.在&lt;code&gt;60fps&lt;/code&gt;的情况下,我们1秒钟会执行&lt;code&gt;60帧&lt;/code&gt;,所以小块每秒钟会移动&lt;code&gt;60 * 2 = 120px&lt;/code&gt;;如果是&lt;code&gt;30fps&lt;/code&gt;,小块每秒就移动&lt;code&gt;30 * 2 = 60px&lt;/code&gt;,以此类推&lt;code&gt;10fps&lt;/code&gt;就是每秒移动&lt;code&gt;20px&lt;/code&gt;.三个小块在单位时间内移动的距离不一样.    &lt;/p&gt;
+&lt;h4 id=&quot;基于时间算法实现的动画&quot;&gt;&lt;a href=&quot;#基于时间算法实现的动画&quot; class=&quot;headerlink&quot; title=&quot;基于时间算法实现的动画&quot;&gt;&lt;/a&gt;基于时间算法实现的动画&lt;/h4&gt;&lt;p&gt;针对于这种情况,我们对其作出改进.我们不再以帧为基准来更新方块的位置,而是以时间为单位更新.也就是说,我们之前是&lt;code&gt;px/frame&lt;/code&gt;,现在换成&lt;code&gt;px/ms&lt;/code&gt;.    &lt;/p&gt;
+&lt;p&gt;但是使用&lt;code&gt;setTimeout&lt;/code&gt;和&lt;code&gt;setInterval&lt;/code&gt;来绘制动画,计算延时的精确度是不够的.延时的计算依靠的是浏览器的内置时钟,而时钟的精确度又取决于时钟更新的频率.不同版本的浏览器,这个频率是不一样的:IE8及其之前的IE版本更新间隔为15.6毫秒,最新版的Chrome与IE9+浏览器的更新频率都为4ms.而且如果你使用的是笔记本电脑,并且在使用电池而非电源的模式下,为了节省资源,浏览器会将更新频率切换至于系统时间相同,更新频率更低.    &lt;/p&gt;
+&lt;p&gt;而另外一个问题,使用&lt;code&gt;setTimeout&lt;/code&gt;和&lt;code&gt;setInterval&lt;/code&gt;,需要面临异步队列问题.因为异步关系,&lt;code&gt;setTimeout&lt;/code&gt;和&lt;code&gt;setInterval&lt;/code&gt;中回调函数并非立即执行.而是需要加入等待队列中.但问题是,如果在等待延迟触发的过程中,有新的同步脚本需要执行,那么同步脚本不会排在回调之后,而是立即执行.    &lt;/p&gt;
+&lt;p&gt;例如:&lt;/p&gt;
+&lt;p&gt;很显然这样的动画效果是让人无法忍受的.&lt;/p&gt;
+&lt;h3 id=&quot;JavaScript基于时间的动画&quot;&gt;&lt;a href=&quot;#JavaScript基于时间的动画&quot; class=&quot;headerlink&quot; title=&quot;JavaScript基于时间的动画&quot;&gt;&lt;/a&gt;JavaScript基于时间的动画&lt;/h3&gt;&lt;h3 id=&quot;浏览器渲染过程&quot;&gt;&lt;a href=&quot;#浏览器渲染过程&quot; class=&quot;headerlink&quot; title=&quot;浏览器渲染过程&quot;&gt;&lt;/a&gt;浏览器渲染过程&lt;/h3&gt;&lt;p&gt;要实现一个高性能的动画,首选我们必须对浏览器的渲染机制有所了解:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;更加详细的渲染过程解读详见&lt;a href=&quot;https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/&quot;&gt;浏览器的工作原理：新式网络浏览器幕后揭秘&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -142,6 +165,8 @@
     
     
       <category term="Animation" scheme="https://relign.github.io/tags/Animation/"/>
+    
+      <category term="JavaScript" scheme="https://relign.github.io/tags/JavaScript/"/>
     
   </entry>
   
