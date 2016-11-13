@@ -361,7 +361,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-11-13T19:57:47+08:00">
+            <time title="Post modified" itemprop="dateModified" datetime="2016-11-13T20:52:42+08:00">
               2016-11-13
             </time>
             
@@ -416,9 +416,7 @@
 <p>快速响应和高度交互的页面往往能够吸引大量的用户群体.相反,如果页面存在性能低下的动画,动画不流畅,动画过程中页面闪烁等等,如此粗糙的交互体验必然丧失用户量.      </p>
 <p>对于大多数的设备而言,屏幕以 60 次每秒的频率刷新,即<code>60HZ</code>.如果一个动画中的某些帧超过了这个时间,就会导致浏览器的刷新频率跟不上设备的刷新频率（跳帧现象）,出现页面闪烁.因此,高性能的动画都应该保持在<code>60fps</code>左右.    </p>
 <p>接下来我们看几种动画的实现方式.</p>
-<h3 id="基于setTimeout或者setInterval实现的动画"><a href="#基于setTimeout或者setInterval实现的动画" class="headerlink" title="基于setTimeout或者setInterval实现的动画"></a>基于<code>setTimeout</code>或者<code>setInterval</code>实现的动画</h3><h4 id="基于帧算法实现的动画"><a href="#基于帧算法实现的动画" class="headerlink" title="基于帧算法实现的动画"></a>基于帧算法实现的动画</h4><iframe height='471' scrolling='no' title='rWeGoX' src='//codepen.io/relign/embed/rWeGoX/?height=471&theme-id=0&default-tab=result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='http://codepen.io/relign/pen/rWeGoX/'>rWeGoX</a> by songruigang (<a href='http://codepen.io/relign'>@relign</a>) on <a href='http://codepen.io'>CodePen</a>.<br></iframe>
-
-<p>这是一个基于帧算法实现的JavaScript动画,这里设置的每秒钟更新60次,即<code>60fps</code>.大家可以看到现在的动画还是非常流畅的.动画的帧率也在60附近.    </p>
+<h3 id="基于setTimeout或者setInterval实现的动画"><a href="#基于setTimeout或者setInterval实现的动画" class="headerlink" title="基于setTimeout或者setInterval实现的动画"></a>基于<code>setTimeout</code>或者<code>setInterval</code>实现的动画</h3><h4 id="基于帧算法实现的动画"><a href="#基于帧算法实现的动画" class="headerlink" title="基于帧算法实现的动画"></a>基于帧算法实现的动画</h4>
           <!--noindex-->
           <div class="post-more-link text-center">
             <a class="btn" href="/common/animation-optimize/#more" rel="contents">
