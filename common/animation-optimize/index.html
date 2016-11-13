@@ -91,7 +91,7 @@
 快速响应和高度交互的页面往往能够吸引大量的用户群体.相反,如果页面存在性能低下的动画,动画不流畅,动画过程中页面闪烁等等,如此粗糙的交互体验必然丧失用户量.      
 对于大多数的设备而言,屏幕以 60 次每秒的频率刷新,即60HZ.如果一个动画中的某">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【总结】调研JavaScript实现高性能动画">
+<meta property="og:title" content="【总结】调研实现高性能动画">
 <meta property="og:url" content="https://relign.github.io/common/animation-optimize/index.html">
 <meta property="og:site_name" content="Relign Blog">
 <meta property="og:description" content="本文是调研如何实现高性能动画,提升用户体验的总结,文章内容来源于对看过的相关技术文章的总结,相关技术文章已列到文章末尾,如有遗漏,敬请谅解.
@@ -99,9 +99,10 @@
 快速响应和高度交互的页面往往能够吸引大量的用户群体.相反,如果页面存在性能低下的动画,动画不流畅,动画过程中页面闪烁等等,如此粗糙的交互体验必然丧失用户量.      
 对于大多数的设备而言,屏幕以 60 次每秒的频率刷新,即60HZ.如果一个动画中的某">
 <meta property="og:image" content="https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/webkitflow.png">
-<meta property="og:updated_time" content="2016-11-13T12:52:42.000Z">
+<meta property="og:image" content="http://cdn2.w3cplus.com/cdn/farfuture/usATdiAyFY--i9MqBmjcTjmP8DVlKngOBmJiJlPoNIs/mtime:1475068062/sites/default/files/blogs/2016/1609/css-animation-4.jpg">
+<meta property="og:updated_time" content="2016-11-13T13:45:32.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【总结】调研JavaScript实现高性能动画">
+<meta name="twitter:title" content="【总结】调研实现高性能动画">
 <meta name="twitter:description" content="本文是调研如何实现高性能动画,提升用户体验的总结,文章内容来源于对看过的相关技术文章的总结,相关技术文章已列到文章末尾,如有遗漏,敬请谅解.
 
 快速响应和高度交互的页面往往能够吸引大量的用户群体.相反,如果页面存在性能低下的动画,动画不流畅,动画过程中页面闪烁等等,如此粗糙的交互体验必然丧失用户量.      
@@ -140,7 +141,7 @@
 
 
 
-  <title> 【总结】调研JavaScript实现高性能动画 | Relign Blog </title>
+  <title> 【总结】调研实现高性能动画 | Relign Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -347,7 +348,7 @@
             
             
               
-                【总结】调研JavaScript实现高性能动画
+                【总结】调研实现高性能动画
               
             
           </h1>
@@ -368,7 +369,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-11-13T20:52:42+08:00">
+            <time title="Post modified" itemprop="dateModified" datetime="2016-11-13T21:45:32+08:00">
               2016-11-13
             </time>
             
@@ -391,7 +392,7 @@
 
           
           
-             <span id="/common/animation-optimize/" class="leancloud_visitors" data-flag-title="【总结】调研JavaScript实现高性能动画">
+             <span id="/common/animation-optimize/" class="leancloud_visitors" data-flag-title="【总结】调研实现高性能动画">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -477,8 +478,8 @@
 <p><strong>任何企图改变元素样式的操作都会触发Recalculate(重新计算样式)</strong>.同Layout一样,它们都是JavaScript执行完后才触发的.</p>
 <h4 id="Layout"><a href="#Layout" class="headerlink" title="Layout"></a>Layout</h4><p>计算页面上的布局,即元素在文档中的位置及大小.正如前面所述,Layout计算的是布局位置信息.</p>
 <p>上一步确定了每个DOM元素的样式规则,这一步就是具体计算每个DOM元素最终在屏幕上显示的大小和位置.</p>
-<p>需要注意的是:在页面解析完成后,任何有可能改变元素位置或大小的样式都会触发这个ReLayout(重排)事件.     </p>
-<p>常见触发ReLayout(重排)的CSS属性有:</p>
+<p>需要注意的是:在页面解析完成后,任何有可能改变元素位置或大小的样式都会触发这个Layout事件.    </p>
+<p>常见影响布局的CSS属性有:</p>
 <ul>
 <li><code>width</code></li>
 <li><code>height</code></li>
@@ -540,6 +541,26 @@
 <li>具有有CSS透明度动画或者使用动画式Webkit变换的元素</li>
 <li>具有硬件加速的CSS滤镜的元素</li>
 </ul>
+<h3 id="高性能动画"><a href="#高性能动画" class="headerlink" title="高性能动画"></a>高性能动画</h3><p>上述流程可以归纳为五个关键步骤:    </p>
+<p><img src="http://cdn2.w3cplus.com/cdn/farfuture/usATdiAyFY--i9MqBmjcTjmP8DVlKngOBmJiJlPoNIs/mtime:1475068062/sites/default/files/blogs/2016/1609/css-animation-4.jpg" alt="浏览器渲染过程">    </p>
+<p>这也是我们在实现动画过程中有可能会触发的五个步骤,搞清楚我们实现动画的代码在哪一步,有助于我们实现高性能流畅的动画.<br>在上面的流程中,我们需要注意两个概念 <strong>重排(也就是回流)</strong> 和 <strong>重绘</strong>.这两个概念与上述流程中的Layout和Paint都有关系,而Layout和Paint又对动画渲染的性能至关重要.</p>
+<h4 id="重排"><a href="#重排" class="headerlink" title="重排"></a>重排</h4><p><code>Reflow</code>(重排)指的是计算页面布局(Layout).某个节点<code>Reflow</code>时会重新计算节点的尺寸和位置,而且还有可能触发其后代节点<code>Reflow</code>.在这之后再次触发一次<code>Repaint</code>(重绘).</p>
+<p>当Render Tree中的一部分(或全部)因为元素的尺寸、布局、隐藏等改变而需要重新构建.这就称为回流,每个页面至少需要一次回流,就是页面第一次加载的时候.   </p>
+<p>在Web页面中,很多状况下会导致回流:</p>
+<ul>
+<li>调整窗口大小</li>
+<li>改变字体</li>
+<li>增加或者移除样式表</li>
+<li>内容变化</li>
+<li>激活CSS伪类</li>
+<li>操作CSS属性</li>
+<li>JavaScript操作DOM</li>
+<li>计算<code>offsetWidth</code>和<code>offsetHeight</code></li>
+<li>设置<code>style</code>属性的值</li>
+<li>CSS3 Animation或Transition</li>
+</ul>
+<h4 id="重绘"><a href="#重绘" class="headerlink" title="重绘"></a>重绘</h4><p><code>Repaint</code>(重绘)或者<code>Redraw</code>遍历所有节点,检测节点的可见性、颜色、轮廓等可见的样式属性,然后根据检测的结果更新页面的响应部分.<br>当Render Tree中的一些元素需要更新属性,而这些属性只是影响元素的外观、风格、而不会影响布局的.就是重绘.</p>
+<p>将重排和重绘的介绍结合起来,不难发现:<strong>重绘(Repaint)不一定会引起回流(Reflow重排),但回流必将引起重绘(Repaint)</strong>.</p>
 <h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
 <li><a href="http://www.infoq.com/cn/articles/javascript-high-performance-animation-and-page-rendering/" target="_blank" rel="external">Javascript高性能动画与页面渲染</a></li>
 <li><a href="http://www.w3cplus.com/animation/how-to-achieve-60-fps-animations-with-css3.html" target="_blank" rel="external">使用CSS3实现60FPS动画</a></li>
@@ -641,7 +662,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="common/animation-optimize/"
-           data-title="【总结】调研JavaScript实现高性能动画" data-url="https://relign.github.io/common/animation-optimize/">
+           data-title="【总结】调研实现高性能动画" data-url="https://relign.github.io/common/animation-optimize/">
       </div>
     
   </div>
@@ -818,7 +839,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基于setTimeout或者setInterval实现的动画"><span class="nav-number">1.</span> <span class="nav-text">基于setTimeout或者setInterval实现的动画</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基于帧算法实现的动画"><span class="nav-number">1.1.</span> <span class="nav-text">基于帧算法实现的动画</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于时间算法实现的动画"><span class="nav-number">1.2.</span> <span class="nav-text">基于时间算法实现的动画</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于setTimeout或者setInterval实现动画存在的问题"><span class="nav-number">1.3.</span> <span class="nav-text">基于setTimeout或者setInterval实现动画存在的问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于requestAnimationFrame实现的动画"><span class="nav-number">2.</span> <span class="nav-text">基于requestAnimationFrame实现的动画</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器渲染过程"><span class="nav-number">3.</span> <span class="nav-text">浏览器渲染过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML-Parser"><span class="nav-number">3.1.</span> <span class="nav-text">HTML Parser</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Calculate-Style"><span class="nav-number">3.2.</span> <span class="nav-text">Calculate Style</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Layout"><span class="nav-number">3.3.</span> <span class="nav-text">Layout</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Rasterizer"><span class="nav-number">3.4.</span> <span class="nav-text">Rasterizer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Paint"><span class="nav-number">3.5.</span> <span class="nav-text">Paint</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Composite-Layers"><span class="nav-number">3.6.</span> <span class="nav-text">Composite Layers</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基于setTimeout或者setInterval实现的动画"><span class="nav-number">1.</span> <span class="nav-text">基于setTimeout或者setInterval实现的动画</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基于帧算法实现的动画"><span class="nav-number">1.1.</span> <span class="nav-text">基于帧算法实现的动画</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于时间算法实现的动画"><span class="nav-number">1.2.</span> <span class="nav-text">基于时间算法实现的动画</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于setTimeout或者setInterval实现动画存在的问题"><span class="nav-number">1.3.</span> <span class="nav-text">基于setTimeout或者setInterval实现动画存在的问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于requestAnimationFrame实现的动画"><span class="nav-number">2.</span> <span class="nav-text">基于requestAnimationFrame实现的动画</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器渲染过程"><span class="nav-number">3.</span> <span class="nav-text">浏览器渲染过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML-Parser"><span class="nav-number">3.1.</span> <span class="nav-text">HTML Parser</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Calculate-Style"><span class="nav-number">3.2.</span> <span class="nav-text">Calculate Style</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Layout"><span class="nav-number">3.3.</span> <span class="nav-text">Layout</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Rasterizer"><span class="nav-number">3.4.</span> <span class="nav-text">Rasterizer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Paint"><span class="nav-number">3.5.</span> <span class="nav-text">Paint</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Composite-Layers"><span class="nav-number">3.6.</span> <span class="nav-text">Composite Layers</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高性能动画"><span class="nav-number">4.</span> <span class="nav-text">高性能动画</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#重排"><span class="nav-number">4.1.</span> <span class="nav-text">重排</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重绘"><span class="nav-number">4.2.</span> <span class="nav-text">重绘</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
