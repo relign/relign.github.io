@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://relign.github.io/"/>
-  <updated>2016-10-26T02:02:11.000Z</updated>
+  <updated>2016-11-13T05:27:07.000Z</updated>
   <id>https://relign.github.io/</id>
   
   <author>
@@ -20,13 +20,17 @@
     <link href="https://relign.github.io/common/animation-optimize/"/>
     <id>https://relign.github.io/common/animation-optimize/</id>
     <published>2016-10-25T06:49:22.000Z</published>
-    <updated>2016-10-26T02:02:11.000Z</updated>
+    <updated>2016-11-13T05:27:07.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>本文是调研如何实现高性能动画,提升用户体验的总结</p>
 </blockquote>
 <p>快速响应和高度交互的页面往往能够吸引大量的用户群体.相反,如果页面存在性能低下的动画,动画不流畅,动画过程中页面闪烁等等,如此粗糙的交互体验必然丧失用户量.      </p>
 <p>对于大多数的设备而言,屏幕以 60 次每秒的频率刷新,即 60HZ.如果一个动画中的某些帧超过了这个时间,就会导致浏览器的刷新频率跟不上设备的刷新频率（跳帧现象）,出现页面闪烁.因此,高性能的动画都应该保持在 60FPS 下.</p>
+<h3 id="javaScript基于帧的动画"><a href="#javaScript基于帧的动画" class="headerlink" title="javaScript基于帧的动画"></a>javaScript基于帧的动画</h3><iframe height="298" scrolling="no" title="rWeGoX" src="//codepen.io/relign/embed/rWeGoX/?height=298&theme-id=light&default-tab=js,result&embed-version=2" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="http://codepen.io/relign/pen/rWeGoX/" target="_blank" rel="external">rWeGoX</a> by songruigang (<a href="http://codepen.io/relign" target="_blank" rel="external">@relign</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.<br></iframe>
+
+
+
 <h3 id="浏览器渲染过程"><a href="#浏览器渲染过程" class="headerlink" title="浏览器渲染过程"></a>浏览器渲染过程</h3><p>要实现一个高性能的动画,首选我们必须对浏览器的渲染机制有所了解:</p>
 <blockquote>
 <p>更加详细的渲染过程解读详见<a href="https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/" target="_blank" rel="external">浏览器的工作原理：新式网络浏览器幕后揭秘</a></p>
@@ -114,6 +118,10 @@
 &lt;/blockquote&gt;
 &lt;p&gt;快速响应和高度交互的页面往往能够吸引大量的用户群体.相反,如果页面存在性能低下的动画,动画不流畅,动画过程中页面闪烁等等,如此粗糙的交互体验必然丧失用户量.      &lt;/p&gt;
 &lt;p&gt;对于大多数的设备而言,屏幕以 60 次每秒的频率刷新,即 60HZ.如果一个动画中的某些帧超过了这个时间,就会导致浏览器的刷新频率跟不上设备的刷新频率（跳帧现象）,出现页面闪烁.因此,高性能的动画都应该保持在 60FPS 下.&lt;/p&gt;
+&lt;h3 id=&quot;javaScript基于帧的动画&quot;&gt;&lt;a href=&quot;#javaScript基于帧的动画&quot; class=&quot;headerlink&quot; title=&quot;javaScript基于帧的动画&quot;&gt;&lt;/a&gt;javaScript基于帧的动画&lt;/h3&gt;&lt;iframe height=&#39;298&#39; scrolling=&#39;no&#39; title=&#39;rWeGoX&#39; src=&#39;//codepen.io/relign/embed/rWeGoX/?height=298&amp;theme-id=light&amp;default-tab=js,result&amp;embed-version=2&#39; frameborder=&#39;no&#39; allowtransparency=&#39;true&#39; allowfullscreen=&#39;true&#39; style=&#39;width: 100%;&#39;&gt;See the Pen &lt;a href=&#39;http://codepen.io/relign/pen/rWeGoX/&#39;&gt;rWeGoX&lt;/a&gt; by songruigang (&lt;a href=&#39;http://codepen.io/relign&#39;&gt;@relign&lt;/a&gt;) on &lt;a href=&#39;http://codepen.io&#39;&gt;CodePen&lt;/a&gt;.&lt;br&gt;&lt;/iframe&gt;
+
+
+
 &lt;h3 id=&quot;浏览器渲染过程&quot;&gt;&lt;a href=&quot;#浏览器渲染过程&quot; class=&quot;headerlink&quot; title=&quot;浏览器渲染过程&quot;&gt;&lt;/a&gt;浏览器渲染过程&lt;/h3&gt;&lt;p&gt;要实现一个高性能的动画,首选我们必须对浏览器的渲染机制有所了解:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;更加详细的渲染过程解读详见&lt;a href=&quot;https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/&quot;&gt;浏览器的工作原理：新式网络浏览器幕后揭秘&lt;/a&gt;&lt;/p&gt;
