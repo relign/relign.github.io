@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://relign.github.io/"/>
-  <updated>2016-12-12T16:45:50.000Z</updated>
+  <updated>2016-12-13T13:59:29.000Z</updated>
   <id>https://relign.github.io/</id>
   
   <author>
@@ -16,11 +16,31 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>CORS跨域资源共享</title>
+    <link href="https://relign.github.io/http/CORSDetail/"/>
+    <id>https://relign.github.io/http/CORSDetail/</id>
+    <published>2016-12-13T13:56:00.000Z</published>
+    <updated>2016-12-13T13:59:29.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="http" scheme="https://relign.github.io/categories/http/"/>
+    
+    
+      <category term="http" scheme="https://relign.github.io/tags/http/"/>
+    
+      <category term="CORS" scheme="https://relign.github.io/tags/CORS/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Angular小坑之ngIf和ngModel</title>
-    <link href="https://relign.github.io/common/ngIfAndngModel/"/>
-    <id>https://relign.github.io/common/ngIfAndngModel/</id>
+    <link href="https://relign.github.io/Angular/ngIfAndngModel/"/>
+    <id>https://relign.github.io/Angular/ngIfAndngModel/</id>
     <published>2016-12-12T14:11:05.000Z</published>
-    <updated>2016-12-12T16:45:50.000Z</updated>
+    <updated>2016-12-13T13:58:43.000Z</updated>
     
     <content type="html"><![CDATA[<p>Angular项目需求开发中偶遇小坑,发现利用<code>ngModel</code>绑定值后,监测不到值的变化.<br>于是简单写了个demo复现了这种情况:</p>
 <iframe height="437" scrolling="no" title="WogMpK" src="//codepen.io/relign/embed/WogMpK/?height=437&theme-id=0&default-tab=html,result&embed-version=2" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="http://codepen.io/relign/pen/WogMpK/" target="_blank" rel="external">WogMpK</a> by songruigang (<a href="http://codepen.io/relign" target="_blank" rel="external">@relign</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.<br></iframe>
@@ -49,6 +69,8 @@
     
     </summary>
     
+      <category term="Angular" scheme="https://relign.github.io/categories/Angular/"/>
+    
     
       <category term="Angular" scheme="https://relign.github.io/tags/Angular/"/>
     
@@ -56,10 +78,10 @@
   
   <entry>
     <title>【总结】调研实现高性能动画</title>
-    <link href="https://relign.github.io/common/animation-optimize/"/>
-    <id>https://relign.github.io/common/animation-optimize/</id>
+    <link href="https://relign.github.io/Animation/animation-optimize/"/>
+    <id>https://relign.github.io/Animation/animation-optimize/</id>
     <published>2016-10-25T06:49:22.000Z</published>
-    <updated>2016-11-13T14:23:03.000Z</updated>
+    <updated>2016-12-13T13:57:52.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>本文是调研如何实现高性能动画,提升用户体验的总结,文章内容来源于对看过的相关技术文章的总结,相关技术文章已列到文章末尾,如有遗漏,敬请谅解.</p>
@@ -251,6 +273,8 @@
     
     </summary>
     
+      <category term="Animation" scheme="https://relign.github.io/categories/Animation/"/>
+    
     
       <category term="Animation" scheme="https://relign.github.io/tags/Animation/"/>
     
@@ -260,10 +284,10 @@
   
   <entry>
     <title>一场由npm shrinkwrap执行error引发的思考</title>
-    <link href="https://relign.github.io/common/npm-shrinkwrap/"/>
-    <id>https://relign.github.io/common/npm-shrinkwrap/</id>
+    <link href="https://relign.github.io/node/npm-shrinkwrap/"/>
+    <id>https://relign.github.io/node/npm-shrinkwrap/</id>
     <published>2016-10-13T09:00:48.000Z</published>
-    <updated>2016-10-14T09:00:04.000Z</updated>
+    <updated>2016-12-13T13:58:55.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>做项目时执行 <code>npm shrinkwrap</code> 报错,并对这次错误求根问底,贴出来让大家看看,希望跟我出现一样错误的童鞋可以得到解答</p>
@@ -298,9 +322,9 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">app</div><div class="line">+-- a@1 &lt;-- depends on c@1</div><div class="line">+-- c@1</div><div class="line">+-- b@1 &lt;-- depends on c@2</div><div class="line">    `-- c@2`</div><div class="line">`-- d@1 &lt;-- depends on c@2</div><div class="line">    `-- c@2`</div></pre></td></tr></table></figure>
 <p>因为之前安装<code>a@1</code>的时候,依赖的<code>c@1</code>已经被放到第一层目录,后续安装其他依赖包的时候,如果安装包依赖<code>c</code>,只要版本不是<code>1</code>,为了避免和<code>c@1</code>冲突,都会安装到相应的包下面.    </p>
 <p>接下来app又依赖<code>e@1</code>,而<code>e@1</code>又依赖<code>c@1</code>,但是<code>c@1</code>已经安装过了,并且不会版本冲突,那么npm3安装后就会变成这样:    </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">app</div><div class="line">+-- a@1 &lt;-- depends on c@1</div><div class="line">+-- c@1</div><div class="line">+-- b@1 &lt;-- depends on c@2</div><div class="line">    `-- c@2`</div><div class="line">+-- d@1 &lt;-- depends on c@2</div><div class="line">    `-- c@2` </div><div class="line">`-- e@1</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">app</div><div class="line">+-- a@1 &lt;-- depends on c@1</div><div class="line">+-- c@1</div><div class="line">+-- b@1 &lt;-- depends on c@2</div><div class="line">    `-- c@2`</div><div class="line">+-- d@1 &lt;-- depends on c@2</div><div class="line">    `-- c@2`</div><div class="line">`-- e@1</div></pre></td></tr></table></figure>
 <p>紧接着问题来了,app要升级了,<code>a@1</code>要升成<code>a@2</code>,而<code>a@2</code>依赖<code>c@2</code>,<br><code>e@1</code>升级<code>e@2</code>,<code>e@2</code>依赖<code>c@2</code>,这时<code>c@1</code>不再被依赖,<code>npm</code>安装时就会卸载<code>c@1</code>,npm3安装后就会变成这样:   </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">app</div><div class="line">+-- a@2 &lt;-- depends on c@2</div><div class="line">    `-- c@2`</div><div class="line">+-- c@2</div><div class="line">+-- b@1 &lt;-- depends on c@2</div><div class="line">    `-- c@2`</div><div class="line">+-- d@1 &lt;-- depends on c@2</div><div class="line">    `-- c@2` </div><div class="line">`-- e@2</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">app</div><div class="line">+-- a@2 &lt;-- depends on c@2</div><div class="line">    `-- c@2`</div><div class="line">+-- c@2</div><div class="line">+-- b@1 &lt;-- depends on c@2</div><div class="line">    `-- c@2`</div><div class="line">+-- d@1 &lt;-- depends on c@2</div><div class="line">    `-- c@2`</div><div class="line">`-- e@2</div></pre></td></tr></table></figure>
 <p>预期结果跟大家想的不一样吧,模块出现了冗余,既然模块都依赖<code>c@2</code>,为什么还需要安装这么多呢?这时,神奇的<code>npm dedupe</code>就出现了.    </p>
 <h3 id="npm-dedupe简介"><a href="#npm-dedupe简介" class="headerlink" title="npm dedupe简介"></a>npm dedupe简介</h3><p>项目开发过程中,npm的树状依赖结构很大几率会导致重复的模块和代码量的臃肿,<code>npm dedupe</code>可以尽量去压平依赖树.   </p>
 <p>在npm的<a href="https://docs.npmjs.com/cli/dedupe" target="_blank" rel="external">文档</a>中对它是这么解释的:    </p>
@@ -328,6 +352,8 @@
     
     </summary>
     
+      <category term="node" scheme="https://relign.github.io/categories/node/"/>
+    
     
       <category term="npm" scheme="https://relign.github.io/tags/npm/"/>
     
@@ -337,10 +363,10 @@
   
   <entry>
     <title>关于ng-table v0.3.3的那些事 (一)</title>
-    <link href="https://relign.github.io/common/angular-05/"/>
-    <id>https://relign.github.io/common/angular-05/</id>
+    <link href="https://relign.github.io/Angular/angular-05/"/>
+    <id>https://relign.github.io/Angular/angular-05/</id>
     <published>2016-09-30T10:15:03.000Z</published>
-    <updated>2016-10-23T07:43:41.000Z</updated>
+    <updated>2016-12-13T13:57:40.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>入职一周左右发现项目中使用<code>ngTable</code>版本是v0.3.3,而github上<code>ngTable</code>版本已经更新到v1.0.0,找到一篇v0.3.3的英文api进行翻译.同时抽出时间看看官方给出的例子总结了一下v0.3.3,希望可以帮到后续入职的新同学快速上手,老司机请绕路哈.</p>
@@ -404,6 +430,8 @@
     
     </summary>
     
+      <category term="Angular" scheme="https://relign.github.io/categories/Angular/"/>
+    
     
       <category term="Angular" scheme="https://relign.github.io/tags/Angular/"/>
     
@@ -413,10 +441,10 @@
   
   <entry>
     <title>Angular源码解读之不同版本的Extend</title>
-    <link href="https://relign.github.io/common/angular-04/"/>
-    <id>https://relign.github.io/common/angular-04/</id>
+    <link href="https://relign.github.io/Angular/angular-04/"/>
+    <id>https://relign.github.io/Angular/angular-04/</id>
     <published>2016-09-27T13:31:53.000Z</published>
-    <updated>2016-10-23T07:46:38.000Z</updated>
+    <updated>2016-12-13T13:57:35.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>此文章比较各个版本之间Angular的Extend方法</p>
@@ -457,6 +485,8 @@
     
     </summary>
     
+      <category term="Angular" scheme="https://relign.github.io/categories/Angular/"/>
+    
     
       <category term="Angular" scheme="https://relign.github.io/tags/Angular/"/>
     
@@ -466,10 +496,10 @@
   
   <entry>
     <title>Angular源码解读之minErr</title>
-    <link href="https://relign.github.io/common/angular-03/"/>
-    <id>https://relign.github.io/common/angular-03/</id>
+    <link href="https://relign.github.io/Angular/angular-03/"/>
+    <id>https://relign.github.io/Angular/angular-03/</id>
     <published>2016-09-26T14:48:41.000Z</published>
-    <updated>2016-10-23T07:43:28.000Z</updated>
+    <updated>2016-12-13T13:57:31.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>错误异常是面向对象开发中的记录提示程序执行问题的一种重要机制，在程序执行发生问题的条件下，异常会在中断程序执行，同时会沿着代码的执行路径一步一步的向上抛出异常，最终会由顶层抛出异常信息。而与异常同时出现的往往是日志，而日志往往需要记录具体发生异常的模块、编码、详细的错误信息、执行堆栈等，方便问题的快速定位分析。<br>  <strong><em>摘自无风听海的博客<a href="http://www.cnblogs.com/wufengtinghai/p/5428753.html" target="_blank" rel="external">angular代码分析之异常日志设计</a></em></strong></p>
@@ -493,6 +523,8 @@
     
     </summary>
     
+      <category term="Angular" scheme="https://relign.github.io/categories/Angular/"/>
+    
     
       <category term="Angular" scheme="https://relign.github.io/tags/Angular/"/>
     
@@ -500,10 +532,10 @@
   
   <entry>
     <title>【转】Eslint的配置说明</title>
-    <link href="https://relign.github.io/%E8%BD%AC%E8%BD%BD/eslint-01/"/>
-    <id>https://relign.github.io/转载/eslint-01/</id>
+    <link href="https://relign.github.io/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/eslint-01/"/>
+    <id>https://relign.github.io/前端工具/eslint-01/</id>
     <published>2016-09-25T11:52:54.000Z</published>
-    <updated>2016-09-30T05:38:08.000Z</updated>
+    <updated>2016-12-13T13:58:21.000Z</updated>
     
     <content type="html"><![CDATA[<!-- tags: [Eslint, 转载]
 category: 转载 -->
@@ -695,7 +727,7 @@ category: 转载 --&gt;
     
     </summary>
     
-      <category term="转载" scheme="https://relign.github.io/categories/%E8%BD%AC%E8%BD%BD/"/>
+      <category term="前端工具" scheme="https://relign.github.io/categories/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/"/>
     
     
       <category term="Eslint" scheme="https://relign.github.io/tags/Eslint/"/>
@@ -706,10 +738,10 @@ category: 转载 --&gt;
   
   <entry>
     <title>【转】Eslint 配置及规则说明</title>
-    <link href="https://relign.github.io/%E8%BD%AC%E8%BD%BD/eslint/"/>
-    <id>https://relign.github.io/转载/eslint/</id>
+    <link href="https://relign.github.io/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/eslint/"/>
+    <id>https://relign.github.io/前端工具/eslint/</id>
     <published>2016-09-25T11:42:45.000Z</published>
-    <updated>2016-09-30T05:38:09.000Z</updated>
+    <updated>2016-12-13T13:58:25.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>从 Jocs 罗冉大神的<a href="https://github.com/Jocs" target="_blank" rel="external">github</a>中翻阅Eslint的这几篇翻译文档,觉得相当不错,遂收录</p>
@@ -753,7 +785,7 @@ category: 转载 --&gt;
     
     </summary>
     
-      <category term="转载" scheme="https://relign.github.io/categories/%E8%BD%AC%E8%BD%BD/"/>
+      <category term="前端工具" scheme="https://relign.github.io/categories/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/"/>
     
     
       <category term="Eslint" scheme="https://relign.github.io/tags/Eslint/"/>
@@ -764,10 +796,10 @@ category: 转载 --&gt;
   
   <entry>
     <title>利用EditorConfig定义代码格式,统一代码风格</title>
-    <link href="https://relign.github.io/common/editor-config/"/>
-    <id>https://relign.github.io/common/editor-config/</id>
+    <link href="https://relign.github.io/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/editor-config/"/>
+    <id>https://relign.github.io/前端工具/editor-config/</id>
     <published>2016-09-25T04:22:30.000Z</published>
-    <updated>2016-10-06T03:40:51.000Z</updated>
+    <updated>2016-12-13T13:58:13.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>在项目开发过程中,不同开发人员会使用不同的编辑器,常见的如:WebStorm,Atom,Sublime等等.不同编辑器对于缩进风格,默认的编码格式以及空白字符的设置等各有风格,因此在项目中做代码统一规范让开发人员尤为痛苦.    </p>
@@ -935,6 +967,8 @@ indent_size = <span class="number">2</span>
     
     </summary>
     
+      <category term="前端工具" scheme="https://relign.github.io/categories/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/"/>
+    
     
       <category term="EditorConfig" scheme="https://relign.github.io/tags/EditorConfig/"/>
     
@@ -942,10 +976,10 @@ indent_size = <span class="number">2</span>
   
   <entry>
     <title>Angular启动过程解读（一）</title>
-    <link href="https://relign.github.io/common/angular-02/"/>
-    <id>https://relign.github.io/common/angular-02/</id>
+    <link href="https://relign.github.io/Angular/angular-02/"/>
+    <id>https://relign.github.io/Angular/angular-02/</id>
     <published>2016-09-21T15:31:28.000Z</published>
-    <updated>2016-10-23T07:43:07.000Z</updated>
+    <updated>2016-12-13T13:57:25.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="找到代码代入口点"><a href="#找到代码代入口点" class="headerlink" title="找到代码代入口点"></a>找到代码代入口点</h3>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.angular.bootstrap) &#123;</div><div class="line">  <span class="comment">//AngularJS is already loaded, so we can return here...</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'WARNING: Tried to load angular more than once.'</span>);</div><div class="line">  <span class="keyword">return</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">//首先判断angular是否是多次加载,如果多次加载,输出警告信息;</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//try to bind to jquery now so that one can write angular.element().read()</span></div><div class="line"><span class="comment">//but we will rebind on bootstrap again.</span></div><div class="line">bindJQuery();<span class="comment">//该方法会去绑定jquery,内部会判断jQuery有没有加载,有就是用jQuery,没有则调用自带的jqLite</span></div><div class="line"></div><div class="line">publishExternalAPI(angular);<span class="comment">//暴露angular对象,加载angular的一系列api方法</span></div><div class="line"></div><div class="line">jqLite(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  angularInit(<span class="built_in">document</span>, bootstrap);<span class="comment">//等待dom加载完后启动angular.</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
   <a id="more"></a>
@@ -987,6 +1021,8 @@ indent_size = <span class="number">2</span>
     
     </summary>
     
+      <category term="Angular" scheme="https://relign.github.io/categories/Angular/"/>
+    
     
       <category term="Angular" scheme="https://relign.github.io/tags/Angular/"/>
     
@@ -994,10 +1030,10 @@ indent_size = <span class="number">2</span>
   
   <entry>
     <title>Angular源码工具函数总结</title>
-    <link href="https://relign.github.io/common/angular-01/"/>
-    <id>https://relign.github.io/common/angular-01/</id>
+    <link href="https://relign.github.io/Angular/angular-01/"/>
+    <id>https://relign.github.io/Angular/angular-01/</id>
     <published>2016-09-21T15:16:01.000Z</published>
-    <updated>2016-10-23T07:42:51.000Z</updated>
+    <updated>2016-12-13T13:57:16.000Z</updated>
     
     <content type="html"><![CDATA[<p>在了解Angular启动过程之前,首先了解几个必要的Angular的工具函数:</p>
 <h3 id="isFunction"><a href="#isFunction" class="headerlink" title="isFunction"></a>isFunction</h3>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * @ngdoc function</div><div class="line"> * @name angular.isFunction</div><div class="line"> * @module ng</div><div class="line"> * @kind function</div><div class="line"> *</div><div class="line"> * @description</div><div class="line"> * Determines if a reference is a `Function`.</div><div class="line"> *</div><div class="line"> * @param &#123;*&#125; value Reference to check.</div><div class="line"> * @returns &#123;boolean&#125; True if `value` is a `Function`.</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">isFunction</span>(<span class="params">value</span>)</span>&#123;<span class="keyword">return</span> <span class="keyword">typeof</span> value === <span class="string">'function'</span>;&#125;</div></pre></td></tr></table></figure>
@@ -1024,6 +1060,8 @@ indent_size = <span class="number">2</span>
     
     </summary>
     
+      <category term="Angular" scheme="https://relign.github.io/categories/Angular/"/>
+    
     
       <category term="Angular" scheme="https://relign.github.io/tags/Angular/"/>
     
@@ -1031,10 +1069,10 @@ indent_size = <span class="number">2</span>
   
   <entry>
     <title>gulp之学习教程</title>
-    <link href="https://relign.github.io/common/gulp/"/>
-    <id>https://relign.github.io/common/gulp/</id>
+    <link href="https://relign.github.io/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/gulp/"/>
+    <id>https://relign.github.io/前端工具/gulp/</id>
     <published>2016-07-11T15:24:26.000Z</published>
-    <updated>2016-09-21T14:26:38.000Z</updated>
+    <updated>2016-12-13T13:58:29.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h3><p>gulp是基于node环境的一款前端自动化构建工具，是自动化构建项目的神器。利用它我们可以抛弃前端项目开发中很多重复的工作,比如：压缩文件(css,js,img)，编译文件(es6、JSX、coffee),文件测试、合并、格式化,浏览器自动刷新,部署文件生成等等,极大的开发了我们的工作效率。<br>gulp与grunt非常像，但是grunt频繁进行IO操作，用插件做太多的事情，插件没有遵守单一责任原则，落后流程控制直接导致其性能滞后。而gulp有以下几个特点:</p>
 <blockquote>
@@ -1074,6 +1112,8 @@ indent_size = <span class="number">2</span>
 &lt;/blockquote&gt;
     
     </summary>
+    
+      <category term="前端工具" scheme="https://relign.github.io/categories/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/"/>
     
     
       <category term="gulp" scheme="https://relign.github.io/tags/gulp/"/>

@@ -1,0 +1,1282 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans,en,default">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Animation,JavaScript," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Relign Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本文是调研如何实现高性能动画,提升用户体验的总结,文章内容来源于对看过的相关技术文章的总结,相关技术文章已列到文章末尾,如有遗漏,敬请谅解.
+
+快速响应和高度交互的页面往往能够吸引大量的用户群体.相反,如果页面存在性能低下的动画,动画不流畅,动画过程中页面闪烁等等,如此粗糙的交互体验必然丧失用户量.      
+对于大多数的设备而言,屏幕以 60 次每秒的频率刷新,即60HZ.如果一个动画中的某">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【总结】调研实现高性能动画">
+<meta property="og:url" content="https://relign.github.io/Animation/animation-optimize/index.html">
+<meta property="og:site_name" content="Relign Blog">
+<meta property="og:description" content="本文是调研如何实现高性能动画,提升用户体验的总结,文章内容来源于对看过的相关技术文章的总结,相关技术文章已列到文章末尾,如有遗漏,敬请谅解.
+
+快速响应和高度交互的页面往往能够吸引大量的用户群体.相反,如果页面存在性能低下的动画,动画不流畅,动画过程中页面闪烁等等,如此粗糙的交互体验必然丧失用户量.      
+对于大多数的设备而言,屏幕以 60 次每秒的频率刷新,即60HZ.如果一个动画中的某">
+<meta property="og:image" content="https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/webkitflow.png">
+<meta property="og:image" content="http://cdn2.w3cplus.com/cdn/farfuture/usATdiAyFY--i9MqBmjcTjmP8DVlKngOBmJiJlPoNIs/mtime:1475068062/sites/default/files/blogs/2016/1609/css-animation-4.jpg">
+<meta property="og:updated_time" content="2016-12-13T13:57:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【总结】调研实现高性能动画">
+<meta name="twitter:description" content="本文是调研如何实现高性能动画,提升用户体验的总结,文章内容来源于对看过的相关技术文章的总结,相关技术文章已列到文章末尾,如有遗漏,敬请谅解.
+
+快速响应和高度交互的页面往往能够吸引大量的用户群体.相反,如果页面存在性能低下的动画,动画不流畅,动画过程中页面闪烁等等,如此粗糙的交互体验必然丧失用户量.      
+对于大多数的设备而言,屏幕以 60 次每秒的频率刷新,即60HZ.如果一个动画中的某">
+<meta name="twitter:image" content="https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/webkitflow.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6305308383876482000',
+      author: '阁主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://relign.github.io/Animation/animation-optimize/"/>
+
+
+
+
+
+  <title> 【总结】调研实现高性能动画 | Relign Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80541658-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?f6d8bb031910344a8f074a6d7f1d6ced";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Relign Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            Sitemap
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://relign.github.io/Animation/animation-optimize/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="relign">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/head-photo/seven.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Relign Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Relign Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                【总结】调研实现高性能动画
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-25T14:49:22+08:00">
+              2016-10-25
+            </time>
+
+            &nbsp;|&nbsp;
+
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <time title="Post modified" itemprop="dateModified" datetime="2016-12-13T21:57:52+08:00">
+              2016-12-13
+            </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Animation/" itemprop="url" rel="index">
+                    <span itemprop="name">Animation</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/Animation/animation-optimize/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="Animation/animation-optimize/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/Animation/animation-optimize/" class="leancloud_visitors" data-flag-title="【总结】调研实现高性能动画">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>本文是调研如何实现高性能动画,提升用户体验的总结,文章内容来源于对看过的相关技术文章的总结,相关技术文章已列到文章末尾,如有遗漏,敬请谅解.</p>
+</blockquote>
+<p>快速响应和高度交互的页面往往能够吸引大量的用户群体.相反,如果页面存在性能低下的动画,动画不流畅,动画过程中页面闪烁等等,如此粗糙的交互体验必然丧失用户量.      </p>
+<p>对于大多数的设备而言,屏幕以 60 次每秒的频率刷新,即<code>60HZ</code>.如果一个动画中的某些帧超过了这个时间,就会导致浏览器的刷新频率跟不上设备的刷新频率（跳帧现象）,出现页面闪烁.因此,高性能的动画都应该保持在<code>60fps</code>左右.    </p>
+<p>接下来我们看几种动画的实现方式.</p>
+<h3 id="基于setTimeout或者setInterval实现的动画"><a href="#基于setTimeout或者setInterval实现的动画" class="headerlink" title="基于setTimeout或者setInterval实现的动画"></a>基于<code>setTimeout</code>或者<code>setInterval</code>实现的动画</h3><h4 id="基于帧算法实现的动画"><a href="#基于帧算法实现的动画" class="headerlink" title="基于帧算法实现的动画"></a>基于帧算法实现的动画</h4><a id="more"></a>
+<iframe height="471" scrolling="no" title="rWeGoX" src="//codepen.io/relign/embed/rWeGoX/?height=471&theme-id=0&default-tab=result&embed-version=2" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="http://codepen.io/relign/pen/rWeGoX/" target="_blank" rel="external">rWeGoX</a> by songruigang (<a href="http://codepen.io/relign" target="_blank" rel="external">@relign</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.<br></iframe>
+
+<p>这是一个基于帧算法实现的JavaScript动画,这里设置的每秒钟更新60次,即<code>60fps</code>.大家可以看到现在的动画还是非常流畅的.动画的帧率也在60附近.    </p>
+<p>但是由于JavaScript运行时需要耗费时间,而JavaScript又是单线程的,所以如果一个定时器如果比较耗时的话,是会阻塞下一个定时器的执行.所以即使你这里设置了<code>1000 / 60</code>每秒<code>60帧</code>的帧率,在不同的浏览器平台的差异也会导致实际上你的没有<code>60fps</code>的帧率.    </p>
+<p>所以上面代码在一个手机上执行的时候可能有<code>60fps</code>的帧率,在另外一个手机上可能就只有<code>30fps</code>,更甚可能只有<code>10fps</code>.   </p>
+<p>我们去模拟一下这几个帧率下的动画:</p>
+<iframe height="710" scrolling="no" title="xRVXyG" src="//codepen.io/relign/embed/xRVXyG/?height=710&theme-id=0&default-tab=result&embed-version=2" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="http://codepen.io/relign/pen/xRVXyG/" target="_blank" rel="external">xRVXyG</a> by songruigang (<a href="http://codepen.io/relign" target="_blank" rel="external">@relign</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.<br></iframe>
+
+<p>很明显产生的交互效果是不符合预期的.导致这种情况的原因很简单,因为我们计算和绘制每个<code>div</code>位置的时候是在每帧更新,每帧移动<code>2px</code>.在<code>60fps</code>的情况下,我们1秒钟会执行<code>60帧</code>,所以小块每秒钟会移动<code>60 * 2 = 120px</code>;如果是<code>30fps</code>,小块每秒就移动<code>30 * 2 = 60px</code>,以此类推<code>10fps</code>就是每秒移动<code>20px</code>.三个小块在单位时间内移动的距离不一样.    </p>
+<h4 id="基于时间算法实现的动画"><a href="#基于时间算法实现的动画" class="headerlink" title="基于时间算法实现的动画"></a>基于时间算法实现的动画</h4><p>针对于这种情况,我们对其作出改进.我们不再以帧为基准来更新方块的位置,而是以时间为单位更新.也就是说,我们之前是<code>px/frame</code>,现在换成<code>px/ms</code>.    </p>
+<iframe height="602" scrolling="no" title="XNdVEE" src="//codepen.io/relign/embed/XNdVEE/?height=602&theme-id=0&default-tab=result&embed-version=2" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="http://codepen.io/relign/pen/XNdVEE/" target="_blank" rel="external">XNdVEE</a> by songruigang (<a href="http://codepen.io/relign" target="_blank" rel="external">@relign</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.<br></iframe>     
+
+<p>在这里,我们先确定一个固定更新的时间片,如固定为<code>60fps</code>时一帧的时间:<code>1000 / 60 = 0.167ms</code>.然后积累过去的时间,然后根据固定时间片分片进行更新.也就说,即使这一帧和上一帧相差过去了<code>100ms</code>,我也会把这100ms分成很多个<code>0.167ms</code>来执行<code>update</code>函数.这样做有两个好处:</p>
+<ul>
+<li>固定的时间片足够小，更新的时候可以减少动画失帧</li>
+<li>不同帧率,不管你是<code>60</code>,<code>30</code>,还是<code>10fps</code>,也是根据固定时间片来执行update函数,所以即使有损失,不同帧率之间的损失是一样的.那么我们三个方块就可以达到同步移动的效果的了!</li>
+</ul>
+<h4 id="基于setTimeout或者setInterval实现动画存在的问题"><a href="#基于setTimeout或者setInterval实现动画存在的问题" class="headerlink" title="基于setTimeout或者setInterval实现动画存在的问题"></a>基于<code>setTimeout</code>或者<code>setInterval</code>实现动画存在的问题</h4><p>使用<code>setTimeout</code>和<code>setInterval</code>来绘制动画,计算延时的精确度是不够的.    </p>
+<p>延时的计算依靠的是浏览器的内置时钟,而时钟的精确度又取决于时钟更新的频率.不同版本的浏览器,这个频率是不一样的:IE8及其之前的IE版本更新间隔为15.6毫秒,最新版的Chrome与IE9+浏览器的更新频率都为4ms.而且如果你使用的是笔记本电脑,并且在使用电池而非电源的模式下,为了节省资源,浏览器会将更新频率切换至于系统时间相同,更新频率更低.    </p>
+<p>而另外一个问题,使用<code>setTimeout</code>和<code>setInterval</code>,需要面临异步队列问题.因为异步关系,<code>setTimeout</code>和<code>setInterval</code>中回调函数并非立即执行.而是需要加入等待队列中.但问题是,如果在等待延迟触发的过程中,有新的同步脚本需要执行,那么同步脚本不会排在回调之后,而是立即执行.    </p>
+<p>例如:</p>
+<iframe height="391" scrolling="no" title="jVqYXw" src="//codepen.io/relign/embed/jVqYXw/?height=391&theme-id=0&default-tab=result&embed-version=2" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="http://codepen.io/relign/pen/jVqYXw/" target="_blank" rel="external">jVqYXw</a> by songruigang (<a href="http://codepen.io/relign" target="_blank" rel="external">@relign</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.<br></iframe>
+
+<p>很显然,这样的动画交互体验是不可控的.</p>
+<h3 id="基于requestAnimationFrame实现的动画"><a href="#基于requestAnimationFrame实现的动画" class="headerlink" title="基于requestAnimationFrame实现的动画"></a>基于<code>requestAnimationFrame</code>实现的动画</h3><p>针对<code>setTimeout</code>和<code>setInterval</code>实现动画存在的缺陷,<code>Mozilla</code>首先推出了<code>mozRequestAnimationFrame</code>,通过它告诉浏览器某些JavaScript代码将要执行动画,这样浏览器可以在运行某些代码后进行适当的优化.之后,<code>Chrome</code>和<code>IE10+</code>也都给出了自己的实现,<code>webkitRequestAnimationFrame</code>和<code>msRequestAnimationFrame</code>.后来随着<code>HTML5</code>新的API发布,<code>requestAnimationFrame</code>被正式推出.</p>
+<p>官方定义:</p>
+<blockquote>
+<p>window.requestAnimationFrame()这个方法是用来在页面重绘之前,通知浏览器调用一个指定的函数,以满足开发者操作动画的需求.这个方法接受一个函数为参,该函数会在重绘前调用.</p>
+</blockquote>
+<p>注意: 如果想得到连贯的逐帧动画,函数中必须重新调用 <code>requestAnimationFrame()</code>.</p>
+<iframe height="371" scrolling="no" title="qqZxqW" src="//codepen.io/relign/embed/qqZxqW/?height=371&theme-id=0&default-tab=result&embed-version=2" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="http://codepen.io/relign/pen/qqZxqW/" target="_blank" rel="external">qqZxqW</a> by songruigang (<a href="http://codepen.io/relign" target="_blank" rel="external">@relign</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.<br></iframe>  
+
+<p><code>requestAnimationFrame</code>最大的好处在于可以可以避免浏览器不必要的重绘.想要理解这个好处,我们首先需要简单了解一下浏览器的渲染过程.</p>
+<h3 id="浏览器渲染过程"><a href="#浏览器渲染过程" class="headerlink" title="浏览器渲染过程"></a>浏览器渲染过程</h3><p>要实现一个高性能的动画,首选我们必须对浏览器的渲染机制有所了解:</p>
+<blockquote>
+<p>更加详细的渲染过程解读详见<a href="https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/" target="_blank" rel="external">浏览器的工作原理：新式网络浏览器幕后揭秘</a></p>
+</blockquote>
+<p>Chrome渲染过程:<br><img src="https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/webkitflow.png" alt="Chrome渲染过程">    </p>
+<p>从图中可以看出,浏览在渲染页面过程中依次经历了:      </p>
+<ol>
+<li>HTML Parse(html解析)</li>
+<li>Calculate Style(计算样式)</li>
+<li>Layout(布局)</li>
+<li>Rasterizer(光栅化)</li>
+<li>Paint(绘制)</li>
+<li>Composite Layers(渲染层合并)</li>
+</ol>
+<h4 id="HTML-Parser"><a href="#HTML-Parser" class="headerlink" title="HTML Parser"></a>HTML Parser</h4><p>发送<code>http</code>请求,获取请求内容,然后解析HTML的过程.更加详细的可以看这里<a href="https://github.com/alex/what-happens-when" target="_blank" rel="external">What happens when…</a>以及对应的翻译文档<a href="https://github.com/skyline75489/what-happens-when-zh_CN" target="_blank" rel="external">当···时发生了什么?</a></p>
+<h4 id="Calculate-Style"><a href="#Calculate-Style" class="headerlink" title="Calculate Style"></a>Calculate Style</h4><p>即计算样式.      </p>
+<p>Calculate被触发的时候做的事情就是处理JavaScript给元素设置的样式.此时Recalculate Style会计算Render树(渲染树),然后从根节点开始进行页面渲染,将CSS附加到DOM上的过程.   </p>
+<p>这个过程是根据CSS选择器,对每个DOM元素匹配对应的CSS样式.这一步结束之后,就确定了每个DOM元素上应该应用什么CSS样式规则.</p>
+<p><strong>任何企图改变元素样式的操作都会触发Recalculate(重新计算样式)</strong>.同Layout一样,它们都是JavaScript执行完后才触发的.</p>
+<h4 id="Layout"><a href="#Layout" class="headerlink" title="Layout"></a>Layout</h4><p>计算页面上的布局,即元素在文档中的位置及大小.正如前面所述,Layout计算的是布局位置信息.</p>
+<p>上一步确定了每个DOM元素的样式规则,这一步就是具体计算每个DOM元素最终在屏幕上显示的大小和位置.</p>
+<p>需要注意的是:在页面解析完成后,任何有可能改变元素位置或大小的样式都会触发这个Layout事件.    </p>
+<p>常见影响布局的CSS属性有:</p>
+<ul>
+<li><code>width</code></li>
+<li><code>height</code></li>
+<li><code>padding</code></li>
+<li><code>margin</code></li>
+<li><code>display</code></li>
+<li><code>border-width</code></li>
+<li><code>border</code></li>
+<li><code>top</code></li>
+<li><code>position</code></li>
+<li><code>font-size</code></li>
+<li><code>float</code></li>
+<li><code>text-align</code></li>
+<li><code>overflow-y</code></li>
+<li><code>font-weight</code></li>
+<li><code>overflow</code></li>
+<li><code>left</code></li>
+<li><code>font-family</code></li>
+<li><code>line-height</code></li>
+<li><code>vertical-align</code></li>
+<li><code>right</code></li>
+<li><code>clear</code></li>
+<li><code>white-space</code></li>
+<li><code>bottom</code></li>
+<li><code>min-height</code></li>
+</ul>
+<p>等等,更多触发Layout事件的属性,可以在<a href="https://csstriggers.com/" target="_blank" rel="external">CSS Triggers</a>网站查阅.    </p>
+<h4 id="Rasterizer"><a href="#Rasterizer" class="headerlink" title="Rasterizer"></a>Rasterizer</h4><p>光栅化,一般的安卓手机都会进行光栅化,光栅主要是针对图形的一个栅格化过程.低端手机在这部分耗时还是蛮多的.</p>
+<h4 id="Paint"><a href="#Paint" class="headerlink" title="Paint"></a>Paint</h4><p>本质上就是填充像素的过程.包括绘制文字、颜色、图像、边框和阴影等,也就是一个DOM元素所有的可视效果.一般来说,这个绘制过程是在多个层上完成的.</p>
+<p>Paint的工作就是把文档中用户可见的那一部分展现给用户.Paint是把Layout和Calculate的计算的结果直接在浏览器视窗上绘制出来,它并不实现具体的元素计算.     </p>
+<p>同样,页面解析完成后,改变某些样式也会引起RePaint(重绘).</p>
+<p>常见引起RePaint(重绘)的样式:</p>
+<ul>
+<li><code>color</code></li>
+<li><code>border-style</code></li>
+<li><code>visibility</code></li>
+<li><code>background</code></li>
+<li><code>text-decoration</code></li>
+<li><code>background-image</code></li>
+<li><code>background-position</code></li>
+<li><code>background-repeat</code></li>
+<li><code>outline-color</code></li>
+<li><code>outline</code></li>
+<li><code>outline-style</code></li>
+<li><code>border-radius</code></li>
+<li><code>outline-width</code></li>
+<li><code>box-shadow</code></li>
+<li><code>background-size</code></li>
+</ul>
+<p>如果你在元素中对以上的属性设置动画,那么将会引起重绘,并且元素所属的图层将提交给GPU进行处理.<br>对于移动端设备来说,这代价是非常昂贵的,因为它们的CPU的处理能力明显弱于桌面端.这意味着,任务将用更长的时间来完成;并且CPU和GPU之间的带宽是有限的,所以数据的上传需要花费很长的一段时间.    </p>
+<h4 id="Composite-Layers"><a href="#Composite-Layers" class="headerlink" title="Composite Layers"></a>Composite Layers</h4><p>最后合并图层,输出页面到屏幕.浏览器在渲染过程中会将一些含有特殊样式的DOM结构绘制于其他图层,有点类似于<code>PhotoShop</code>的图层概念.一张图片在<code>PotoShop</code>是由多个图层组合而成,而浏览器最终显示的页面实际也是有多个图层构成的.</p>
+<p>在每个层上完成绘制过程之后,浏览器会将所有层按照合理的顺序合并成一个图层,然后在屏幕上呈现.对于有位置重叠的元素的页面,这个过程尤其重要,因为一旦图层的合并顺序出错,将会导致元素显示异常.</p>
+<p>常见的导致新图层创建的因素有:</p>
+<ul>
+<li>进行3D或者透视变换的CSS属性</li>
+<li>使用硬件加速视频解码的<code>&lt;video&gt;</code>元素</li>
+<li>具有3D(WebGL)上下文或者硬件加速的2D上下文的<code>&lt;canvas&gt;</code>元素</li>
+<li>组合型插件(即Flash)</li>
+<li>具有有CSS透明度动画或者使用动画式Webkit变换的元素</li>
+<li>具有硬件加速的CSS滤镜的元素</li>
+</ul>
+<h3 id="影响动画渲染性能的因素"><a href="#影响动画渲染性能的因素" class="headerlink" title="影响动画渲染性能的因素"></a>影响动画渲染性能的因素</h3><p>上述流程可以归纳为五个关键步骤:    </p>
+<p><img src="http://cdn2.w3cplus.com/cdn/farfuture/usATdiAyFY--i9MqBmjcTjmP8DVlKngOBmJiJlPoNIs/mtime:1475068062/sites/default/files/blogs/2016/1609/css-animation-4.jpg" alt="浏览器渲染过程">    </p>
+<p>这也是我们在实现动画过程中有可能会触发的五个步骤,搞清楚我们实现动画的代码在哪一步,有助于我们实现高性能流畅的动画.<br>在上面的流程中,我们需要注意两个概念 <strong>重排(也就是回流)</strong> 和 <strong>重绘</strong>.这两个概念与上述流程中的Layout和Paint都有关系,而Layout和Paint又对动画渲染的性能至关重要.</p>
+<h4 id="重排"><a href="#重排" class="headerlink" title="重排"></a>重排</h4><p><code>Reflow</code>(重排)指的是计算页面布局(Layout).某个节点<code>Reflow</code>时会重新计算节点的尺寸和位置,而且还有可能触发其后代节点<code>Reflow</code>.在这之后再次触发一次<code>Repaint</code>(重绘).</p>
+<p>当Render Tree中的一部分(或全部)因为元素的尺寸、布局、隐藏等改变而需要重新构建.这就称为回流,每个页面至少需要一次回流,就是页面第一次加载的时候.   </p>
+<p>在Web页面中,很多状况下会导致回流:</p>
+<ul>
+<li>调整窗口大小</li>
+<li>改变字体</li>
+<li>增加或者移除样式表</li>
+<li>内容变化</li>
+<li>激活CSS伪类</li>
+<li>操作CSS属性</li>
+<li>JavaScript操作DOM</li>
+<li>计算<code>offsetWidth</code>和<code>offsetHeight</code></li>
+<li>设置<code>style</code>属性的值</li>
+<li>CSS3 Animation或Transition</li>
+</ul>
+<h4 id="重绘"><a href="#重绘" class="headerlink" title="重绘"></a>重绘</h4><p><code>Repaint</code>(重绘)或者<code>Redraw</code>遍历所有节点,检测节点的可见性、颜色、轮廓等可见的样式属性,然后根据检测的结果更新页面的响应部分.<br>当Render Tree中的一些元素需要更新属性,而这些属性只是影响元素的外观、风格、而不会影响布局的.就是重绘.</p>
+<p>将重排和重绘的介绍结合起来,不难发现:<strong>重绘(Repaint)不一定会引起回流(Reflow重排),但回流必将引起重绘(Repaint)</strong>.</p>
+<p>由此可见,重排和重绘很容易被触发,而他们对动画渲染的性能影响非常大.我们需要做的是尽量不去触发重绘和重排.</p>
+<h3 id="动画渲染性能优化"><a href="#动画渲染性能优化" class="headerlink" title="动画渲染性能优化"></a>动画渲染性能优化</h3><p><strong>过早进行性能优化是大忌</strong>,如果我们实现的动画并没有性能方面的问题,就没有必要将时间成本浪费在性能优化上.</p>
+<h4 id="在Composite这步优化动画"><a href="#在Composite这步优化动画" class="headerlink" title="在Composite这步优化动画"></a>在<code>Composite</code>这步优化动画</h4><p>在实现用户交互动画的过程中,我们尽量避免重绘和重排.现在浏览器可以利用<code>transform</code>和<code>opacity</code>绘制很好的动画.因为这些属性只会影响<br>浏览器渲染的最后一步<code>Composite</code>过程.</p>
+<p>共有四个让动画更好的属性:</p>
+<ul>
+<li>位置(Position): <code>transform: translateX(n) translateY(n) translateZ(n)</code></li>
+<li>缩放(Scale): <code>transform: scale(n)</code></li>
+<li>旋转(Rotation): <code>transform: rotate(ndeg)</code></li>
+<li>透明度(Opacity): <code>opacity: n</code></li>
+</ul>
+<h4 id="在GPU上运行动画"><a href="#在GPU上运行动画" class="headerlink" title="在GPU上运行动画"></a>在GPU上运行动画</h4><p>在CSS中提供了一个新的CSS特性:<code>will-change</code>.其主要作用就是 <strong>提前告诉浏览器我这里将会进行一些变动,请分配资源(告诉浏览器要分配资源给我).</strong> 因此浏览器不需要考虑容器布局的渲染或绘制.</p>
+<blockquote>
+<p><code>will-change</code>属性,允许作者提前告知浏览器的默认样式,那他们可能会做出一个元素.它允许对浏览器默认样式的优化如何提前处理因素,在动画实际开始之前,为准备动画执行潜在昂贵的工作.有关于<code>will-change</code>更详细的介绍可以<a href="http://www.w3cplus.com/css3/introduction-css-will-change-property.html" target="_blank" rel="external">点击这里</a>.</p>
+</blockquote>
+<p>在使用<code>will-change</code>一定要注意方式方法,比如常见的错误方法是直接在<code>:hover</code>是使用,并没有告诉浏览器分配资源:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.element</span><span class="selector-pseudo">:hover</span> &#123;</div><div class="line">    <span class="attribute">will-change</span>: transform;</div><div class="line">    <span class="attribute">transition</span>: transform <span class="number">2s</span>;</div><div class="line">    <span class="attribute">transform</span>: <span class="built_in">rotate</span>(30deg) <span class="built_in">scale</span>(1.5);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>其正确使用的方法是,在进入父元素的时候就告诉浏览器,你该分配一定的资源:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.element</span> &#123;</div><div class="line">    <span class="attribute">transition</span>: opacity .<span class="number">3s</span> linear;</div><div class="line">&#125;</div><div class="line"><span class="comment">/* declare changes on the element when the mouse enters / hovers its ancestor */</span></div><div class="line"><span class="selector-class">.ancestor</span><span class="selector-pseudo">:hover</span> <span class="selector-class">.element</span> &#123;</div><div class="line">    <span class="attribute">will-change</span>: opacity;</div><div class="line">&#125;</div><div class="line"><span class="comment">/* apply change when element is hovered */</span></div><div class="line"><span class="selector-class">.element</span><span class="selector-pseudo">:hover</span> &#123;</div><div class="line">    <span class="attribute">opacity</span>: .<span class="number">5</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>另外在应用变化之后,取消<code>will-change</code>的资源分配:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> el = <span class="built_in">document</span>.getElementById(<span class="string">'demo'</span>);</div><div class="line">el.addEventListener(<span class="string">'animationEnd'</span>, removeHint);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeHint</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.style.willChange = <span class="string">'auto'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在使用<code>will-change</code>时,还需注意:</p>
+<ul>
+<li>不要将<code>will-change</code>应用到太多元素上:浏览器已经尽力尝试去优化一切可以优化的东西了.有一些更强力的优化,如果与<code>will-change</code>结合在一起的话,有可能会消耗很多机器资源,如果过度使用的话,可能导致页面响应缓慢或者消耗非常多的资源.</li>
+<li>有节制地使用:通常,当元素恢复到初始状态时,浏览器会丢弃掉之前做的优化工作.但是如果直接在样式表中显式声明了<code>will-change</code>属性,则表示目标元素可能会经常变化,浏览器会将优化工作保存得比之前更久.所以最佳实践是当元素变化之前和之后通过脚本来切换<code>will-change</code>的值.</li>
+<li>不要过早应用<code>will-change</code>优化:如果你的页面在性能方面没什么问题,则不要添加<code>will-change</code>属性来榨取一丁点的速度.<code>will-change</code>的设计初衷是作为最后的优化手段,用来尝试解决现有的性能问题.它不应该被用来预防性能问题.过度使用<code>will-change</code>会导致大量的内存占用,并会导致更复杂的渲染过程,因为浏览器会试图准备可能存在的变化过程.这会导致更严重的性能问题.</li>
+<li>给它足够的工作时间:这个属性是用来让页面开发者告知浏览器哪些属性可能会变化的.然后浏览器可以选择在变化发生前提前去做一些优化工作.所以给浏览器一点时间去真正做这些优化工作是非常重要的.使用时需要尝试去找到一些方法提前一定时间获知元素可能发生的变化,然后为它加上 <code>will-change</code>属性.</li>
+</ul>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
+<li><a href="http://www.infoq.com/cn/articles/javascript-high-performance-animation-and-page-rendering/" target="_blank" rel="external">Javascript高性能动画与页面渲染</a></li>
+<li><a href="http://www.w3cplus.com/animation/how-to-achieve-60-fps-animations-with-css3.html" target="_blank" rel="external">使用CSS3实现60FPS动画</a></li>
+<li><a href="https://www.html5rocks.com/zh/tutorials/speed/high-performance-animations/" target="_blank" rel="external">High Performance Animations</a></li>
+<li><a href="http://bubkoo.com/2016/03/31/high-performance-animations/" target="_blank" rel="external">使用 FLIP 来提高 Web 动画的性能</a></li>
+<li><a href="https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/" target="_blank" rel="external">浏览器的工作原理：新式网络浏览器幕后揭秘</a></li>
+<li><a href="http://www.w3cplus.com/animation/animation-performance.html" target="_blank" rel="external">CSS Animation性能优化</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://oa9ep5m8h.bkt.clouddn.com/image/weixin.png" alt="relign WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://oa9ep5m8h.bkt.clouddn.com/image/alipay.jpg" alt="relign Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Animation/" rel="tag"># Animation</a>
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/node/npm-shrinkwrap/" rel="next" title="一场由npm shrinkwrap执行error引发的思考">
+                <i class="fa fa-chevron-left"></i> 一场由npm shrinkwrap执行error引发的思考
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Angular/ngIfAndngModel/" rel="prev" title="Angular小坑之ngIf和ngModel">
+                Angular小坑之ngIf和ngModel <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="Animation/animation-optimize/"
+           data-title="【总结】调研实现高性能动画" data-url="https://relign.github.io/Animation/animation-optimize/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/head-photo/seven.jpg"
+               alt="relign" />
+          <p class="site-author-name" itemprop="name">relign</p>
+          <p class="site-description motion-element" itemprop="description">An Engineer in the Pursuit to Beauty</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/relign" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/p/1005052170275291/home?from=page_100505&mod=TAB#place" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/song-rui-gang-90" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-comments"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://hexo.io/zh-cn/" title="hexo" target="_blank">hexo</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wuchong.me" title="Jark's Blog" target="_blank">Jark's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://reactjs.cn/" title="react" target="_blank">react</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.reqianduan.com/" title="热前端" target="_blank">热前端</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.ita1024.com/" title="ITA1024" target="_blank">ITA1024</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://mrzhang123.github.io/" title="张毅's Blog" target="_blank">张毅's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.w3cplus.com/" title="W3Cplus" target="_blank">W3Cplus</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基于setTimeout或者setInterval实现的动画"><span class="nav-number">1.</span> <span class="nav-text">基于setTimeout或者setInterval实现的动画</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基于帧算法实现的动画"><span class="nav-number">1.1.</span> <span class="nav-text">基于帧算法实现的动画</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于时间算法实现的动画"><span class="nav-number">1.2.</span> <span class="nav-text">基于时间算法实现的动画</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于setTimeout或者setInterval实现动画存在的问题"><span class="nav-number">1.3.</span> <span class="nav-text">基于setTimeout或者setInterval实现动画存在的问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于requestAnimationFrame实现的动画"><span class="nav-number">2.</span> <span class="nav-text">基于requestAnimationFrame实现的动画</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器渲染过程"><span class="nav-number">3.</span> <span class="nav-text">浏览器渲染过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML-Parser"><span class="nav-number">3.1.</span> <span class="nav-text">HTML Parser</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Calculate-Style"><span class="nav-number">3.2.</span> <span class="nav-text">Calculate Style</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Layout"><span class="nav-number">3.3.</span> <span class="nav-text">Layout</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Rasterizer"><span class="nav-number">3.4.</span> <span class="nav-text">Rasterizer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Paint"><span class="nav-number">3.5.</span> <span class="nav-text">Paint</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Composite-Layers"><span class="nav-number">3.6.</span> <span class="nav-text">Composite Layers</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#影响动画渲染性能的因素"><span class="nav-number">4.</span> <span class="nav-text">影响动画渲染性能的因素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#重排"><span class="nav-number">4.1.</span> <span class="nav-text">重排</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重绘"><span class="nav-number">4.2.</span> <span class="nav-text">重绘</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动画渲染性能优化"><span class="nav-number">5.</span> <span class="nav-text">动画渲染性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在Composite这步优化动画"><span class="nav-number">5.1.</span> <span class="nav-text">在Composite这步优化动画</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在GPU上运行动画"><span class="nav-number">5.2.</span> <span class="nav-text">在GPU上运行动画</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">relign</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"relign"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("ROHMcl5LiBHab9ufGfbDiVIm-gzGzoHsz", "1PC9neuYdnejS6Krk7g9zK6M");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>
