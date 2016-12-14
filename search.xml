@@ -4,9 +4,70 @@
   
     
     <entry>
-      <title><![CDATA[CORS跨域资源共享]]></title>
+      <title><![CDATA[CORS跨域资源共享总结]]></title>
       <url>https://relign.github.io/http/CORSDetail/</url>
-      <content type="html"></content>
+      <content type="html"><![CDATA[<p>使用<code>XMLHttpRequest</code>对象和<code>Fetch</code>发起HTTP请求就必须遵守<a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy" target="_blank" rel="external">同源策略</a>.<br>而CORS就是W3C推出的一个标准,用来解决跨域问题.</p>
+<h3 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h3><p>CORS,全称是”跨域资源共享”(Cross-origin resource sharing).这种方式让Web应用服务器能支持跨站访问控制,从而使得安全地进行跨站数据传输成为可能.</p>
+<p>跨源资源共享标准通过新增一系列 HTTP 头,让服务器能声明哪些来源可以通过浏览器访问该服务器上的资源.另外,对那些会对服务器数据造成破坏性影响的 HTTP 请求方法(特别是 GET 以外的 HTTP 方法,或者搭配某些MIME类型的POST请求),标准强烈要求浏览器必须先以 OPTIONS 请求方式发送一个预请求(preflight request),从而获知服务器端对跨源请求所支持 HTTP 方法.在确认服务器允许该跨源请求的情况下,以实际的 HTTP 请求方法发送那个真正的请求.服务器端也可以通知客户端,是不是需要随同请求一起发送信用信息(包括 Cookies 和 HTTP 认证相关数据).</p>
+<p>浏览器将CORS请求分成两类: 简单请求(simple request) 和非简单请求(not-so-simple request);</p>
+<a id="more"></a>
+<h3 id="简单请求"><a href="#简单请求" class="headerlink" title="简单请求"></a>简单请求</h3><p>所谓的简单,是指:</p>
+<ul>
+<li>只使用<code>GET</code>,<code>HEAD</code>或者<code>POST</code>请求方法.如果使用<code>POST</code>向服务器端传送数据,则数据类型(<code>Content-Type</code>)只能是<code>application/x-www-form-urlencoded</code>,<code>multipart/form-data</code>或<code>text/plain</code>中的一种.</li>
+<li>不使用自定义请求头(例:<code>X-Requested-With</code>)</li>
+</ul>
+<blockquote>
+<p>这些跨站请求与以往浏览器发出的跨站请求并无异同.并且,如果服务器不给出适当的响应头,则不会有任何数据返回给请求方.因此,那些不允许跨站请求的网站无需为这一新的 HTTP 访问控制特性担心.</p>
+</blockquote>
+<p>CORS简单请求发起时,会自动在头部信息添加一个<code>Origin</code>字段:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// 请求</div><div class="line">GET /cors HTTP/1.1</div><div class="line">Origin: http://api.qiutc.me</div><div class="line">Host: api.alice.com</div><div class="line">Accept-Language: en-US</div><div class="line">Connection: keep-alive</div><div class="line">User-Agent: Mozilla/5.0...</div></pre></td></tr></table></figure></p>
+<p>表示本次请求来自哪个源(协议+域名+端口),服务端会获取到这个值,然后判断是否同意这个请求.</p>
+<p>如果服务端允许请求,则会在返回的头信息中多出几个字段:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 返回</div><div class="line">Access-Control-Allow-Origin: http://api.qiutc.me</div><div class="line">Access-Control-Allow-Credentials: true</div><div class="line">Access-Control-Expose-Headers: Info</div><div class="line">Content-Type: text/html;charset=utf-8</div></pre></td></tr></table></figure></p>
+<p>其中以<code>Access-Control</code>开头的字段就是CORS请求,服务端返回的相关字段:</p>
+<ul>
+<li><code>Access-Control-Allow-Origin</code><br><code>required</code>.它的值是请求时<code>Origin</code>字段的值或者是<code>*</code>,如果是<code>*</code>,则表示接受任意域名的请求.</li>
+<li><p><code>Access-Control-Allow-Credentials</code><br> 可选,它的值是一个布尔值,表示是否允许发送Cookie.默认情况下,Cookie不包括在CORS请求之中.设为true,即表示服务器明确许可,Cookie可以包含在请求中,一起发给服务器.</p>
+<p> 需要发送<code>cookie</code>的时候,还需要注意将<code>XMLHttpRequest</code>的<code>withCredentials</code>标志设置为true,<br> 从而使得Cookies可以随着请求发送:</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">xhr.withCredentials = <span class="literal">true</span>;</div></pre></td></tr></table></figure>
+<p> <strong>需要注意的是,如果要发送<code>Cookie</code>,<code>Access-Control-Allow-Origin</code>就不能设为<code>*</code>,必须指定明确的、与请求网页一致的域名.同时,<code>Cookie</code>依然遵循同源政策,只有用服务器域名设置的<code>Cookie</code>才会上传,其他域名的<code>Cookie</code>并不会上传,且原网页代码中的<code>document.cookie</code>也无法读取服务器域名下的<code>Cookie</code>.</strong></p>
+</li>
+<li><p><code>Access-Control-Expose-Headers</code><br> 可选,设置浏览器允许访问的服务器的头信息的白名单.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Access-Control-Expose-Headers: X-My-Custom-Header, X-Another-Custom-Header</div></pre></td></tr></table></figure>
+<p> 这样,<code>X-My-Custom-Header</code> 和 <code>X-Another-Custom-Header</code>这两个头信息,都可以被浏览器得到.</p>
+</li>
+</ul>
+<h3 id="非简单请求"><a href="#非简单请求" class="headerlink" title="非简单请求"></a>非简单请求</h3><p>如果浏览器发送的请求不满足上述的简单请求的条件,那么浏览器在进行CORS跨域资源共享的请求就是非简单请求:</p>
+<ul>
+<li>请求以 <code>GET</code>, <code>HEAD</code> 或者 <code>POST</code> 以外的方法发起请求.或者,使用 <code>POST</code>，但请求数据为 <code>application/x-www-form-urlencoded</code>, <code>multipart/form-data</code> 或者 <code>text/plain</code> 以外的数据类型.比如说,用 <code>POST</code> 发送数据类型为 <code>application/xml</code> 或者 <code>text/xml</code> 的 <code>XML</code>数据的请求.</li>
+<li>使用自定义请求头(比如添加诸如 <code>X-PINGOTHER</code>)</li>
+</ul>
+<blockquote>
+<p> 从Gecko 2.0开始,<code>text/plain</code>,<code>application/x-www-form-urlencoded</code> 和 <code>multipart/form-data</code>类型的数据都可以直接用于跨站请求,而不需要先发起“预请求”了.之前,只有 <code>text/plain</code> 可以不用先发起“预请求”,进行跨站请求.</p>
+</blockquote>
+<p>非简单请求,会在正式通信之前,发送一次<code>预请求</code>,即<code>OPTIONS</code>请求,也称为<code>预检请求(preflight)</code>.预请求的目的是浏览器询问服务器,当前网页所在的域名是否在服务器的许可名单之中,以及可以使用哪些HTTP动词和头信息字段.只有得到肯定答复,浏览器才会发起正式的<code>XMLHttpRequest</code>请求,否则就会报错.</p>
+<p>预检请求发送的请求:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">OPTIONS /cors HTTP/1.1</div><div class="line">Origin: http://api.qiutc.me</div><div class="line">Access-Control-Request-Method: PUT</div><div class="line">Access-Control-Request-Headers: X-Custom-Header</div><div class="line">Host: api.qiutc.com</div><div class="line">Accept-Language: en-US</div><div class="line">Connection: keep-alive</div><div class="line">User-Agent: Mozilla/5.0...</div></pre></td></tr></table></figure></p>
+<p>预检请求用的请求方法是<code>OPTIONS</code>,表示这个请求是用来询问的.头信息里面,关键字段是<code>Origin</code>,表示请求来自哪个源.<br>除了<code>Origin</code>字段,预检请求的头信息包括两个特殊字段.</p>
+<ul>
+<li><p><code>Access-Control-Request-Method</code><br>必选字段,用来列出浏览器的CORS请求会用到哪些HTTP方法,上例是<code>PUT</code>.</p>
+</li>
+<li><p><code>Access-Control-Request-Headers</code><br>该字段是一个逗号分隔的字符串,指定浏览器CORS请求会额外发送的头信息字段,上例是<code>X-Custom-Header</code>.</p>
+</li>
+</ul>
+<p>预检请求的返回:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 200 OK</div><div class="line">Date: Mon, 01 Dec 2008 01:15:39 GMT</div><div class="line">Server: Apache/2.0.61 (Unix)</div><div class="line">Access-Control-Allow-Origin: http://api.qiutc.me</div><div class="line">Access-Control-Allow-Methods: GET, POST, PUT</div><div class="line">Access-Control-Allow-Headers: X-Custom-Header</div><div class="line">Content-Type: text/html; charset=utf-8</div><div class="line">Content-Encoding: gzip</div><div class="line">Content-Length: 0</div><div class="line">Keep-Alive: timeout=2, max=100</div><div class="line">Connection: Keep-Alive</div><div class="line">Content-Type: text/plain</div></pre></td></tr></table></figure></p>
+<ul>
+<li><p><code>Access-Control-Allow-Methods</code><br><code>required</code>,它的值是逗号分隔的一个字符串,表明服务器支持的所有跨域请求的方法.注意,返回的是所有支持的方法,而不单是浏览器请求的那个方法.这是为了避免多次”预检”请求.</p>
+</li>
+<li><p><code>Access-Control-Allow-Headers</code><br>如果浏览器请求包括<code>Access-Control-Request-Headers</code>字段,则<code>Access-Control-Allow-Headers</code>字段是必需的.它也是一个逗号分隔的字符串,表明服务器支持的所有头信息字段,不限于浏览器在”预检”中请求的字段.</p>
+</li>
+<li><p><code>Access-Control-Max-Age</code><br>该字段可选,用来指定本次预检请求的有效期,单位为秒.上面结果中,有效期是20天(1728000秒),即允许缓存该条回应1728000秒(即20天),在此期间,不用发出另一条预检请求.</p>
+</li>
+</ul>
+<h3 id="小记"><a href="#小记" class="headerlink" title="小记"></a>小记</h3><p>就兼容性来说,ie10+ 和现代浏览器都是支持的.<br><img src="https://qiutc.me/img/cross-domain-cors.png" alt="&#39;兼容&#39;"><br>CORS与JSONP的使用目的相同,但是比JSONP更强大.<br>JSONP只支持<code>GET</code>请求,CORS支持所有类型的HTTP请求.JSONP的优势在于支持老式浏览器,以及可以向不支持CORS的网站请求数据.</p>
+<p>参考资料:</p>
+<ul>
+<li><a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="external">跨域资源共享 CORS 详解</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS#" target="_blank" rel="external">HTTP访问控制(CORS)</a></li>
+</ul>
+]]></content>
     </entry>
     
     <entry>
