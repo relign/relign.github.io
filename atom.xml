@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://relign.github.io/"/>
-  <updated>2016-12-14T02:47:49.000Z</updated>
+  <updated>2016-12-14T02:50:57.000Z</updated>
   <id>https://relign.github.io/</id>
   
   <author>
@@ -17,10 +17,10 @@
   
   <entry>
     <title>CORS跨域资源共享总结</title>
-    <link href="https://relign.github.io/Http/CORSDetail/"/>
-    <id>https://relign.github.io/Http/CORSDetail/</id>
+    <link href="https://relign.github.io/http/CORSDetail/"/>
+    <id>https://relign.github.io/http/CORSDetail/</id>
     <published>2016-12-13T13:56:00.000Z</published>
-    <updated>2016-12-14T02:47:49.000Z</updated>
+    <updated>2016-12-14T02:50:57.000Z</updated>
     
     <content type="html"><![CDATA[<p>使用<code>XMLHttpRequest</code>对象和<code>Fetch</code>发起HTTP请求就必须遵守<a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy" target="_blank" rel="external">同源策略</a>.<br>而CORS就是W3C推出的一个标准,用来解决跨域问题.</p>
 <h3 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h3><p>CORS,全称是”跨域资源共享”(Cross-origin resource sharing).这种方式让Web应用服务器能支持跨站访问控制,从而使得安全地进行跨站数据传输成为可能.</p>
@@ -94,7 +94,7 @@
     
     </summary>
     
-      <category term="Http" scheme="https://relign.github.io/categories/Http/"/>
+      <category term="http" scheme="https://relign.github.io/categories/http/"/>
     
     
       <category term="Http" scheme="https://relign.github.io/tags/Http/"/>
@@ -1047,7 +1047,7 @@ indent_size = <span class="number">2</span>
     <link href="https://relign.github.io/Angular/angular-02/"/>
     <id>https://relign.github.io/Angular/angular-02/</id>
     <published>2016-09-21T15:31:28.000Z</published>
-    <updated>2016-12-13T13:57:25.000Z</updated>
+    <updated>2016-12-14T02:51:01.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="找到代码代入口点"><a href="#找到代码代入口点" class="headerlink" title="找到代码代入口点"></a>找到代码代入口点</h3>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.angular.bootstrap) &#123;</div><div class="line">  <span class="comment">//AngularJS is already loaded, so we can return here...</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'WARNING: Tried to load angular more than once.'</span>);</div><div class="line">  <span class="keyword">return</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">//首先判断angular是否是多次加载,如果多次加载,输出警告信息;</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//try to bind to jquery now so that one can write angular.element().read()</span></div><div class="line"><span class="comment">//but we will rebind on bootstrap again.</span></div><div class="line">bindJQuery();<span class="comment">//该方法会去绑定jquery,内部会判断jQuery有没有加载,有就是用jQuery,没有则调用自带的jqLite</span></div><div class="line"></div><div class="line">publishExternalAPI(angular);<span class="comment">//暴露angular对象,加载angular的一系列api方法</span></div><div class="line"></div><div class="line">jqLite(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  angularInit(<span class="built_in">document</span>, bootstrap);<span class="comment">//等待dom加载完后启动angular.</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
   <a id="more"></a>
