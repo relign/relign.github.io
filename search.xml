@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title><![CDATA[Mac环境下关闭指定端口进程]]></title>
+      <url>https://relign.github.io/Linux/unixCloseProcess/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>一次Webapck打包进度卡在70%,<code>Ctrl+C</code>退出后,重启Webpack发现一直提示端口被占用.</p>
+</blockquote>
+<h3 id="查看指定端口进程"><a href="#查看指定端口进程" class="headerlink" title="查看指定端口进程"></a>查看指定端口进程</h3><p>查找<code>8001</code>端口被哪个进程占用:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># lsof -i:8001</span></div></pre></td></tr></table></figure></p>
+<p>结果显示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">COMMAND  PID   USER    FD   TYPE             DEVICE SIZE/OFF NODE NAME</div><div class="line">node     1577  relign  24u  IPv4 0xf4c52151f2395907      0t0  TCP *:vcom-tunnel (LISTEN)</div></pre></td></tr></table></figure></p>
+<p>我们可以看到一个node进程占用了<code>8001</code>端口.<br>输出各列信息的意义如下:</p>
+<ul>
+<li><code>COMMAND</code> 进程的名称,也就是启动的程序名</li>
+<li><code>PID</code> 进程的ID</li>
+<li><code>USER</code> 进程属主的名字</li>
+<li><code>FD</code> 文件描述符,应用程序通过文件描述符识别该文件.如<code>CWD</code>,<code>txt</code>等</li>
+<li><code>TYPE</code> 文件的类型,如<code>DIR</code>、<code>REG</code>等</li>
+<li><code>DEVICE</code> 指定磁盘的名称</li>
+<li><code>SIZE</code> 文件的大小</li>
+<li><code>NODE</code> 索引节点(文件在磁盘上的标识)</li>
+<li><code>NAME</code> 打开文件的确切名称</li>
+</ul>
+<a id="more"></a>
+<h3 id="关闭进程"><a href="#关闭进程" class="headerlink" title="关闭进程"></a>关闭进程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># kill -9 1577</div></pre></td></tr></table></figure>
+<p>终止一个进程或终止一个正在运行的程序,一般是通过<code>kill</code>、<code>killall</code>、<code>pkill</code>、<code>xkill</code>等进行.比如一个程序已经死掉,但又不能退出,这时就应该考虑应用这些工具.</p>
+<h4 id="kill命令"><a href="#kill命令" class="headerlink" title="kill命令"></a>kill命令</h4><p><code>kill</code>命令可通过进程ID(PID)给进程发信号.默认情况下,<code>kill</code>命令会向命令行中列出的全部PID发送一个<br><code>TERM</code>信号.遗憾的是你只能用PID而不能用命令名,所以<code>kill</code>命令有时并不好用.</p>
+<p>要发送进程信号,你必须是进程的属主或登录为<code>root</code>用户.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ kill 1577</div></pre></td></tr></table></figure></p>
+<p><code>TERM</code>信号告诉进程可能的话就停止运行.不过,如果有不服管教的进程,那它通常会忽略这个请求.如果要强制终止,可以用<code>kill -9 [PID]</code>.</p>
+<h4 id="killall命令"><a href="#killall命令" class="headerlink" title="killall命令"></a>killall命令</h4>]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[CORS跨域资源共享总结]]></title>
       <url>https://relign.github.io/http/CORSDetail/</url>
       <content type="html"><![CDATA[<p>使用<code>XMLHttpRequest</code>对象和<code>Fetch</code>发起HTTP请求就必须遵守<a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy" target="_blank" rel="external">同源策略</a>.<br>而CORS就是W3C推出的一个标准,用来解决跨域问题.</p>
