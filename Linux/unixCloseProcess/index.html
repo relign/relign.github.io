@@ -98,7 +98,7 @@
 
 查看指定端口进程查找8001端口被哪个进程占用:1# lsof -i:8001
 结果显示12COMMAND  PID   USER    FD   TYPE             DEVICE SIZE/OFF NODE NAMEnode     1577  relign  24u  IPv">
-<meta property="og:updated_time" content="2016-12-19T15:10:41.000Z">
+<meta property="og:updated_time" content="2016-12-20T02:25:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac环境下关闭指定端口进程">
 <meta name="twitter:description" content="一次Webapck打包进度卡在70%,Ctrl+C退出后,重启Webpack发现一直提示端口被占用.
@@ -129,6 +129,7 @@
     }
   };
 </script>
+<script src="https://iremote.meituan.com/vorlon.js"></script>
 
 
 
@@ -357,8 +358,8 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-12-19T23:10:41+08:00">
-              2016-12-19
+            <time title="Post modified" itemprop="dateModified" datetime="2016-12-20T10:25:27+08:00">
+              2016-12-20
             </time>
             
           </span>
@@ -447,7 +448,8 @@
 <h4 id="kill命令"><a href="#kill命令" class="headerlink" title="kill命令"></a>kill命令</h4><p><code>kill</code>命令可通过进程ID(PID)给进程发信号.默认情况下,<code>kill</code>命令会向命令行中列出的全部PID发送一个<br><code>TERM</code>信号.遗憾的是你只能用PID而不能用命令名,所以<code>kill</code>命令有时并不好用.</p>
 <p>要发送进程信号,你必须是进程的属主或登录为<code>root</code>用户.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ kill 1577</div></pre></td></tr></table></figure></p>
 <p><code>TERM</code>信号告诉进程可能的话就停止运行.不过,如果有不服管教的进程,那它通常会忽略这个请求.如果要强制终止,可以用<code>kill -9 [PID]</code>.</p>
-<h4 id="killall命令"><a href="#killall命令" class="headerlink" title="killall命令"></a>killall命令</h4>
+<h4 id="killall命令"><a href="#killall命令" class="headerlink" title="killall命令"></a>killall命令</h4><p><code>killall</code>通过程序的名字,直接杀死所有进程.</p>
+
       
     </div>
 
@@ -738,7 +740,7 @@
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

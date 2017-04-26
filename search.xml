@@ -29,7 +29,8 @@
 <h4 id="kill命令"><a href="#kill命令" class="headerlink" title="kill命令"></a>kill命令</h4><p><code>kill</code>命令可通过进程ID(PID)给进程发信号.默认情况下,<code>kill</code>命令会向命令行中列出的全部PID发送一个<br><code>TERM</code>信号.遗憾的是你只能用PID而不能用命令名,所以<code>kill</code>命令有时并不好用.</p>
 <p>要发送进程信号,你必须是进程的属主或登录为<code>root</code>用户.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ kill 1577</div></pre></td></tr></table></figure></p>
 <p><code>TERM</code>信号告诉进程可能的话就停止运行.不过,如果有不服管教的进程,那它通常会忽略这个请求.如果要强制终止,可以用<code>kill -9 [PID]</code>.</p>
-<h4 id="killall命令"><a href="#killall命令" class="headerlink" title="killall命令"></a>killall命令</h4>]]></content>
+<h4 id="killall命令"><a href="#killall命令" class="headerlink" title="killall命令"></a>killall命令</h4><p><code>killall</code>通过程序的名字,直接杀死所有进程.</p>
+]]></content>
     </entry>
     
     <entry>
